@@ -1,37 +1,32 @@
-<style>
-    .photo-editor-box{
-        background-color: white;
-        border: 1px solid blue;
-        width: 90%;
-        height: 90%;
-        padding: 2%;
-    }
-</style>
-<!--photo-editor-box-->
-<div class="photo-editor-box" ng-controller="ringPhotoEditorController">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/camanjs/4.0.0/caman.full.min.js"></script>
-    <div style="width: 90%; height: 100%; float: left;">
-        <!--image-renderer-panel-->
-        <div ng-style="{ 'width': pebW, 'height': pebH }" style="float:left; border: 1px solid magenta;">
+<div style="width: 90%; height: 90%; padding: 2%; margin: auto; border: 1px solid black;">
+    <!--left: canvas and filters-->
+    <div ng-style="{ 'width': lW, 'height': lH }" style="float: left;">
+        <div ng-style="{ 'width': cW, 'height': cH }"
+             style="float: left;
+             background-color: #15272d;">
 
         </div>
+        <div ng-style="{ 'width': fW, 'height': fH }"
+             style="float: left;
+             box-shadow: -1px 0 2px #888888;">
 
-        <!--editor-options-panel-->
-        <div ng-style="{ 'width': eopW, 'height': eopH }" style="float:left; border: 1px solid green;">
-            <!--sliders-list-panel-->
-            <div style="width: 50%; height: 100%; float: left; border: 1px solid wheat;">
-                &nbsp;
-            </div>
-
-            <!--filter-list-panel-->
-            <div style="width: 50%; height: 100%; float: right; border: 1px solid lightgray;">
-                &nbsp;
-            </div>
         </div>
     </div>
 
-    <!--common-options-panel-->
-    <div style="height: 100%; width: 10%; float:right; border: 1px solid fuchsia;">
-        &nbsp;
+    <!--mid: edit options-->
+    <div ng-style="{ 'width': mW }"
+         style="height: 100%;
+         float: left;
+         box-shadow: 0 0 2px #15272d;">
+
+    </div>
+
+    <!--right: common options-->
+    <div style="float: right;
+        margin-left: 1%;
+        width: 8%;
+        height: 100%;
+        box-shadow: 0 0 2px #15272d;">
+
     </div>
 </div>

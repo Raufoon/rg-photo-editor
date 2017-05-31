@@ -18,13 +18,19 @@
         margin: auto;
     }
 </style>
-<script>
-    angular.module('ringid.shared', []);
-</script>
+<script>angular.module('ringid.shared', []);</script>
 <script src="app/shared/controllers/ring-photo-editor.controller.js"></script>
-<script src="app/shared/directives/ring-photo-editor.directive.js"></script>
-
-<div style="width: 100%;height: 100%;" ring-photo-editor></div>
+<!--ringbox here-->
+<script>
+    angular.module('ringid.shared')
+        .directive('fakeRingbox', function () {
+            return {
+                templateUrl: 'pages/ring-photo-editor.html',
+                controller: 'ringPhotoEditorController'
+            }
+        })
+</script>
+<fake-ringbox></fake-ringbox>
 
 </body>
 </html>
