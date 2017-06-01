@@ -57,57 +57,55 @@ function ringPhotoEditorController($scope, $element) {
     }
 
     function getProgress(optionName) {
-        return ($scope.optionValues[optionName] + 100)/2;
+        return $scope.optionValues[optionName].value;
     }
-
-    // function drawImage() {
-    //     canvas[0].src = imageObj.src;
-    //     // canvas[0].getContext('2d')
-    //     //     .drawImage(imageObj, 0, 0, $scope.canvImgWidth, $scope.canvImgHeight);
-    // }
 
     function initCanvas() {
         canvas = angular.element(document.getElementById(canvasId));
-        setCanvasImageDimension();
         canvas[0].src = imageObj.src;
     }
 
-    function setCanvasImageDimension() {
-        var canvasHeight = canvas[0].height,
-            canvasWidth = canvas[0].width,
-            ratioImgWH = parseFloat(imageObj.width) / parseFloat(imageObj.height);
-
-        $scope.canvImgHeight = Math.min(imageObj.height, canvasHeight);
-        $scope.canvImgWidth = parseInt(parseFloat($scope.canvImgHeight) * ratioImgWH);
-
-        if ($scope.canvImgWidth > canvasWidth) {
-            $scope.canvImgWidth = canvasWidth;
-            $scope.canvImgHeight = canvasWidth / imageObj.width * imageObj.height;
-        }
-    }
-
     function initOptions() {
-        var i;
         $scope.optionList = [
             'brightness',
             'contrast',
             'sharpen',
             'saturation',
             'exposure',
+            'noise',
             'vibrance',
+            'sepia',
             'hue',
             'gamma',
-            'noise',
-            'sepia',
             'stackBlur',
+            'clip',
         ];
-        for (i = 0; i<$scope.optionList.length; i++)
-            $scope.optionValues[ $scope.optionList[i] ] = 0;
+        function prop(min, max, val) {
+            this.minValue = min === undefined? -100 : min;
+            this.maxValue = max === undefined? 100 : max;
+            this.value = val || 0;
+        }
+        $scope.optionValues = {
+            brightness: new prop(),
+            contrast: new prop(),
+            saturation: new prop(),
+            sharpen: new prop(0),
+            exposure: new prop(),
+            vibrance: new prop(),
+            hue: new prop(0),
+            gamma: new prop(0, 10),
+            clip: new prop(0),
+            stackBlur: new prop(0, 20),
+            noise: new prop(0),
+            sepia: new prop(0),
+        };
     }
 
     function onEdit(optionName) {
         window.Caman('#' + canvasId, function applyEdit() {
-            this[optionName]($scope.optionValues[optionName]).render();
+            this.revert(false);
+            this[optionName]($scope.optionValues[optionName].value);
+            this.render();
         });
     }
 }

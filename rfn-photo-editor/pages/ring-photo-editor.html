@@ -5,8 +5,8 @@
         <!--canvas-->
         <div ng-style="{ 'width': cW, 'height': cH }"
              style="float: left; background-color: #15272d;">
-            <p style="text-align:center;">
-                <img id="photo-edit-canvas-id" style="padding: 3%;">
+            <p style="text-align:center; padding: 3%; width:100%; height:100%;">
+                <img id="photo-edit-canvas-id" style="max-height:100%;">
             </p>
         </div>
 
@@ -44,15 +44,18 @@
                         padding: 0%;
                         text-align: right;
                         margin-bottom: 1%;"
-            >{{ prog(optionName) }}%</span>
+            >{{ prog(optionName) }}</span>
 
             <input class="col-md-12"
                    style="margin-top: 1%;
                         margin-bottom: 1%;
                         padding: 0;"
-                   ng-model="optionValues[optionName]"
+                   ng-model="optionValues[optionName].value"
                    ng-change="onEdit(optionName)"
-                   type="range" min="-100" max="100" value="0" step="1">
+                   type="range"
+                   min="{{ optionValues[optionName].minValue }}"
+                   max="{{ optionValues[optionName].maxValue }}"
+                   value="{{ optionValues[optionName].value }}">
 
         </div>
 
