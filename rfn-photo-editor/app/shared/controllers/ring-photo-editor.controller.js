@@ -31,11 +31,26 @@ function ringPhotoEditorController($scope, $element) {
 
     // function definitions
     function init(isPortrait) {
-        // widths and heights for the UI
+        initStyles(isPortrait);
+        initCanvas();
+        initOptions();
+        initFilters();
+        $scope.$digest();
+    }
+
+    function capitalizeFirst(string) {
+        return string.charAt(0).toUpperCase()+string.slice(1);
+    }
+
+    function getProgress(optionName) {
+        return $scope.optionValues[optionName].value;
+    }
+
+    function initStyles(isPortrait) {
         var canvasW = isPortrait? 55 : 71,
-            canvasH = isPortrait? 100 : 70,
+            // canvasH = isPortrait? 100 : 70,
             filtersW = isPortrait? 16 : 71,
-            filtersH = isPortrait? 100 : 30,
+            // filtersH = isPortrait? 100 : 30,
             optionsW = isPortrait? 20 : 20;
 
         $scope.lW = (isPortrait? canvasW + filtersW : canvasW) + '%';
@@ -46,18 +61,10 @@ function ringPhotoEditorController($scope, $element) {
         $scope.fW = (isPortrait? 20 : 100) + '%';
         $scope.fH = (isPortrait? 100 : 20) + '%';
 
-        initCanvas();
-        initOptions();
+        $scope.filterListClass = isPortrait ? 'col-md-12 col-lg-6 well' : 'col-md-2 col-lg-1 well';
 
-        $scope.$digest();
-    }
-
-    function capitalizeFirst(string) {
-        return string.charAt(0).toUpperCase()+string.slice(1);
-    }
-
-    function getProgress(optionName) {
-        return $scope.optionValues[optionName].value;
+        $scope.FltOX = isPortrait ? 'none' : 'scroll';
+        $scope.FltOY = isPortrait ? 'scroll': 'none';
     }
 
     function initCanvas() {
@@ -99,6 +106,29 @@ function ringPhotoEditorController($scope, $element) {
             noise: new prop(0),
             sepia: new prop(0),
         };
+    }
+
+    function initFilters() {
+        $scope.filterList = [
+            'vintage',
+            'lomo',
+            'clarity',
+            'sinCity',
+            'sunrise',
+            'crossProcess',
+            'orangePeel',
+            'love',
+            'grungy',
+            'jarques',
+            'pinhole',
+            'oldBoot',
+            'glowingSun',
+            'hazyDays',
+            'herMajesty',
+            'nostalgia',
+            'hemingway',
+            'concentrate',
+        ];
     }
 
     function onEdit(optionName) {
