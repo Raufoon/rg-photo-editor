@@ -11,19 +11,45 @@
         </div>
 
         <!--filters-->
-        <div ng-style="{ 'width': fW, 'height': fH, 'overflow-x': FltOX, 'overflow-y': FltOY }"
-             style="float: left;
-                    box-shadow: -1px 0 2px #888888;">
+        <div ng-style="{ 'width': fW, 'height': fH}"
+             style="float: left;box-shadow: -1px 0 2px #888888;">
 
-            <div class="well"
-                 style="margin: 5%;
-                        padding: 5%;
-                        background-color: white;
-                        border-radius: 0%;"
-                 ng-repeat="filterName in filterList">
-                <span>{{filterName}}</span>
+            <div ng-if="isPortrait" class="row"
+                 style="width: 100%; height: 100%; overflow-y: scroll; overflow-x: hidden;">
+                <span class="col-md-12 well"
+                      ng-style="{ 'background-color': fColor(filterName) }"
+                      ng-click="onFilterApply(filterName)"
+                      style="margin: 3%;
+                          padding: 10%;
+                          color: white;
+                          border: none;
+                          text-align: center;"
+                      ng-repeat="filterName in filterList">
+                    {{title(filterName)}}
+                </span>
             </div>
 
+            <div ng-if="!isPortrait"
+                 style="height: 100%;
+                 overflow: auto;
+                 overflow-y: hidden;
+                 white-space: nowrap;">
+
+                <span class="well"
+                      ng-style="{ 'background-color': fColor(filterName) }"
+                      ng-repeat="filterName in filterList"
+                      ng-click="onFilterApply(filterName)"
+                      style="display: inline-block;
+                          height: 100%;
+                          color: white;
+                          margin-left: 1%;
+                          padding-left: 4%;
+                          border: none;
+                          padding-right: 4%;
+                          text-align: center;
+                          text-decoration: none">{{title(filterName)}}</span>
+
+            </div>
         </div>
     </div>
 

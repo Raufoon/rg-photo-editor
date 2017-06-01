@@ -8,7 +8,7 @@ function ringPhotoEditorController($scope, $element) {
         // offScrnCanvas = document.createElement('canvas'),
         imageObj = new Image(),
         canvasId = 'photo-edit-canvas-id',
-        demoImageSrc = 'server/port2.jpg';
+        demoImageSrc = 'server/land2.jpg';
 
     $scope.imageSrc = demoImageSrc;
     $scope.imageHWRatio = 1;
@@ -28,9 +28,11 @@ function ringPhotoEditorController($scope, $element) {
     $scope.title = capitalizeFirst;
     $scope.onEdit = onEdit;
     $scope.prog = getProgress;
+    $scope.onFilterApply = onFilterApply;
 
     // function definitions
     function init(isPortrait) {
+        $scope.isPortrait = isPortrait;
         initStyles(isPortrait);
         initCanvas();
         initOptions();
@@ -57,14 +59,9 @@ function ringPhotoEditorController($scope, $element) {
         $scope.lH = '100%';
         $scope.mW = optionsW + '%';
         $scope.cW = (isPortrait? 80 : 100) + '%';
-        $scope.cH = (isPortrait? 100 : 80) + '%';
+        $scope.cH = (isPortrait? 100 : 85) + '%';
         $scope.fW = (isPortrait? 20 : 100) + '%';
-        $scope.fH = (isPortrait? 100 : 20) + '%';
-
-        $scope.filterListClass = isPortrait ? 'col-md-12 col-lg-6 well' : 'col-md-2 col-lg-1 well';
-
-        $scope.FltOX = isPortrait ? 'none' : 'scroll';
-        $scope.FltOY = isPortrait ? 'scroll': 'none';
+        $scope.fH = (isPortrait? 100 : 15) + '%';
     }
 
     function initCanvas() {
@@ -111,6 +108,13 @@ function ringPhotoEditorController($scope, $element) {
     function initFilters() {
         $scope.filterList = [
             'vintage',
+            'jarques',
+            'pinhole',
+            'oldBoot',
+            'glowingSun',
+            'hazyDays',
+            'herMajesty',
+            'nostalgia',
             'lomo',
             'clarity',
             'sinCity',
@@ -119,22 +123,46 @@ function ringPhotoEditorController($scope, $element) {
             'orangePeel',
             'love',
             'grungy',
-            'jarques',
-            'pinhole',
-            'oldBoot',
-            'glowingSun',
-            'hazyDays',
-            'herMajesty',
-            'nostalgia',
             'hemingway',
             'concentrate',
         ];
+        $scope.fColors = {
+            vintage: '#51a488',
+            lomo: '#794044',
+            clarity: '#936669',
+            sinCity: '#0e2f44',
+            sunrise: '#daa520',
+            crossProcess: '#8a2be2',
+            orangePeel: '#ff7f50',
+            love: '#ff4444',
+            grungy: '#191970',
+            jarques: '#6897bb',
+            pinhole: '#999999',
+            oldBoot: '#6897bb',
+            glowingSun: '#ffa500',
+            hazyDays: '#808080',
+            herMajesty: '#f6546a',
+            nostalgia: '#81d8d0',
+            hemingway: '#3b5998',
+            concentrate: '#cc0000',
+        };
+        $scope.fColor = function fColor(filterName) {
+            return $scope.fColors[filterName] || '#0099cc';
+        }
     }
 
     function onEdit(optionName) {
         window.Caman('#' + canvasId, function applyEdit() {
             this.revert(false);
             this[optionName]($scope.optionValues[optionName].value);
+            this.render();
+        });
+    }
+
+    function onFilterApply(optionName) {
+        window.Caman('#' + canvasId, function applyEdit() {
+            this.revert(false);
+            this[optionName]();
             this.render();
         });
     }
