@@ -5,14 +5,12 @@ ringPhotoEditorController.$inject = ['$scope', '$element'];
 
 function ringPhotoEditorController($scope, $element) {
     var canvas,
-        // offScrnCanvas = document.createElement('canvas'),
         imageObj = new Image(),
         canvasId = 'photo-edit-canvas-id',
-        demoImageSrc = 'server/land.jpg';
+        editHistoryStack,
+        demoImageSrc = 'server/port2.jpg';
 
     $scope.imageSrc = demoImageSrc;
-    $scope.optionList = [];
-    $scope.optionValues = {};
 
     // find image orientation
     imageObj.src = $scope.imageSrc;
@@ -21,13 +19,18 @@ function ringPhotoEditorController($scope, $element) {
         $scope.$digest();
     };
 
+    $scope.optionList = [];
+    $scope.optionValues = {};
+    editHistoryStack = []; // ** replace top if same option added
+
+
     // scope functions
     $scope.title = capitalizeFirst;
     $scope.onEdit = onEdit;
     $scope.prog = getProgress;
     $scope.onFilterApply = onFilterApply;
 
-    // function definitions
+    // initialization function
     function init(isPortrait) {
         $scope.isPortrait = isPortrait;
         initStyles(isPortrait);
@@ -35,14 +38,6 @@ function ringPhotoEditorController($scope, $element) {
         initOptions();
         initFilters();
         $scope.$digest();
-    }
-
-    function capitalizeFirst(string) {
-        return string.charAt(0).toUpperCase()+string.slice(1);
-    }
-
-    function getProgress(optionName) {
-        return $scope.optionValues[optionName].value;
     }
 
     function initStyles(isPortrait) {
@@ -125,17 +120,67 @@ function ringPhotoEditorController($scope, $element) {
         ];
     }
 
+    // utility functions
+    function capitalizeFirst(string) {
+        return string.charAt(0).toUpperCase()+string.slice(1);
+    }
+
+    function getProgress(optionName) {
+        return $scope.optionValues[optionName].value;
+    }
+
+    function addEditToHistory(optionName) {
+        var fValue,
+            lastEdit;
+
+        if ($scope.optionValues[optionName])
+            fValue = $scope.optionValues[optionName].value;
+        else
+            fValue = 'filter';
+
+        if (editHistoryStack.length > 0) {
+            lastEdit = editHistoryStack[editHistoryStack.length - 1];
+            if (lastEdit.fname === optionName) {
+                lastEdit.value = fValue;
+                return;
+            }
+        }
+        editHistoryStack.push({
+            fname: optionName,
+            value: fValue,
+        });
+    }
+
+    function getEditOptionsToApply() {
+        var returnObj = Object.create(null),
+            i,
+            editHistoryObject;
+
+        for (i = 0; i < editHistoryStack.length; i++) {
+            editHistoryObject = editHistoryStack[i];
+            returnObj[editHistoryObject.fname] = editHistoryObject.value;
+        }
+        return returnObj;
+    }
+
+    // event handling functions
+
     function onEdit(optionName) {
-        window.Caman('#' + canvasId, function applyEdit() {
-            var option = $scope.optionValues[optionName];
+        function applyEdit() {
+            var editOpts,
+                opt;
+
+            addEditToHistory(optionName);
+            editOpts = getEditOptionsToApply();
 
             this.revert(false);
-
-            if (option) this[optionName](option.value);
-            else this[optionName]();
-
+            for (opt in editOpts) {
+                if (editOpts[opt] === 'filter') this[opt]();
+                else this[opt](editOpts[opt]);
+            }
             this.render();
-        });
+        }
+        window.Caman('#' + canvasId, applyEdit);
     }
 
     function onFilterApply(optionName) {

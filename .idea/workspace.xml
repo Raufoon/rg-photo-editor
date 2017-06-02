@@ -32,14 +32,17 @@
       <file leaf-file-name="ring-photo-editor.controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rfn-photo-editor/app/shared/controllers/ring-photo-editor.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="130" column="0" lean-forward="true" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+            <state relative-caret-position="71">
+              <caret line="154" column="43" lean-forward="true" selection-start-line="154" selection-start-column="24" selection-end-line="154" selection-end-column="43" />
               <folding>
-                <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-                <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
                 <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
                 <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
                 <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -48,8 +51,8 @@
       <file leaf-file-name="ring-photo-editor.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="48" column="51" lean-forward="false" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
+            <state relative-caret-position="302">
+              <caret line="90" column="55" lean-forward="true" selection-start-line="90" selection-start-column="55" selection-end-line="90" selection-end-column="55" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -60,6 +63,7 @@
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -111,6 +115,7 @@
         <option value="$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-edit.html" />
         <option value="$PROJECT_DIR$/rfn-photo-editor/styles/input-range.css" />
         <option value="$PROJECT_DIR$/rfn-photo-editor/template.html" />
+        <option value="$PROJECT_DIR$/rfn-photo-editor/.gitignore" />
         <option value="$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.html" />
         <option value="$PROJECT_DIR$/rfn-photo-editor/app/shared/controllers/ring-photo-editor.controller.js" />
       </list>
@@ -233,6 +238,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="add_unversioned_files" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -350,12 +356,12 @@
       <workItem from="1496322745948" duration="13694000" />
       <workItem from="1496340124533" duration="874000" />
       <workItem from="1496344499377" duration="11039000" />
-      <workItem from="1496386482987" duration="3991000" />
+      <workItem from="1496386482987" duration="9920000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76839000" />
+    <option name="totallyTimeSpent" value="82768000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -367,7 +373,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21931261" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5482815" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -414,6 +420,7 @@
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -433,11 +440,14 @@
         <state relative-caret-position="160">
           <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
           <folding>
-            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -464,6 +474,7 @@
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -483,11 +494,14 @@
         <state relative-caret-position="1136">
           <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
           <folding>
-            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -514,6 +528,7 @@
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -533,11 +548,14 @@
         <state relative-caret-position="1776">
           <caret line="133" column="12" lean-forward="false" selection-start-line="133" selection-start-column="12" selection-end-line="133" selection-end-column="12" />
           <folding>
-            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -555,11 +573,14 @@
         <state relative-caret-position="736">
           <caret line="66" column="26" lean-forward="false" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
           <folding>
-            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -578,6 +599,7 @@
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -614,6 +636,7 @@
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -633,11 +656,14 @@
         <state relative-caret-position="80">
           <caret line="5" column="51" lean-forward="false" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
           <folding>
-            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -665,6 +691,7 @@
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -680,6 +707,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rfn-photo-editor/styles/input-range.css" />
+    <entry file="file://$PROJECT_DIR$/rfn-photo-editor/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/rfn-photo-editor/template.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16">
@@ -690,8 +725,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="48" column="51" lean-forward="false" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
+        <state relative-caret-position="302">
+          <caret line="90" column="55" lean-forward="true" selection-start-line="90" selection-start-column="55" selection-end-line="90" selection-end-column="55" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -702,6 +737,7 @@
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -718,14 +754,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rfn-photo-editor/app/shared/controllers/ring-photo-editor.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="130" column="0" lean-forward="true" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+        <state relative-caret-position="71">
+          <caret line="154" column="43" lean-forward="true" selection-start-line="154" selection-start-column="24" selection-end-line="154" selection-end-column="43" />
           <folding>
-            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
           </folding>
         </state>
       </provider>

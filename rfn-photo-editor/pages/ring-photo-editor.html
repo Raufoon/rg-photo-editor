@@ -21,7 +21,7 @@
                       style="margin: 3%;
                           padding: 10%;
                           color: white;
-                          background-color: #4169e1;
+                          background-color: #6897bb;
                           border: none;
                           text-align: center;"
                       ng-repeat="filterName in filterList">
@@ -46,7 +46,7 @@
                           border: none;
                           padding-right: 4%;
                           text-align: center;
-                          background-color: #4169e1;
+                          background-color: #6897bb;
                           text-decoration: none">{{title(filterName)}}</span>
 
             </div>
@@ -88,6 +88,7 @@
                         margin-bottom: 1%;
                         padding: 0;"
                    ng-model="optionValues[optionName].value"
+                   ng-model-options='{ debounce: 500 }'
                    ng-change="onEdit(optionName)"
                    type="range"
                    min="{{ optionValues[optionName].minValue }}"
