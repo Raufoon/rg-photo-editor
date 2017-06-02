@@ -17,11 +17,11 @@
             <div ng-if="isPortrait" class="row"
                  style="width: 100%; height: 100%; overflow-y: scroll; overflow-x: hidden;">
                 <span class="col-md-12 well"
-                      ng-style="{ 'background-color': fColor(filterName) }"
                       ng-click="onFilterApply(filterName)"
                       style="margin: 3%;
                           padding: 10%;
                           color: white;
+                          background-color: #4169e1;
                           border: none;
                           text-align: center;"
                       ng-repeat="filterName in filterList">
@@ -36,7 +36,6 @@
                  white-space: nowrap;">
 
                 <span class="well"
-                      ng-style="{ 'background-color': fColor(filterName) }"
                       ng-repeat="filterName in filterList"
                       ng-click="onFilterApply(filterName)"
                       style="display: inline-block;
@@ -47,6 +46,7 @@
                           border: none;
                           padding-right: 4%;
                           text-align: center;
+                          background-color: #4169e1;
                           text-decoration: none">{{title(filterName)}}</span>
 
             </div>

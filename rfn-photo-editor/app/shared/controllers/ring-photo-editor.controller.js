@@ -8,17 +8,14 @@ function ringPhotoEditorController($scope, $element) {
         // offScrnCanvas = document.createElement('canvas'),
         imageObj = new Image(),
         canvasId = 'photo-edit-canvas-id',
-        demoImageSrc = 'server/land2.jpg';
+        demoImageSrc = 'server/land.jpg';
 
     $scope.imageSrc = demoImageSrc;
-    $scope.imageHWRatio = 1;
     $scope.optionList = [];
     $scope.optionValues = {};
-    $scope.canvImgWidth = 0;
-    $scope.canvImgHeight = 0;
 
-    // findImageOrient
-    imageObj.src = demoImageSrc;
+    // find image orientation
+    imageObj.src = $scope.imageSrc;
     imageObj.onload = function fn() {
         init(this.height > this.width);
         $scope.$digest();
@@ -66,7 +63,7 @@ function ringPhotoEditorController($scope, $element) {
 
     function initCanvas() {
         canvas = angular.element(document.getElementById(canvasId));
-        canvas[0].src = imageObj.src;
+        canvas[0].src = $scope.imageSrc;
     }
 
     function initOptions() {
@@ -126,44 +123,22 @@ function ringPhotoEditorController($scope, $element) {
             'hemingway',
             'concentrate',
         ];
-        $scope.fColors = {
-            vintage: '#51a488',
-            lomo: '#794044',
-            clarity: '#936669',
-            sinCity: '#0e2f44',
-            sunrise: '#daa520',
-            crossProcess: '#8a2be2',
-            orangePeel: '#ff7f50',
-            love: '#ff4444',
-            grungy: '#191970',
-            jarques: '#6897bb',
-            pinhole: '#999999',
-            oldBoot: '#6897bb',
-            glowingSun: '#ffa500',
-            hazyDays: '#808080',
-            herMajesty: '#f6546a',
-            nostalgia: '#81d8d0',
-            hemingway: '#3b5998',
-            concentrate: '#cc0000',
-        };
-        $scope.fColor = function fColor(filterName) {
-            return $scope.fColors[filterName] || '#0099cc';
-        }
     }
 
     function onEdit(optionName) {
         window.Caman('#' + canvasId, function applyEdit() {
+            var option = $scope.optionValues[optionName];
+
             this.revert(false);
-            this[optionName]($scope.optionValues[optionName].value);
+
+            if (option) this[optionName](option.value);
+            else this[optionName]();
+
             this.render();
         });
     }
 
     function onFilterApply(optionName) {
-        window.Caman('#' + canvasId, function applyEdit() {
-            this.revert(false);
-            this[optionName]();
-            this.render();
-        });
+        onEdit(optionName);
     }
 }
