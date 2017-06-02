@@ -29,6 +29,7 @@ function ringPhotoEditorController($scope, $element) {
     $scope.onEdit = onEdit;
     $scope.prog = getProgress;
     $scope.onFilterApply = onFilterApply;
+    $scope.reset = resetAll;
 
     // initialization function
     function init(isPortrait) {
@@ -185,5 +186,12 @@ function ringPhotoEditorController($scope, $element) {
 
     function onFilterApply(optionName) {
         onEdit(optionName);
+    }
+
+    function resetAll() {
+        window.Caman('#' + canvasId, function resetFunc() {
+            this.revert(false);
+            this.render();
+        });
     }
 }

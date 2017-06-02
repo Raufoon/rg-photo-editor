@@ -88,7 +88,7 @@
                         margin-bottom: 1%;
                         padding: 0;"
                    ng-model="optionValues[optionName].value"
-                   ng-model-options='{ debounce: 1000 }'
+                   ng-model-options='{ debounce: 700 }'
                    ng-change="onEdit(optionName)"
                    type="range"
                    min="{{ optionValues[optionName].minValue }}"
@@ -111,6 +111,7 @@
         <div style="width: 100%; height: 80%; margin: 0; padding: 1%;" class="row">
 
             <a href="#" class="col-md-12 well"
+               ng-click="reset()"
                style="border-radius: 0; margin: 0; padding: 0; background-color: white; text-decoration: none;">
                 <img src="http://www.iconsplace.com/download/3498db-restart-512.gif"
                      style="max-width: 50%; margin: 20% 25% 10% 25%;">
