@@ -15,46 +15,48 @@
          border: 1px solid #ccd5de;">
 
         <a href="#" class="col-md-12 well"
-           ng-click="setOptTab('options')"
-           style="border-radius: 0; margin: 0; padding: 0; background-color: white; text-decoration: none;">
-            <img src="https://maxcdn.icons8.com/Share/icon/ios7/Data//sorting_options1600.png"
-                 style="max-width: 50%; margin: 20% 25% 10% 25%;">
-            <p style="text-align: center; padding: 0;">Options</p>
-        </a>
-
-        <a href="#" class="col-md-12 well"
            ng-click="setOptTab('filters')"
-           style="border-radius: 0; margin: 0; padding: 0; background-color: white; text-decoration: none;">
-            <img src="http://files.softicons.com/download/web-icons/flat-style-icons-by-flaticonmaker/png/256x256/flaticonmaker.png"
+           ng-style="{ 'background-color': curOptTab==='filters'? '#ffedcc' : 'white' }"
+           style="border-radius: 0; margin: 0; padding: 0; max-height: 17%; text-decoration: none;">
+            <img src="./images/color-filter.png"
                  style="max-width: 50%; margin: 20% 25% 10% 25%;">
             <p style="text-align: center; padding: 0;">Filters</p>
         </a>
 
         <a href="#" class="col-md-12 well"
-           style="border-radius: 0; margin: 0; padding: 0; background-color: white; text-decoration: none;">
-            <img src="http://www.clipartbest.com/cliparts/4ib/oRp/4iboRpXrT.png"
+           ng-click="setOptTab('options')"
+           ng-style="{ 'background-color': curOptTab==='options'? '#ffedcc' : 'white' }"
+           style="border-radius: 0; margin: 0; padding: 0; max-height: 17%; background-color: white; text-decoration: none;">
+            <img src="./images/photo-edit-options.png"
+                 style="max-width: 50%; margin: 20% 25% 10% 25%;">
+            <p style="text-align: center; padding: 0;">Options</p>
+        </a>
+
+        <a href="#" class="col-md-12 well"
+           style="border-radius: 0; margin: 0; padding: 0; max-height: 17%; background-color: white; text-decoration: none;">
+            <img src="./images/photo-crop.png"
                  style="max-width: 50%; margin: 20% 25% 10% 25%;">
             <p style="text-align: center; padding: 0;">Crop</p>
         </a>
 
         <a href="#" class="col-md-12 well"
-           style="border-radius: 0; margin: 0; padding: 0; background-color: white; text-decoration: none;">
-            <img src="http://icons.veryicon.com/ico/System/Oxygen/actions%20draw%20text.ico"
+           style="border-radius: 0; margin: 0; padding: 0; max-height: 17%; background-color: white; text-decoration: none;">
+            <img src="./images/photo-edit-text.png"
                  style="max-width: 50%; margin: 20% 25% 10% 25%;">
             <p style="text-align: center; padding: 0;">Text</p>
         </a>
 
         <a href="#" class="col-md-12 well"
            ng-click="reset()"
-           style="border-radius: 0; margin: 0; padding: 0; background-color: white; text-decoration: none;">
-            <img src="https://maxcdn.icons8.com/Share/icon/Very_Basic//refresh1600.png"
+           style="border-radius: 0; margin: 0; padding: 0; max-height: 16%; background-color: white; text-decoration: none;">
+            <img src="./images/photo-edit-reset.png"
                  style="max-width: 50%; margin: 20% 25% 10% 25%;">
             <p style="text-align: center; padding: 0;">Reset</p>
         </a>
 
         <a href="#" class="col-md-12 well"
-           style="border-radius: 0; margin: 0; padding: 0; background-color: white; text-decoration: none;">
-            <img src="http://www.iconsdb.com/icons/preview/gray/undo-3-xxl.png"
+           style="border-radius: 0; margin: 0; padding: 0; max-height: 16%; background-color: white; text-decoration: none;">
+            <img src="./images/photo-edit-undo.png"
                  style="max-width: 50%; margin: 20% 25% 10% 25%;">
             <p style="text-align: center; padding: 0;">Undo</p>
         </a>
@@ -129,6 +131,7 @@
             </p>
         </div>
         <div style="box-shadow: 0 0 2px #888888; float: right; width: 100%; height: 6%;">
+            <span ng-if="isLoading">Loading...</span>
             <button class="well"
                     style="height: 100%; width: 10%; border-radius: 0;
                     padding: 0;

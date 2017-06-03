@@ -8,7 +8,6 @@ function ringPhotoEditorController($scope, $element) {
         imageObj = new Image(),
         canvasId = 'photo-edit-canvas-id',
         editHistoryStack,
-        currentFilter,
         demoImageSrc = 'server/port.jpg';
 
     $scope.imageSrc = demoImageSrc;
@@ -22,8 +21,9 @@ function ringPhotoEditorController($scope, $element) {
 
     $scope.optionList = [];
     $scope.optionValues = {};
-    $scope.curOptTab = 'options';
+    $scope.curOptTab = 'filters';
     editHistoryStack = []; // ** replace top if same option added
+    $scope.isLoading = false;
 
 
     // scope functions
@@ -173,6 +173,7 @@ function ringPhotoEditorController($scope, $element) {
             var editOpts,
                 opt;
 
+            toggleLoading();
             addEditToHistory(optionName);
             editOpts = getEditOptionsToApply();
 
@@ -181,14 +182,18 @@ function ringPhotoEditorController($scope, $element) {
                 if (opt === 'filter') this[editOpts[opt]]();
                 else this[opt](editOpts[opt]);
             }
-            this.render();
+            this.render(toggleLoading);
         }
         window.Caman('#' + canvasId, applyEdit);
     }
 
     function onFilterApply(optionName) {
-        currentFilter = optionName;
         onEdit(optionName);
+    }
+
+    function toggleLoading() {
+        $scope.isLoading = !$scope.isLoading;
+        $scope.$digest();
     }
 
     function resetAll() {
