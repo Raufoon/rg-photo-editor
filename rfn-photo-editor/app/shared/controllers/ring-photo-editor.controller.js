@@ -8,6 +8,7 @@ function ringPhotoEditorController($scope, $element) {
         imageObj = new Image(),
         canvasId = 'photo-edit-canvas-id',
         editHistoryStack,
+        currentFilter,
         demoImageSrc = 'server/port.jpg';
 
     $scope.imageSrc = demoImageSrc;
@@ -124,12 +125,21 @@ function ringPhotoEditorController($scope, $element) {
 
     function addEditToHistory(optionName) {
         var fValue,
-            lastEdit;
+            lastEdit,
+            isFilter;
 
         if ($scope.optionValues[optionName])
             fValue = $scope.optionValues[optionName].value;
         else
-            fValue = 'filter';
+            isFilter = true;
+
+        if (isFilter) {
+            editHistoryStack.push({
+                fname: 'filter',
+                value: optionName,
+            });
+            return;
+        }
 
         if (editHistoryStack.length > 0) {
             lastEdit = editHistoryStack[editHistoryStack.length - 1];
@@ -168,22 +178,23 @@ function ringPhotoEditorController($scope, $element) {
 
             this.revert(false);
             for (opt in editOpts) {
-                if (editOpts[opt] === 'filter') this[opt]();
+                if (opt === 'filter') this[editOpts[opt]]();
                 else this[opt](editOpts[opt]);
             }
             this.render();
         }
-        window.Caman('#' + canvasId, $scope.imageSrc, applyEdit);
+        window.Caman('#' + canvasId, applyEdit);
     }
 
     function onFilterApply(optionName) {
+        currentFilter = optionName;
         onEdit(optionName);
     }
 
     function resetAll() {
         var i,
             optionName;
-        window.Caman('#' + canvasId, $scope.imageSrc, function resetFunc() {
+        window.Caman('#' + canvasId, function resetFunc() {
             this.revert(false);
             this.render();
         });

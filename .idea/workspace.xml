@@ -4,7 +4,7 @@
     <list default="true" id="0d170bb6-79c7-48cf-bd5f-27945b5b3d1e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rfn-photo-editor/app/shared/controllers/ring-photo-editor.controller.js" afterPath="$PROJECT_DIR$/rfn-photo-editor/app/shared/controllers/ring-photo-editor.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.html" afterPath="$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.v2.html" afterPath="$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.v2.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,66 +24,32 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="176">
               <caret line="11" column="68" lean-forward="false" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ring-photo-editor.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rfn-photo-editor/app/shared/controllers/ring-photo-editor.controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="193" column="26" lean-forward="false" selection-start-line="193" selection-start-column="26" selection-end-line="193" selection-end-column="26" />
               <folding>
-                <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-                <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-                <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-                <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-                <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-                <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-                <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-                <element signature="n#!!block;n#addEditToHistory#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-                <element signature="n#!!block;n#getEditOptionsToApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-                <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                <marker date="1496508605444" expanded="true" signature="1174:1251" ph="{&quot;templateUrl&quot;: 'pages/ring-photo-editor.html'...}" />
+                <marker date="1496508605444" expanded="true" signature="1174:1261" ph="{...}" />
+                <marker date="1496508605444" expanded="true" signature="1174:1271" ph="..." />
+                <marker date="1496508605444" expanded="true" signature="1174:1310" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ring-photo-editor.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.html">
+      <file leaf-file-name="ring-photo-editor.controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/rfn-photo-editor/app/shared/controllers/ring-photo-editor.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="90" column="50" lean-forward="false" selection-start-line="90" selection-start-column="50" selection-end-line="90" selection-end-column="50" />
+            <state relative-caret-position="425">
+              <caret line="181" column="13" lean-forward="false" selection-start-line="181" selection-start-column="13" selection-end-line="181" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ring-photo-editor.v2.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.v2.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="134" column="20" lean-forward="false" selection-start-line="134" selection-start-column="20" selection-end-line="134" selection-end-column="20" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#p#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#a#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#1;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#a#1;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#a#1;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#2;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#img#0;n#a#2;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#a#2;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -127,8 +93,9 @@
         <option value="$PROJECT_DIR$/rfn-photo-editor/styles/input-range.css" />
         <option value="$PROJECT_DIR$/rfn-photo-editor/template.html" />
         <option value="$PROJECT_DIR$/rfn-photo-editor/.gitignore" />
-        <option value="$PROJECT_DIR$/rfn-photo-editor/app/shared/controllers/ring-photo-editor.controller.js" />
         <option value="$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.html" />
+        <option value="$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.v2.html" />
+        <option value="$PROJECT_DIR$/rfn-photo-editor/app/shared/controllers/ring-photo-editor.controller.js" />
       </list>
     </option>
   </component>
@@ -369,24 +336,25 @@
       <workItem from="1496344499377" duration="11039000" />
       <workItem from="1496386482987" duration="16175000" />
       <workItem from="1496417996733" duration="11000" />
-      <workItem from="1496421834887" duration="275000" />
+      <workItem from="1496421834887" duration="605000" />
+      <workItem from="1496508369045" duration="1541000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89309000" />
+    <option name="totallyTimeSpent" value="91180000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3266369" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18898809" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0801964" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15384616" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -415,7 +383,71 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="11" column="68" lean-forward="false" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
+          <folding>
+            <marker date="1496508605444" expanded="true" signature="1174:1251" ph="{&quot;templateUrl&quot;: 'pages/ring-photo-editor.html'...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1261" ph="{...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1271" ph="..." />
+            <marker date="1496508605444" expanded="true" signature="1174:1310" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rfn-photo-editor/app/shared/controllers/ring-photo-editor.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3088">
+          <caret line="193" column="26" lean-forward="false" selection-start-line="193" selection-start-column="26" selection-end-line="193" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1440">
+          <caret line="90" column="50" lean-forward="false" selection-start-line="90" selection-start-column="50" selection-end-line="90" selection-end-column="50" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#p#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#a#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#1;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#a#1;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#2;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#2;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#a#2;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rfn-photo-editor/template.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="68" lean-forward="false" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
+          <folding>
+            <marker date="1496508605444" expanded="true" signature="1174:1251" ph="{&quot;templateUrl&quot;: 'pages/ring-photo-editor.html'...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1261" ph="{...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1271" ph="..." />
+            <marker date="1496508605444" expanded="true" signature="1174:1310" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -423,18 +455,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="36" />
-          <folding>
-            <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#addEditToHistory#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getEditOptionsToApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -480,7 +501,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="11" column="68" lean-forward="false" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
-          <folding />
+          <folding>
+            <marker date="1496508605444" expanded="true" signature="1174:1251" ph="{&quot;templateUrl&quot;: 'pages/ring-photo-editor.html'...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1261" ph="{...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1271" ph="..." />
+            <marker date="1496508605444" expanded="true" signature="1174:1310" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -488,18 +514,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="36" />
-          <folding>
-            <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#addEditToHistory#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getEditOptionsToApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -545,7 +560,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="11" column="68" lean-forward="false" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
-          <folding />
+          <folding>
+            <marker date="1496508605444" expanded="true" signature="1174:1251" ph="{&quot;templateUrl&quot;: 'pages/ring-photo-editor.html'...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1261" ph="{...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1271" ph="..." />
+            <marker date="1496508605444" expanded="true" signature="1174:1310" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -591,18 +611,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-          <folding>
-            <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#addEditToHistory#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getEditOptionsToApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -610,7 +619,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="11" column="68" lean-forward="false" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
-          <folding />
+          <folding>
+            <marker date="1496508605444" expanded="true" signature="1174:1251" ph="{&quot;templateUrl&quot;: 'pages/ring-photo-editor.html'...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1261" ph="{...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1271" ph="..." />
+            <marker date="1496508605444" expanded="true" signature="1174:1310" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -656,18 +670,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1136">
           <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#addEditToHistory#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getEditOptionsToApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -675,7 +678,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="11" column="68" lean-forward="false" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
-          <folding />
+          <folding>
+            <marker date="1496508605444" expanded="true" signature="1174:1251" ph="{&quot;templateUrl&quot;: 'pages/ring-photo-editor.html'...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1261" ph="{...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1271" ph="..." />
+            <marker date="1496508605444" expanded="true" signature="1174:1310" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -721,18 +729,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1776">
           <caret line="133" column="12" lean-forward="false" selection-start-line="133" selection-start-column="12" selection-end-line="133" selection-end-column="12" />
-          <folding>
-            <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#addEditToHistory#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getEditOptionsToApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -740,7 +737,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
           <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1496508605444" expanded="true" signature="1174:1251" ph="{&quot;templateUrl&quot;: 'pages/ring-photo-editor.html'...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1261" ph="{...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1271" ph="..." />
+            <marker date="1496508605444" expanded="true" signature="1174:1310" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -748,18 +750,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="736">
           <caret line="66" column="26" lean-forward="false" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
-          <folding>
-            <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#addEditToHistory#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getEditOptionsToApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -805,7 +796,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1496508605444" expanded="true" signature="1174:1251" ph="{&quot;templateUrl&quot;: 'pages/ring-photo-editor.html'...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1261" ph="{...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1271" ph="..." />
+            <marker date="1496508605444" expanded="true" signature="1174:1310" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -851,18 +847,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="5" column="51" lean-forward="false" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
-          <folding>
-            <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#addEditToHistory#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getEditOptionsToApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -919,33 +904,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="11" column="68" lean-forward="false" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rfn-photo-editor/app/shared/controllers/ring-photo-editor.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="193" column="26" lean-forward="false" selection-start-line="193" selection-start-column="26" selection-end-line="193" selection-end-column="26" />
           <folding>
-            <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#addEditToHistory#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#getEditOptionsToApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <marker date="1496508605444" expanded="true" signature="1174:1251" ph="{&quot;templateUrl&quot;: 'pages/ring-photo-editor.html'...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1261" ph="{...}" />
+            <marker date="1496508605444" expanded="true" signature="1174:1271" ph="..." />
+            <marker date="1496508605444" expanded="true" signature="1174:1310" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="90" column="50" lean-forward="false" selection-start-line="90" selection-start-column="50" selection-end-line="90" selection-end-column="50" />
+        <state relative-caret-position="-688">
+          <caret line="91" column="50" lean-forward="false" selection-start-line="91" selection-start-column="50" selection-end-line="91" selection-end-column="50" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -977,6 +948,24 @@
             <element signature="n#style#0;n#button#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.v2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="134" column="20" lean-forward="false" selection-start-line="134" selection-start-column="20" selection-end-line="134" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#button#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rfn-photo-editor/app/shared/controllers/ring-photo-editor.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="181" column="13" lean-forward="false" selection-start-line="181" selection-start-column="13" selection-end-line="181" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
