@@ -8,7 +8,7 @@ function ringPhotoEditorController($scope, $element) {
         imageObj = new Image(),
         canvasId = 'photo-edit-canvas-id',
         editHistoryStack,
-        demoImageSrc = 'server/port2.jpg';
+        demoImageSrc = 'server/port.jpg';
 
     $scope.imageSrc = demoImageSrc;
 
@@ -21,6 +21,7 @@ function ringPhotoEditorController($scope, $element) {
 
     $scope.optionList = [];
     $scope.optionValues = {};
+    $scope.curOptTab = 'options';
     editHistoryStack = []; // ** replace top if same option added
 
 
@@ -30,6 +31,7 @@ function ringPhotoEditorController($scope, $element) {
     $scope.prog = getProgress;
     $scope.onFilterApply = onFilterApply;
     $scope.reset = resetAll;
+    $scope.setOptTab = setOptionsTab;
 
     // initialization function
     function init(isPortrait) {
@@ -42,19 +44,9 @@ function ringPhotoEditorController($scope, $element) {
     }
 
     function initStyles(isPortrait) {
-        var canvasW = isPortrait? 55 : 71,
-            // canvasH = isPortrait? 100 : 70,
-            filtersW = isPortrait? 16 : 71,
-            // filtersH = isPortrait? 100 : 30,
-            optionsW = isPortrait? 20 : 20;
-
-        $scope.lW = (isPortrait? canvasW + filtersW : canvasW) + '%';
-        $scope.lH = '100%';
-        $scope.mW = optionsW + '%';
-        $scope.cW = (isPortrait? 80 : 100) + '%';
-        $scope.cH = (isPortrait? 100 : 85) + '%';
-        $scope.fW = (isPortrait? 20 : 100) + '%';
-        $scope.fH = (isPortrait? 100 : 15) + '%';
+        $scope.mdW = isPortrait ? '35%' : '20%';
+        $scope.rdW = isPortrait ? '59%' : '74%';
+        $scope.filtW = isPortrait ? '48%': '98%';
     }
 
     function initCanvas() {
@@ -181,7 +173,7 @@ function ringPhotoEditorController($scope, $element) {
             }
             this.render();
         }
-        window.Caman('#' + canvasId, applyEdit);
+        window.Caman('#' + canvasId, $scope.imageSrc, applyEdit);
     }
 
     function onFilterApply(optionName) {
@@ -189,9 +181,20 @@ function ringPhotoEditorController($scope, $element) {
     }
 
     function resetAll() {
-        window.Caman('#' + canvasId, function resetFunc() {
+        var i,
+            optionName;
+        window.Caman('#' + canvasId, $scope.imageSrc, function resetFunc() {
             this.revert(false);
             this.render();
         });
+        editHistoryStack = [];
+        for (i = 0; i < $scope.optionList.length; i++) {
+            optionName = $scope.optionList[i];
+            $scope.optionValues[optionName].value = 0;
+        }
+    }
+
+    function setOptionsTab(optionsTabTitle) {
+        $scope.curOptTab = optionsTabTitle;
     }
 }

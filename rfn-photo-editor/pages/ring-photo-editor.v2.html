@@ -1,0 +1,137 @@
+<script src="http://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>
+
+<!--outmost div-->
+<div style="width: 90%;
+     height: 90%;
+     margin: auto;
+     padding: 1%;
+     border: 1px solid darkgrey;">
+
+
+    <!--leftmost options list-->
+    <div style="width: 6%;
+         float: left;
+         height: 100%;
+         border: 1px solid #ccd5de;">
+
+        <a href="#" class="col-md-12 well"
+           ng-click="setOptTab('options')"
+           style="border-radius: 0; margin: 0; padding: 0; background-color: white; text-decoration: none;">
+            <img src="https://maxcdn.icons8.com/Share/icon/ios7/Data//sorting_options1600.png"
+                 style="max-width: 50%; margin: 20% 25% 10% 25%;">
+            <p style="text-align: center; padding: 0;">Options</p>
+        </a>
+
+        <a href="#" class="col-md-12 well"
+           ng-click="setOptTab('filters')"
+           style="border-radius: 0; margin: 0; padding: 0; background-color: white; text-decoration: none;">
+            <img src="http://files.softicons.com/download/web-icons/flat-style-icons-by-flaticonmaker/png/256x256/flaticonmaker.png"
+                 style="max-width: 50%; margin: 20% 25% 10% 25%;">
+            <p style="text-align: center; padding: 0;">Filters</p>
+        </a>
+
+        <a href="#" class="col-md-12 well"
+           style="border-radius: 0; margin: 0; padding: 0; background-color: white; text-decoration: none;">
+            <img src="http://www.clipartbest.com/cliparts/4ib/oRp/4iboRpXrT.png"
+                 style="max-width: 50%; margin: 20% 25% 10% 25%;">
+            <p style="text-align: center; padding: 0;">Crop</p>
+        </a>
+
+        <a href="#" class="col-md-12 well"
+           style="border-radius: 0; margin: 0; padding: 0; background-color: white; text-decoration: none;">
+            <img src="http://icons.veryicon.com/ico/System/Oxygen/actions%20draw%20text.ico"
+                 style="max-width: 50%; margin: 20% 25% 10% 25%;">
+            <p style="text-align: center; padding: 0;">Text</p>
+        </a>
+
+        <a href="#" class="col-md-12 well"
+           ng-click="reset()"
+           style="border-radius: 0; margin: 0; padding: 0; background-color: white; text-decoration: none;">
+            <img src="https://maxcdn.icons8.com/Share/icon/Very_Basic//refresh1600.png"
+                 style="max-width: 50%; margin: 20% 25% 10% 25%;">
+            <p style="text-align: center; padding: 0;">Reset</p>
+        </a>
+
+        <a href="#" class="col-md-12 well"
+           style="border-radius: 0; margin: 0; padding: 0; background-color: white; text-decoration: none;">
+            <img src="http://www.iconsdb.com/icons/preview/gray/undo-3-xxl.png"
+                 style="max-width: 50%; margin: 20% 25% 10% 25%;">
+            <p style="text-align: center; padding: 0;">Undo</p>
+        </a>
+
+    </div>
+
+    <!--dynamic options view-->
+    <div ng-style="{ 'width': mdW }"
+         style="float: left;
+         height: 100%;
+         padding: 2%;
+         overflow-y: scroll;
+         box-shadow: 0 0 2px #888888;">
+
+        <div ng-if="curOptTab === 'options'"
+             style="background-color: white;
+                 margin-bottom: 5%;
+                 width: 100%;
+                 min-height: 8%;
+                 border: none;
+                 padding: 0;"
+             ng-repeat="optionName in optionList">
+
+            <span class="col-md-8"
+                  style="padding: 0%; border: none;">
+                {{title(optionName)}}</span>
+
+            <span class="col-md-4"
+                  style="padding: 0%; text-align: right; border: none;"
+            >{{ prog(optionName) }}</span>
+
+            <input class="col-md-12"
+                   style="padding: 0; border: none; margin-top: 3%;"
+                   ng-model="optionValues[optionName].value"
+                   ng-model-options='{ debounce: 700 }'
+                   ng-change="onEdit(optionName)"
+                   type="range"
+                   min="{{ optionValues[optionName].minValue }}"
+                   max="{{ optionValues[optionName].maxValue }}"
+                   value="{{ optionValues[optionName].value }}">
+
+        </div>
+
+        <button class="well" ng-if="curOptTab === 'filters'"
+                ng-style="{ 'width': filtW }"
+                ng-click="onFilterApply(filterName)"
+                style="background-color: white;
+                 margin: 1%;
+                 margin-bottom: 3%;
+                 box-shadow: 0 0 2px #888888;
+                 background-color: #0089b7;
+                 color: white;
+                 float: left;
+                 min-height: 7%;
+                 border: none;
+                 text-decoration: none;
+                 text-align: center;
+                 padding: 0;"
+                ng-repeat="filterName in filterList">
+            <h4>{{title(filterName)}}</h4>
+        </button>
+
+    </div>
+
+    <!--rightmost options-->
+    <div ng-style="{ 'width': rdW }"
+         style="float: right;
+         height: 100%;">
+        <div style="float: right; width: 100%; height: 94%; padding: 2%; background-color: #ccd5de;">
+            <p style="text-align:center; width:100%; height:100%;">
+                <img id="photo-edit-canvas-id" style="max-height:100%;max-width:100%;">
+            </p>
+        </div>
+        <div style="box-shadow: 0 0 2px #888888; float: right; width: 100%; height: 6%;">
+            <button class="well" style="height: 100%; width: 10%; border-radius: 0; background-color: #f47727; color: white; float: right;">Save</button>
+            <button class="well" style="height: 100%; width: 10%; border-radius: 0; background-color: #FFFFFF; float: right;">Cancel</button>
+        </div>
+    </div>
+
+</div>
