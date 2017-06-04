@@ -32,17 +32,20 @@
     .mid-opt-panel{
         float: left;
         height: 100%;
-        padding: 2%;
+        padding: 1%;
         overflow-y: scroll;
         box-shadow: 0 0 2px #888888;
     }
     .filt-range-opt{
         background-color: white;
+        margin: 2%;
         margin-bottom: 5%;
+        margin-top: 4%;
         width: 100%;
         min-height: 8%;
         border: none;
         padding: 0;
+        float: left;
     }
     .filt-range-title{
         padding: 0%;
@@ -101,7 +104,11 @@
             <p class="pe-left-opt-btn-txt">Options</p>
         </a>
 
-        <a href="#" class="col-md-12 well pe-left-opt-btn" style="text-decoration: none;">
+        <a href="#"
+           class="col-md-12 well pe-left-opt-btn"
+           ng-click="setOptTab('crop')"
+           ng-style="{ 'background-color': curOptTab==='crop'? '#ffedcc' : 'white' }"
+           style="text-decoration: none;">
             <img src="./images/photo-crop.png" class="pe-left-opt-btn-img">
             <p class="pe-left-opt-btn-txt">Crop</p>
         </a>
@@ -116,7 +123,8 @@
             <p class="pe-left-opt-btn-txt">Reset</p>
         </a>
 
-        <a href="#" class="col-md-12 well pe-left-opt-btn" style="text-decoration: none;">
+        <a href="#" class="col-md-12 well pe-left-opt-btn"
+           style="text-decoration: none;" ng-click="undoLast()">
             <img src="./images/photo-edit-undo.png" class="pe-left-opt-btn-img">
             <p class="pe-left-opt-btn-txt">Undo</p>
         </a>
@@ -126,7 +134,8 @@
     <!--dynamic options view-->
     <div ng-style="{ 'width': mdW }" class="mid-opt-panel">
 
-        <div ng-if="curOptTab === 'options'" class="filt-range-opt" ng-repeat="optionName in optionList">
+        <div ng-if="curOptTab === 'options'" class="filt-range-opt"
+             ng-style="{'width': isPortrait? '46%':'96%'}" ng-repeat="optionName in optionList">
 
             <span class="col-md-8 filt-range-title">{{title(optionName)}}</span>
 
@@ -149,6 +158,11 @@
             <h4>{{title(filterName)}}</h4>
         </button>
 
+        <div ng-if="curOptTab === 'crop'">
+            this space is as empty as my life :(
+            {{TEST}}
+        </div>
+
     </div>
 
     <!--rightmost options-->
@@ -157,13 +171,13 @@
          height: 100%;">
         <div style="float: right; width: 100%; height: 94%; padding: 2%; background-color: #ccd5de;">
             <p style="text-align:center; width:100%; height:100%;">
-                <img id="photo-edit-canvas-id" style="max-height:100%;max-width:100%;">
+                <img id="photo-edit-canvas-id"
+                     style="max-height:100%; max-width:100%;">
             </p>
         </div>
         <div style="box-shadow: 0 0 2px #888888; float: right; width: 100%; height: 6%;">
             <span ng-if="isLoading">Loading...</span>
-            <button class="well savebtn"
-                    style="background-color: #f47727; color: white;">Save</button>
+            <button class="well savebtn" style="background-color: #f47727; color: white;">Save</button>
             <button class="well savebtn">Cancel</button>
         </div>
     </div>
