@@ -11,7 +11,7 @@ function ringPhotoEditorController($scope, $element) {
         canvasId = 'photo-edit-canvas-id',
         editHistoryStack,
         isHoldForCrop = false,
-        demoImageSrc = 'server/port.jpg',
+        demoImageSrc = 'server/land.jpg',
         cropX0,
         cropY0,
         cropX1,
@@ -270,6 +270,7 @@ function ringPhotoEditorController($scope, $element) {
             canvas[0].height = mainCanvas.height;
             canvas[0].width = mainCanvas.width;
             canvas[0].style.maxHeight = '100%';
+            canvas[0].style.maxWidth = '100%';
 
             canvasCtx = canvas[0].getContext('2d');
             canvasCtx.strokeStyle = "#ffcb85";
