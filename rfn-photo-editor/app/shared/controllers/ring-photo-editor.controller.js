@@ -5,11 +5,17 @@ ringPhotoEditorController.$inject = ['$scope', '$element'];
 
 function ringPhotoEditorController($scope, $element) {
     var canvas,
+        canvasCtx,
+        canvasRect,
         imageObj = new Image(),
         canvasId = 'photo-edit-canvas-id',
         editHistoryStack,
         isHoldForCrop = false,
-        demoImageSrc = 'server/port.jpg';
+        demoImageSrc = 'server/port.jpg',
+        cropX0,
+        cropY0,
+        cropX1,
+        cropY1;
 
     $scope.imageSrc = demoImageSrc;
     // find image orientation
@@ -52,8 +58,7 @@ function ringPhotoEditorController($scope, $element) {
     }
 
     function initCanvas() {
-        canvas = angular.element(document.getElementById(canvasId));
-        canvas[0].src = $scope.imageSrc;
+        angular.element(document.getElementById(canvasId))[0].src = $scope.imageSrc;
     }
 
     function initOptions() {
@@ -254,38 +259,68 @@ function ringPhotoEditorController($scope, $element) {
 
     // crop related functions
     function initCropSection() {
-        window.Caman('#' + canvasId, $scope.imageSrc, function fn() {
-            this.render(function onRender() {
-                canvas = angular.element(document.getElementById(canvasId));
-                canvas.on('mouseup', mouseUpOnCanvas);
-                canvas.on('mousedown', mouseDownOnCanvas);
-                canvas.on('mousemove', mouseMoveOnCanvas);
-            });
+        window.Caman('#photo-edit-canvas-id', function () {
+            var mainCanvas = angular.element(document.getElementById('photo-edit-canvas-id'))[0];
+            canvas = angular.element(document.getElementById('offscr-canvas'));
+            canvas.on('mouseup', mouseUpOnCanvas);
+            canvas.on('mousedown', mouseDownOnCanvas);
+            canvas.on('mousemove', mouseMoveOnCanvas);
+
+            canvas[0].style.display = 'block';
+            canvas[0].height = mainCanvas.height;
+            canvas[0].width = mainCanvas.width;
+            canvas[0].style.maxHeight = '100%';
+
+            canvasCtx = canvas[0].getContext('2d');
+            canvasCtx.strokeStyle = "#ffcb85";
+            canvasCtx.lineWidth=5;
+            clearCanvas();
+            canvasRect = canvas[0].getBoundingClientRect();
         });
     }
     
     function exitCropSection() {
         isHoldForCrop = false;
+        canvas[0].style.display = 'none';
+        clearCanvas();
         canvas.off('mouseup', mouseUpOnCanvas);
         canvas.off('mousedown', mouseDownOnCanvas);
         canvas.off('mousemove', mouseMoveOnCanvas);
     }
     
-    function mouseUpOnCanvas() {
+    function mouseUpOnCanvas(event) {
         isHoldForCrop = false;
     }
     
-    function mouseDownOnCanvas() {
+    function mouseDownOnCanvas(event) {
+        if (isHoldForCrop) return;
         isHoldForCrop = true;
+        cropX0 = Math.round((event.clientX-canvasRect.left)/(canvasRect.right - canvasRect.left)*canvas[0].width);
+        cropY0 = Math.round((event.clientY-canvasRect.top)/(canvasRect.bottom-canvasRect.top)*canvas[0].height);
+        clearCanvas();
     }
 
-    $scope.TEST = 0;
-    function mouseMoveOnCanvas(event) {
-        if (!isHoldForCrop) {
+    function clearCanvas() {
+        canvasCtx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+        canvasCtx.clearRect(0, 0, canvas[0].width, canvas[0].height);
+        canvasCtx.fillRect(0, 0, canvas[0].width, canvas[0].height);
+    }
 
-        } else {
-            $scope.TEST +=1;
-            $scope.$digest();
+    function drawRectangle(startX, startY, endX, endY) {
+        var x0 = Math.min(startX, endX),
+            y0 = Math.min(startY, endY),
+            wid = Math.abs(startX - endX),
+            hei = Math.abs(startY - endY);
+        canvasCtx.strokeRect(x0, y0, wid, hei);
+        canvasCtx.clearRect(x0, y0, wid, hei);
+    }
+
+    function mouseMoveOnCanvas(event) {
+        if (isHoldForCrop) {
+            cropX1 = Math.round((event.clientX-canvasRect.left)/(canvasRect.right - canvasRect.left)*canvas[0].width);
+            cropY1 = Math.round((event.clientY-canvasRect.top)/(canvasRect.bottom-canvasRect.top)*canvas[0].height);
+            clearCanvas();
+            drawRectangle(cropX0, cropY0, cropX1, cropY1);
         }
     }
 }
