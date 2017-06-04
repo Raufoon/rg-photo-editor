@@ -8,7 +8,7 @@ function ringPhotoEditorController($scope, $element) {
         imageObj = new Image(),
         canvasId = 'photo-edit-canvas-id',
         editHistoryStack,
-        demoImageSrc = 'server/port.jpg';
+        demoImageSrc = 'server/port2.jpg';
 
     $scope.imageSrc = demoImageSrc;
 
@@ -59,8 +59,8 @@ function ringPhotoEditorController($scope, $element) {
         $scope.optionList = [
             'brightness',
             'contrast',
-            'sharpen',
             'saturation',
+            'sharpen',
             'exposure',
             'noise',
             'vibrance',
@@ -77,7 +77,7 @@ function ringPhotoEditorController($scope, $element) {
         }
         $scope.optionValues = {
             brightness: new prop(),
-            contrast: new prop(),
+            contrast: new prop(-10, 10),
             saturation: new prop(),
             sharpen: new prop(0),
             exposure: new prop(),
@@ -111,6 +111,8 @@ function ringPhotoEditorController($scope, $element) {
             'grungy',
             'hemingway',
             'concentrate',
+            'greyscale',
+            'invert',
         ];
     }
 
@@ -200,8 +202,7 @@ function ringPhotoEditorController($scope, $element) {
         var i,
             optionName;
         window.Caman('#' + canvasId, function resetFunc() {
-            this.revert(false);
-            this.render();
+            this.reset();
         });
         editHistoryStack = [];
         for (i = 0; i < $scope.optionList.length; i++) {

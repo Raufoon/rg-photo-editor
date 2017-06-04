@@ -1,97 +1,139 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>
 
+<style>
+    .pe-outer-div {
+        width: 90%;
+        height: 90%;
+        margin: auto;
+        padding: 1%;
+        border: 1px solid darkgrey;
+    }
+    .pe-left-opt-panel{
+        width: 6%;
+        float: left;
+        height: 100%;
+        border: 1px solid #ccd5de;
+    }
+    .pe-left-opt-btn{
+        border-radius: 0;
+        margin: 0;
+        padding: 0;
+        max-height: 16%;
+        background-color: white;
+    }
+    .pe-left-opt-btn-img{
+        max-width: 50%;
+        margin: 20% 25% 10% 25%;
+    }
+    .pe-left-opt-btn-txt{
+        text-align: center;
+        padding: 0;
+    }
+    .mid-opt-panel{
+        float: left;
+        height: 100%;
+        padding: 2%;
+        overflow-y: scroll;
+        box-shadow: 0 0 2px #888888;
+    }
+    .filt-range-opt{
+        background-color: white;
+        margin-bottom: 5%;
+        width: 100%;
+        min-height: 8%;
+        border: none;
+        padding: 0;
+    }
+    .filt-range-title{
+        padding: 0%;
+        border: none;
+    }
+    .filt-range-val{
+        padding: 0%;
+        text-align: right;
+        border: none;
+    }
+    .filt-range-inp{
+        padding: 0;
+        border: none;
+        margin-top: 3%;
+    }
+    .filt-btn{
+        background-color: white;
+        margin: 1%;
+        margin-bottom: 3%;
+        box-shadow: 0 0 2px #888888;
+        background-color: #0089b7;
+        color: white;
+        float: left;
+        min-height: 7%;
+        border: none;
+        text-decoration: none;
+        text-align: center;
+        padding: 0;
+    }
+    .savebtn{
+        height: 100%;
+        width: 10%;
+        border-radius: 0;
+        padding: 0;
+        background-color: #FFFFFF;
+        float: right;
+    }
+</style>
+
 <!--outmost div-->
-<div style="width: 90%;
-     height: 90%;
-     margin: auto;
-     padding: 1%;
-     border: 1px solid darkgrey;">
-
-
+<div class="pe-outer-div">
     <!--leftmost options list-->
-    <div style="width: 6%;
-         float: left;
-         height: 100%;
-         border: 1px solid #ccd5de;">
+    <div class="pe-left-opt-panel">
 
-        <a href="#" class="col-md-12 well"
-           ng-click="setOptTab('filters')"
-           ng-style="{ 'background-color': curOptTab==='filters'? '#ffedcc' : 'white' }"
-           style="border-radius: 0; margin: 0; padding: 0; max-height: 17%; text-decoration: none;">
-            <img src="./images/color-filter.png"
-                 style="max-width: 50%; margin: 20% 25% 10% 25%;">
-            <p style="text-align: center; padding: 0;">Filters</p>
+        <a href="#" class="col-md-12 well pe-left-opt-btn"
+           ng-click="setOptTab('filters')" style="text-decoration: none;"
+           ng-style="{ 'background-color': curOptTab==='filters'? '#ffedcc' : 'white' }">
+            <img src="./images/color-filter.png" class="pe-left-opt-btn-img">
+            <p class="pe-left-opt-btn-txt">Filters</p>
         </a>
 
-        <a href="#" class="col-md-12 well"
-           ng-click="setOptTab('options')"
-           ng-style="{ 'background-color': curOptTab==='options'? '#ffedcc' : 'white' }"
-           style="border-radius: 0; margin: 0; padding: 0; max-height: 17%; background-color: white; text-decoration: none;">
-            <img src="./images/photo-edit-options.png"
-                 style="max-width: 50%; margin: 20% 25% 10% 25%;">
-            <p style="text-align: center; padding: 0;">Options</p>
+        <a href="#" class="col-md-12 well pe-left-opt-btn"
+           ng-click="setOptTab('options')" style="text-decoration: none;"
+           ng-style="{ 'background-color': curOptTab==='options'? '#ffedcc' : 'white' }">
+            <img src="./images/photo-edit-options.png" class="pe-left-opt-btn-img">
+            <p class="pe-left-opt-btn-txt">Options</p>
         </a>
 
-        <a href="#" class="col-md-12 well"
-           style="border-radius: 0; margin: 0; padding: 0; max-height: 17%; background-color: white; text-decoration: none;">
-            <img src="./images/photo-crop.png"
-                 style="max-width: 50%; margin: 20% 25% 10% 25%;">
-            <p style="text-align: center; padding: 0;">Crop</p>
+        <a href="#" class="col-md-12 well pe-left-opt-btn" style="text-decoration: none;">
+            <img src="./images/photo-crop.png" class="pe-left-opt-btn-img">
+            <p class="pe-left-opt-btn-txt">Crop</p>
         </a>
 
-        <a href="#" class="col-md-12 well"
-           style="border-radius: 0; margin: 0; padding: 0; max-height: 17%; background-color: white; text-decoration: none;">
-            <img src="./images/photo-edit-text.png"
-                 style="max-width: 50%; margin: 20% 25% 10% 25%;">
-            <p style="text-align: center; padding: 0;">Text</p>
+        <a href="#" class="col-md-12 well pe-left-opt-btn" style="text-decoration: none;">
+            <img src="./images/photo-edit-text.png" class="pe-left-opt-btn-img">
+            <p class="pe-left-opt-btn-txt">Text</p>
         </a>
 
-        <a href="#" class="col-md-12 well"
-           ng-click="reset()"
-           style="border-radius: 0; margin: 0; padding: 0; max-height: 16%; background-color: white; text-decoration: none;">
-            <img src="./images/photo-edit-reset.png"
-                 style="max-width: 50%; margin: 20% 25% 10% 25%;">
-            <p style="text-align: center; padding: 0;">Reset</p>
+        <a href="#" class="col-md-12 well pe-left-opt-btn" style="text-decoration: none;" ng-click="reset()">
+            <img src="./images/photo-edit-reset.png" class="pe-left-opt-btn-img">
+            <p class="pe-left-opt-btn-txt">Reset</p>
         </a>
 
-        <a href="#" class="col-md-12 well"
-           style="border-radius: 0; margin: 0; padding: 0; max-height: 16%; background-color: white; text-decoration: none;">
-            <img src="./images/photo-edit-undo.png"
-                 style="max-width: 50%; margin: 20% 25% 10% 25%;">
-            <p style="text-align: center; padding: 0;">Undo</p>
+        <a href="#" class="col-md-12 well pe-left-opt-btn" style="text-decoration: none;">
+            <img src="./images/photo-edit-undo.png" class="pe-left-opt-btn-img">
+            <p class="pe-left-opt-btn-txt">Undo</p>
         </a>
 
     </div>
 
     <!--dynamic options view-->
-    <div ng-style="{ 'width': mdW }"
-         style="float: left;
-         height: 100%;
-         padding: 2%;
-         overflow-y: scroll;
-         box-shadow: 0 0 2px #888888;">
+    <div ng-style="{ 'width': mdW }" class="mid-opt-panel">
 
-        <div ng-if="curOptTab === 'options'"
-             style="background-color: white;
-                 margin-bottom: 5%;
-                 width: 100%;
-                 min-height: 8%;
-                 border: none;
-                 padding: 0;"
-             ng-repeat="optionName in optionList">
+        <div ng-if="curOptTab === 'options'" class="filt-range-opt" ng-repeat="optionName in optionList">
 
-            <span class="col-md-8"
-                  style="padding: 0%; border: none;">
-                {{title(optionName)}}</span>
+            <span class="col-md-8 filt-range-title">{{title(optionName)}}</span>
 
-            <span class="col-md-4"
-                  style="padding: 0%; text-align: right; border: none;"
-            >{{ prog(optionName) }}</span>
+            <span class="col-md-4 filt-range-val">{{ prog(optionName) }}</span>
 
-            <input class="col-md-12"
-                   style="padding: 0; border: none; margin-top: 3%;"
+            <input class="col-md-12 filt-range-inp"
                    ng-model="optionValues[optionName].value"
-                   ng-model-options='{ debounce: 700 }'
                    ng-change="onEdit(optionName)"
                    type="range"
                    min="{{ optionValues[optionName].minValue }}"
@@ -100,21 +142,9 @@
 
         </div>
 
-        <button class="well" ng-if="curOptTab === 'filters'"
+        <button class="well filt-btn" ng-if="curOptTab === 'filters'"
                 ng-style="{ 'width': filtW }"
                 ng-click="onFilterApply(filterName)"
-                style="background-color: white;
-                 margin: 1%;
-                 margin-bottom: 3%;
-                 box-shadow: 0 0 2px #888888;
-                 background-color: #0089b7;
-                 color: white;
-                 float: left;
-                 min-height: 7%;
-                 border: none;
-                 text-decoration: none;
-                 text-align: center;
-                 padding: 0;"
                 ng-repeat="filterName in filterList">
             <h4>{{title(filterName)}}</h4>
         </button>
@@ -132,14 +162,9 @@
         </div>
         <div style="box-shadow: 0 0 2px #888888; float: right; width: 100%; height: 6%;">
             <span ng-if="isLoading">Loading...</span>
-            <button class="well"
-                    style="height: 100%; width: 10%; border-radius: 0;
-                    padding: 0;
-                    background-color: #f47727; color: white; float: right;">Save</button>
-            <button class="well"
-                    style="height: 100%; width: 10%; border-radius: 0;
-                    padding: 0;
-                    background-color: #FFFFFF; float: right;">Cancel</button>
+            <button class="well savebtn"
+                    style="background-color: #f47727; color: white;">Save</button>
+            <button class="well savebtn">Cancel</button>
         </div>
     </div>
 
