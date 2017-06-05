@@ -85,39 +85,54 @@
 </style>
 
 <!--outmost div-->
-<div class="pe-outer-div">
+<div class="pe-outer-div" ng-init="moF={}">
     <!--leftmost options list-->
     <div class="pe-left-opt-panel">
 
         <a href="#" class="col-md-12 well pe-left-opt-btn"
            ng-click="setOptTab('filters')" style="text-decoration: none;"
-           ng-style="{ 'background-color': curOptTab==='filters'? '#ffedcc' : 'white' }">
+           ng-mouseenter="moFt=true"
+           ng-mouseleave="moFt=false"
+           ng-style="{'background-color': btncol('filters', moFt)}">
             <img src="./images/color-filter.png" class="pe-left-opt-btn-img">
             <p class="pe-left-opt-btn-txt">Filters</p>
         </a>
 
         <a href="#" class="col-md-12 well pe-left-opt-btn"
+           ng-mouseenter="moAt=true"
+           ng-mouseleave="moAt=false"
            ng-click="setOptTab('options')" style="text-decoration: none;"
-           ng-style="{ 'background-color': curOptTab==='options'? '#ffedcc' : 'white' }">
+           ng-style="{ 'background-color': btncol('options', moAt) }">
             <img src="./images/photo-edit-options.png" class="pe-left-opt-btn-img">
             <p class="pe-left-opt-btn-txt">Options</p>
         </a>
 
-        <a href="#"
-           class="col-md-12 well pe-left-opt-btn"
+        <a href="#" class="col-md-12 well pe-left-opt-btn"
+           ng-mouseenter="moCt=true"
+           ng-mouseleave="moCt=false"
            ng-click="setOptTab('crop')"
-           ng-style="{ 'background-color': curOptTab==='crop'? '#ffedcc' : 'white' }"
+           ng-style="{ 'background-color': btncol('crop', moCt) }"
            style="text-decoration: none;">
             <img src="./images/photo-crop.png" class="pe-left-opt-btn-img">
             <p class="pe-left-opt-btn-txt">Crop</p>
         </a>
 
-        <a href="#" class="col-md-12 well pe-left-opt-btn" style="text-decoration: none;">
+        <a href="#" class="col-md-12 well pe-left-opt-btn"
+           ng-mouseenter="moRt=true"
+           ng-mouseleave="moRt=false"
+           ng-click="setOptTab('rotate')"
+           ng-style="{ 'background-color': btncol('rotate', moRt) }"
+           style="text-decoration: none;">
             <img src="./images/photo-edit-rotate.png" class="pe-left-opt-btn-img">
             <p class="pe-left-opt-btn-txt">Rotate</p>
         </a>
 
-        <a href="#" class="col-md-12 well pe-left-opt-btn" style="text-decoration: none;">
+        <a href="#" class="col-md-12 well pe-left-opt-btn"
+           ng-mouseenter="moTt=true"
+           ng-mouseleave="moTt=false"
+           ng-click="setOptTab('text')"
+           ng-style="{ 'background-color': btncol('text', moTt) }"
+           style="text-decoration: none;">
             <img src="./images/photo-edit-text.png" class="pe-left-opt-btn-img">
             <p class="pe-left-opt-btn-txt">Text</p>
         </a>
@@ -147,12 +162,14 @@
         <button class="well filt-btn"
                 ng-if="curOptTab === 'filters'"
                 ng-disabled="lastAppliedFilter === filterName"
+                ng-mouseenter="moF[filterName]=true"
+                ng-mouseleave="moF[filterName]=false"
                 ng-style="{
                 'width': filtW,
-                'background-color': lastAppliedFilter === filterName?'white':'#0089b7',
+                'background-color': filtBtnCol(filterName, moF[filterName]),
                 'color': lastAppliedFilter === filterName?'black':'white',
                  }"
-                ng-click="onFilterApply(filterName)"
+                ng-click="moF[filterName]=false; onFilterApply(filterName)"
                 ng-repeat="filterName in filterList">
             <h4>{{title(filterName)}}</h4>
         </button>
@@ -165,13 +182,18 @@
                   min-height: 30%; border: 1px solid grey;">
             <div style="max-height: 15%; width: 100%;">
                 <button class="btn"
+                        onmouseenter="this.style.backgroundColor='#ffe247'"
+                        onmouseleave="this.style.backgroundColor='#f47727'"
+                        ng-if="crSel"
                         ng-click="crop()"
                         style="margin: auto; float: right;background-color: #f47727; color: white;">Crop</button>
                 <button class="btn"
+                        onmouseenter="this.style.backgroundColor='lightgray'"
+                        onmouseleave="this.style.backgroundColor='white'"
+                        ng-if="crSel"
                         ng-click="cropCancel()"
                         style="margin: auto; float: right;">Cancel</button>
             </div>
-            <p>{{log}}</p>
         </div>
 
     </div>
@@ -198,30 +220,43 @@
         </div>
         <div style="box-shadow: 0 0 2px #888888; float: right; width: 100%; height: 6%;">
             <button ng-click="reset()"
-                    style="height: 100%; float: left; margin-left: 3%;
+                    ng-disabled="crSel"
+                    ng-mouseenter="moRst=true"
+                    ng-mouseleave="moRst=false"
+                    ng-style="{ 'background-color': btncol('', moRst, false, '#e3dbfb') }"
+                    style="height: 100%; float: left; margin-left: 1%;
                      background-color: white; border: none;">
                 <img style="max-height: 60%;" src="./images/photo-edit-reset.png">
                 <span>Reset</span>
             </button>
 
             <button ng-click="undoLast()"
-                    style="height: 100%; float: left; margin-left: 3%;
+                    ng-disabled="crSel"
+                    ng-mouseenter="moUn=true"
+                    ng-mouseleave="moUn=false"
+                    ng-style="{ 'background-color': btncol('', moUn, false, '#e3dbfb') }"
+                    style="height: 100%; float: left;
                      background-color: white; border: none;">
                 <img style="max-height: 60%;" src="./images/photo-edit-undo.png">
                 <span>Undo</span>
             </button>
 
             <div style="float: left;">
-                LOADING: {{isLoading}}
+
             </div>
 
             <button class="well savebtn"
+                    ng-disabled="crSel"
+                    onmouseenter="this.style.backgroundColor='#ffe247'"
+                    onmouseleave="this.style.backgroundColor='#f47727'"
                     ng-click="save()"
-                    style="background-color: #f47727; color: white;">
+                    style="color: white; background-color: #f47727">
                 Save
             </button>
 
-            <button class="well savebtn" ng-click="refresh()">
+            <button class="well savebtn"
+                    onmouseenter="this.style.backgroundColor='lightgray'"
+                    onmouseleave="this.style.backgroundColor='white'">
                 Cancel
             </button>
         </div>

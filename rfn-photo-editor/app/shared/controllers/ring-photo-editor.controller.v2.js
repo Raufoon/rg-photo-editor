@@ -24,6 +24,7 @@ function ringPhotoEditorController($scope, $element) {
     $scope.curOptTab = 'filters';
     $scope.isLoading = false;
     $scope.undoDisable = true;
+    $scope.crSel = false; // true: when user draws a rectangle to crop on image
 
     // scope functions
     $scope.title = capitalizeFirst;
@@ -37,6 +38,8 @@ function ringPhotoEditorController($scope, $element) {
     $scope.crop = onCropApply;
     $scope.save = saveEditedImage;
     $scope.lastAppliedFilter = '';
+    $scope.btncol = getButtonBackgroundColor;
+    $scope.filtBtnCol = getFilterButtonBackgroundColor;
 
     angular.element(document).ready(function initPhotoEditor() {
         imageObj.src = $scope.imageSrc;
@@ -238,6 +241,17 @@ function ringPhotoEditorController($scope, $element) {
         }
         return optionsToApply.reverse();
     }
+    function getButtonBackgroundColor(tabname, hover, selectCol, menterCol, mleavCol) {
+        if ($scope.curOptTab === tabname) return selectCol || '#efeff6'
+        if (hover) return menterCol || '#fffbe8';
+        return mleavCol || 'white';
+    }
+
+    function getFilterButtonBackgroundColor(filterName, hover, selectCol, menterCol, mleavCol) {
+        if ($scope.lastAppliedFilter === filterName) return selectCol || 'white';
+        if (hover) return menterCol || '#3399ff';
+        return mleavCol || '#0089b7'
+    }
 
     // UI manipulation functions
     function setOptionsTab(optionsTabTitle) {
@@ -315,6 +329,12 @@ function ringPhotoEditorController($scope, $element) {
         offScreenCanvasContext.lineWidth=5;
 
         clearOffSrcCanvas();
+        $scope.crSel = false;
+    }
+
+    function toggleCropSelected(flag) {
+        $scope.crSel = flag;
+        $scope.$digest();
     }
 
     function exitCropSection() {
@@ -324,6 +344,7 @@ function ringPhotoEditorController($scope, $element) {
         offScreenCanvas.off('mouseup', mouseUpOnCanvas);
         offScreenCanvas.off('mousedown', mouseDownOnCanvas);
         offScreenCanvas.off('mousemove', mouseMoveOnCanvas);
+        $scope.crSel = false;
     }
 
     function initOffSrcCanvas() {
@@ -368,13 +389,12 @@ function ringPhotoEditorController($scope, $element) {
         cropY0 = getRelativeYFromEvent(event);
         initOffSrcCanvas();
         clearOffSrcCanvas();
+        toggleCropSelected(false);
     }
 
     function mouseUpOnCanvas() {
-        var camanJsOffscrCanvas = window.Caman('#editor-temp-crop-canvas');
         isHoldForCrop = false;
-        camanJsOffscrCanvas.revert(false);
-        camanJsOffscrCanvas.render();
+        toggleCropSelected(true);
     }
 
     function mouseMoveOnCanvas(event) {
@@ -387,11 +407,10 @@ function ringPhotoEditorController($scope, $element) {
     }
 
     function onCropCancel() {
+        $scope.crSel = false;
         clearOffSrcCanvas();
-        document.getElementById('editor-temp-crop-canvas').src = './images/crop-background.png';
     }
 
-    $scope.log = "";
     function onCropApply() {
         var cX = Math.min(cropX0, cropX1),
             cY = Math.min(cropY0, cropY1),
@@ -412,8 +431,6 @@ function ringPhotoEditorController($scope, $element) {
             initOffSrcCanvas();
             onEdit();
         });
-
-        $scope.log = 'rect- ('+cropX0+', '+cropY0+') --> ('+cropX1+', '+cropY1+')\n'
+        toggleCropSelected(false);
     }
-
 }
