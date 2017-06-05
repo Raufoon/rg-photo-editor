@@ -11,7 +11,7 @@ function ringPhotoEditorController($scope, $element) {
         canvasId = 'photo-edit-canvas-id',
         editHistoryStack,
         isHoldForCrop = false,
-        demoImageSrc = 'server/land.jpg',
+        demoImageSrc = 'server/port2.jpg',
         cropX0,
         cropY0,
         cropX1,
@@ -40,6 +40,10 @@ function ringPhotoEditorController($scope, $element) {
     $scope.reset = resetAll;
     $scope.setOptTab = setOptionsTab;
     $scope.undoLast = undoLastAction;
+    $scope.cropCancel = onCropCancel;
+    $scope.crop = onCropApply;
+    $scope.save = saveEditedImage;
+    $scope.lastAppliedFilter = '';
 
     // initialization function
     function init(isPortrait) {
@@ -132,6 +136,7 @@ function ringPhotoEditorController($scope, $element) {
     }
 
     function addEditToHistory(optionName) {
+        /*append the option to the history stack, replace top if identical*/
         var fValue,
             lastEdit,
             isFilter;
@@ -165,17 +170,36 @@ function ringPhotoEditorController($scope, $element) {
     }
 
     function getEditOptionsToApply() {
-        var returnObj = Object.create(null),
-            i,
-            editHistoryObject;
-
-        for (i = 0; i < editHistoryStack.length; i++) {
+        /*returns an array of {key, value} containing unique edit options (filters, options, crop etc.)
+         with parameter values*/
+        var i = editHistoryStack.length - 1,
+            editHistoryObject,
+            used = Object.create(null),
+            key,
+            val,
+            optionsToApply = [];
+        while (i >= 0) {
             editHistoryObject = editHistoryStack[i];
-            if (editHistoryObject.fname === 'filter')
-                returnObj[editHistoryObject.fname] = editHistoryObject.value;
-            else returnObj[editHistoryObject.fname] = parseInt(editHistoryObject.value, 10);
+            if (used[editHistoryObject.fname] && editHistoryObject.fname !== 'crop') {
+                i--;
+                continue;
+            }
+
+            key = editHistoryObject.fname;
+            if (editHistoryObject.fname === 'filter') {
+                val = editHistoryObject.value;
+            }
+            else if (editHistoryObject.fname === 'crop') val = editHistoryObject.value;
+            else val = parseInt(editHistoryObject.value, 10);
+
+            used[editHistoryObject.fname] = true;
+            optionsToApply.push({
+                key: key,
+                value: val,
+            });
+            i--;
         }
-        return returnObj;
+        return optionsToApply.reverse();
     }
 
     // event handling functions
@@ -183,18 +207,19 @@ function ringPhotoEditorController($scope, $element) {
     function onEdit(optionName) {
         function applyEdit() {
             var editOpts,
-                opt;
+                opt,
+                i;
 
             toggleLoading();
             addEditToHistory(optionName);
-            // TODO: optionName = filter hoile eto effect fela dorkar nai, ekbar e enough
             editOpts = getEditOptionsToApply();
 
             this.revert(false);
-            for (opt in editOpts) {
-                // TODO: opt gula ordered vabe execute korte hobe :|
-                if (opt === 'filter') this[editOpts[opt]]();
-                else this[opt](editOpts[opt]);
+            for (i = 0; i < editOpts.length; i++) {
+                opt = editOpts[i];
+                if (opt.key === 'crop') continue;
+                else if (opt.key === 'filter') this[opt.value]();
+                else this[opt.key](opt.value);
             }
             this.render(toggleLoading);
         }
@@ -202,6 +227,7 @@ function ringPhotoEditorController($scope, $element) {
     }
 
     function onFilterApply(optionName) {
+        $scope.lastAppliedFilter = optionName;
         onEdit(optionName);
     }
 
@@ -212,14 +238,24 @@ function ringPhotoEditorController($scope, $element) {
     function resetAll() {
         var i,
             optionName;
-        window.Caman('#' + canvasId, function resetFunc() {
-            this.reset();
-        });
+
+        // reset history
         editHistoryStack = [];
         for (i = 0; i < $scope.optionList.length; i++) {
             optionName = $scope.optionList[i];
             $scope.optionValues[optionName].value = 0;
         }
+        // reset UI
+        $scope.lastAppliedFilter = '';
+        // reset flags
+        isHoldForCrop = false;
+        window.Caman('#' + canvasId, function resetFunc() {
+            this.reset();
+            if ($scope.curOptTab === 'crop') {
+                initOffSrcCanvas();
+                clearOffSrcCanvas();
+            }
+        });
     }
 
     function setOptionsTab(optionsTabTitle) {
@@ -237,7 +273,7 @@ function ringPhotoEditorController($scope, $element) {
         if ($scope.undoDisable) return;
 
         lastEdit = editHistoryStack.pop();
-        if (lastEdit.fname !== 'filter')
+        if ($scope.optionValues[lastEdit.fname])
             $scope.optionValues[lastEdit.fname].value = 0;
 
         if (editHistoryStack.length === 0) {
@@ -245,13 +281,19 @@ function ringPhotoEditorController($scope, $element) {
             $scope.undoDisable = true;
             return;
         }
+
+        // apply every unique operations from history
         toggleLoading();
         window.Caman('#' + canvasId, function onUndo() {
-            var editOpts = getEditOptionsToApply();
+            var i,
+                opt,
+                editOpts = getEditOptionsToApply();
             this.revert(false);
-            for (opt in editOpts) {
-                if (opt === 'filter') this[editOpts[opt]]();
-                else this[opt](editOpts[opt]);
+            for (i = 0; i < editOpts.length; i++) {
+                opt = editOpts[i];
+                if (opt.key === 'crop') continue;
+                else if (opt.key === 'filter') this[opt.value]();
+                else this[opt.key](opt.value);
             }
             this.render(toggleLoading);
         });
@@ -260,30 +302,22 @@ function ringPhotoEditorController($scope, $element) {
     // crop related functions
     function initCropSection() {
         window.Caman('#photo-edit-canvas-id', function () {
-            var mainCanvas = angular.element(document.getElementById('photo-edit-canvas-id'))[0];
             canvas = angular.element(document.getElementById('offscr-canvas'));
             canvas.on('mouseup', mouseUpOnCanvas);
             canvas.on('mousedown', mouseDownOnCanvas);
             canvas.on('mousemove', mouseMoveOnCanvas);
-
-            canvas[0].style.display = 'block';
-            canvas[0].height = mainCanvas.height;
-            canvas[0].width = mainCanvas.width;
-            canvas[0].style.maxHeight = '100%';
-            canvas[0].style.maxWidth = '100%';
-
+            initOffSrcCanvas();
             canvasCtx = canvas[0].getContext('2d');
             canvasCtx.strokeStyle = "#ffcb85";
             canvasCtx.lineWidth=5;
-            clearCanvas();
-            canvasRect = canvas[0].getBoundingClientRect();
+            clearOffSrcCanvas();
         });
     }
     
     function exitCropSection() {
         isHoldForCrop = false;
         canvas[0].style.display = 'none';
-        clearCanvas();
+        clearOffSrcCanvas();
         canvas.off('mouseup', mouseUpOnCanvas);
         canvas.off('mousedown', mouseDownOnCanvas);
         canvas.off('mousemove', mouseMoveOnCanvas);
@@ -291,6 +325,10 @@ function ringPhotoEditorController($scope, $element) {
     
     function mouseUpOnCanvas(event) {
         isHoldForCrop = false;
+        window.Caman('#editor-temp-crop-canvas', imageObj.src, function showCroppedView() {
+            this.revert(false);
+            this.render();
+        });
     }
     
     function mouseDownOnCanvas(event) {
@@ -298,16 +336,28 @@ function ringPhotoEditorController($scope, $element) {
         isHoldForCrop = true;
         cropX0 = Math.round((event.clientX-canvasRect.left)/(canvasRect.right - canvasRect.left)*canvas[0].width);
         cropY0 = Math.round((event.clientY-canvasRect.top)/(canvasRect.bottom-canvasRect.top)*canvas[0].height);
-        clearCanvas();
+        initOffSrcCanvas();
+        clearOffSrcCanvas();
     }
 
-    function clearCanvas() {
+    function initOffSrcCanvas() {
+        var mainCanvas = angular.element(document.getElementById('photo-edit-canvas-id'))[0];
+        canvas = angular.element(document.getElementById('offscr-canvas'));
+        canvas[0].style.display = 'block';
+        canvas[0].height = mainCanvas.height;
+        canvas[0].width = mainCanvas.width;
+        canvas[0].style.maxHeight = '100%';
+        canvas[0].style.maxWidth = '100%';
+        canvasRect = canvas[0].getBoundingClientRect();
+    }
+
+    function clearOffSrcCanvas() {
         canvasCtx.fillStyle = 'rgba(0, 0, 0, 0.7)';
         canvasCtx.clearRect(0, 0, canvas[0].width, canvas[0].height);
         canvasCtx.fillRect(0, 0, canvas[0].width, canvas[0].height);
     }
 
-    function drawRectangle(startX, startY, endX, endY) {
+    function drawRectangleOnCropCanvas(startX, startY, endX, endY) {
         var x0 = Math.min(startX, endX),
             y0 = Math.min(startY, endY),
             wid = Math.abs(startX - endX),
@@ -320,8 +370,55 @@ function ringPhotoEditorController($scope, $element) {
         if (isHoldForCrop) {
             cropX1 = Math.round((event.clientX-canvasRect.left)/(canvasRect.right - canvasRect.left)*canvas[0].width);
             cropY1 = Math.round((event.clientY-canvasRect.top)/(canvasRect.bottom-canvasRect.top)*canvas[0].height);
-            clearCanvas();
-            drawRectangle(cropX0, cropY0, cropX1, cropY1);
+            clearOffSrcCanvas();
+            drawRectangleOnCropCanvas(cropX0, cropY0, cropX1, cropY1);
         }
+    }
+    
+    function onCropCancel() {
+        clearOffSrcCanvas();
+        document.getElementById('editor-temp-crop-canvas').src = './images/crop-background.png';
+    }
+
+    $scope.log = "";
+    function onCropApply() {
+        var cX = Math.min(cropX0, cropX1),
+            cY = Math.min(cropY0, cropY1),
+            cW = Math.abs(cropX0 - cropX1),
+            cH = Math.abs(cropY0 - cropY1);
+
+        $scope.log = 'rect- ('+cropX0+', '+cropY0+') --> ('+cropX1+', '+cropY1+')\n'
+        window.Caman('#photo-edit-canvas-id', function () {
+            this.crop(cW, cH, cX, cY);
+            this.render(function cb() {
+                editHistoryStack.push({
+                    fname: 'crop',
+                    value: {
+                        cW: cW,
+                        cH: cH,
+                        cX: cX,
+                        cY: cY,
+                    }
+                });
+                initOffSrcCanvas();
+            });
+        });
+    }
+    
+    function saveEditedImage() {
+        window.Caman('#photo-edit-canvas-id', function saveFunc() {
+            var image = new Image(),
+                mainCanvas = document.getElementById('photo-edit-canvas-id');
+            image.src = mainCanvas.toDataURL(); // the image object holds the edited image :)
+            document.getElementById('testimg').src = image.src;
+        });
+    }
+
+    $scope.refresh = function () {
+        // delete
+        window.Caman('#photo-edit-canvas-id', function () {
+            this.revert(false);
+            this.render();
+        })
     }
 }
