@@ -1,4 +1,4 @@
-<script src="http://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.1/caman.full.min.js"></script>
+<script src="./js/caman.full.min.js"></script>
 
 <style>
     .pe-outer-div {
@@ -151,7 +151,6 @@
                 'width': filtW,
                 'background-color': lastAppliedFilter === filterName?'white':'#0089b7',
                 'color': lastAppliedFilter === filterName?'black':'white',
-                'border': lastAppliedFilter === filterName?'5px solid #f47727':'none',
                  }"
                 ng-click="onFilterApply(filterName)"
                 ng-repeat="filterName in filterList">
@@ -213,7 +212,7 @@
             </button>
 
             <div style="float: left;">
-                <!--Loader here(not implemented)-->
+                LOADING: {{isLoading}}
             </div>
 
             <button class="well savebtn"
