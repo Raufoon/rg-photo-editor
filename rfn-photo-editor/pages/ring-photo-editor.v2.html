@@ -83,6 +83,14 @@
         background-color: #FFFFFF;
         float: right;
     }
+    .lowerbtn{
+        height: 100%;
+        float: left;
+        padding-left: 2%;
+        padding-right: 2%;
+        background-color: white;
+        border: none
+    }
 </style>
 
 <!--outmost div-->
@@ -116,16 +124,6 @@
            style="text-decoration: none;">
             <img src="./images/photo-crop.png" class="pe-left-opt-btn-img">
             <p class="pe-left-opt-btn-txt">Crop</p>
-        </a>
-
-        <a href="#" class="col-md-12 well pe-left-opt-btn"
-           ng-mouseenter="moRt=true"
-           ng-mouseleave="moRt=false"
-           ng-click="setOptTab('rotate')"
-           ng-style="{ 'background-color': btncol('rotate', moRt) }"
-           style="text-decoration: none;">
-            <img src="./images/photo-edit-rotate.png" class="pe-left-opt-btn-img">
-            <p class="pe-left-opt-btn-txt">Rotate</p>
         </a>
 
         <a href="#" class="col-md-12 well pe-left-opt-btn"
@@ -199,47 +197,54 @@
             </p>
         </div>
         <div style="box-shadow: 0 0 2px #888888; float: right; width: 100%; height: 6%;">
-            <button ng-click="reset()"
+            <button class="lowerbtn"
+                    ng-click="reset()"
                     ng-if="!crSel"
                     onmouseenter="this.style.backgroundColor='#ecf0f7'"
-                    onmouseleave="this.style.backgroundColor='white'"
-                    style="height: 100%; float: left; padding-left: 2%; padding-right: 2%;
-                     background-color: white; border: none;">
+                    onmouseleave="this.style.backgroundColor='white'">
                 <img style="max-height: 60%;" src="./images/photo-edit-reset.png">
                 <span>Reset</span>
             </button>
 
-            <button ng-click="undoLast()"
+            <button class="lowerbtn"
+                    ng-click="undoLast()"
                     ng-if="!crSel"
                     onmouseenter="this.style.backgroundColor='#ecf0f7'"
-                    onmouseleave="this.style.backgroundColor='white'"
-                    style="height: 100%; float: left; padding-left: 2%; padding-right: 2%;
-                     background-color: white; border: none;">
+                    onmouseleave="this.style.backgroundColor='white'">
                 <img style="max-height: 60%;" src="./images/photo-edit-undo.png">
                 <span>Undo</span>
             </button>
 
-            <button onmouseenter="this.style.backgroundColor='#ecf0f7'"
+            <button class="lowerbtn"
+                    onmouseenter="this.style.backgroundColor='#ecf0f7'"
                     onmouseleave="this.style.backgroundColor='#fff'"
                     ng-if="crSel"
                     ng-click="crop()"
-                    style="height: 100%; float: left; padding-left: 2%; padding-right: 2%;
-                     background-color: white; color: #f47727; border: none;">
+                    style="color: #f47727;">
                 <img style="max-height: 60%;" src="./images/photo-crop.png">
                 <span>Crop</span>
             </button>
-            <button onmouseenter="this.style.backgroundColor='#ecf0f7'"
+
+            <button class="lowerbtn"
+                    onmouseenter="this.style.backgroundColor='#ecf0f7'"
                     onmouseleave="this.style.backgroundColor='white'"
                     ng-if="crSel"
-                    ng-click="cropCancel()"
-                    style="height: 100%; float: left; padding-left: 2%; padding-right: 2%;
-                     background-color: white; border: none;">
+                    ng-click="cropCancel()">
                 <img style="max-height: 60%;" src="./images/photo-crop.png">
                 <span>Cancel</span>
             </button>
 
-            <div style="float: left;">
+            <button class="lowerbtn"
+                    onmouseenter="this.style.backgroundColor='#ecf0f7'"
+                    onmouseleave="this.style.backgroundColor='white'"
+                    ng-click="rotate()"
+                    ng-if="!crSel">
+                <img style="max-height: 60%;" src="./images/photo-edit-rotate.png">
+                <span>Rotate</span>
+            </button>
 
+            <div style="float: left;">
+                <!--loader-->
             </div>
 
             <button class="well savebtn"

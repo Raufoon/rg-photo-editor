@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d170bb6-79c7-48cf-bd5f-27945b5b3d1e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/rfn-photo-editor/images/crop-cancel.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rfn-photo-editor/images/photo-edit-reset.png" afterPath="$PROJECT_DIR$/rfn-photo-editor/images/photo-edit-reset.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rfn-photo-editor/images/photo-edit-rotate.png" afterPath="$PROJECT_DIR$/rfn-photo-editor/images/photo-edit-rotate.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rfn-photo-editor/app/shared/controllers/ring-photo-editor.controller.v2.js" afterPath="$PROJECT_DIR$/rfn-photo-editor/app/shared/controllers/ring-photo-editor.controller.v2.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.v2.html" afterPath="$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.v2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rfn-photo-editor/template.html" afterPath="$PROJECT_DIR$/rfn-photo-editor/template.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,7 +20,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.48424438">
+    <splitter split-orientation="horizontal" split-proportion="0.52411574">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="template.html" pinned="false" current-in-tab="false">
@@ -35,16 +36,15 @@
           <file leaf-file-name="ring-photo-editor.controller.v2.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/rfn-photo-editor/app/shared/controllers/ring-photo-editor.controller.v2.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="737">
-                  <caret line="434" column="5" lean-forward="false" selection-start-line="434" selection-start-column="5" selection-end-line="434" selection-end-column="5" />
+                <state relative-caret-position="461">
+                  <caret line="149" column="48" lean-forward="true" selection-start-line="149" selection-start-column="48" selection-end-line="149" selection-end-column="48" />
                   <folding>
-                    <element signature="e#1405#1558#0" expanded="false" />
+                    <element signature="e#1442#1595#0" expanded="false" />
                     <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
                     <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
                     <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
                     <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
                     <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-                    <element signature="n#!!block;n#onEdit#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
                     <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
                     <element signature="n#!!block;n#saveEditedImage#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
                     <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
@@ -65,8 +65,10 @@
                     <element signature="n#!!block;n#drawRectangleOnCropCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
                     <element signature="n#!!block;n#getRelativeXFromEvent#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
                     <element signature="n#!!block;n#getRelativeYFromEvent#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#mouseDownOnCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
                     <element signature="n#!!block;n#mouseUpOnCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
                     <element signature="n#!!block;n#mouseMoveOnCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="e#15008#15225#0" expanded="false" />
                     <element signature="n#!!block;n#onCropCancel#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
                     <element signature="n#!!block;n#onCropApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
                   </folding>
@@ -77,12 +79,54 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+        <leaf>
+          <file leaf-file-name="ring-photo-editor.controller.v2.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/rfn-photo-editor/app/shared/controllers/ring-photo-editor.controller.v2.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="275">
+                  <caret line="179" column="32" lean-forward="false" selection-start-line="179" selection-start-column="32" selection-end-line="179" selection-end-column="32" />
+                  <folding>
+                    <element signature="e#1442#1595#0" expanded="false" />
+                    <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#saveEditedImage#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#getProgress#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#toggleLoading#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#addEditToHistory#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#getEditOptionsToApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#getButtonBackgroundColor#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#getFilterButtonBackgroundColor#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#setOptionsTab#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#resetAll#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#initCropSection#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#toggleCropSelected#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#exitCropSection#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#initOffSrcCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#clearOffSrcCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#drawRectangleOnCropCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#getRelativeXFromEvent#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#getRelativeYFromEvent#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#mouseDownOnCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#mouseUpOnCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#mouseMoveOnCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="e#15008#15225#0" expanded="false" />
+                    <element signature="n#!!block;n#onCropCancel#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                    <element signature="n#!!block;n#onCropApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="ring-photo-editor.v2.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.v2.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="347">
-                  <caret line="143" column="55" lean-forward="false" selection-start-line="143" selection-start-column="55" selection-end-line="143" selection-end-column="55" />
+                <state relative-caret-position="321">
+                  <caret line="185" column="45" lean-forward="false" selection-start-line="185" selection-start-column="25" selection-end-line="185" selection-end-column="45" />
                   <folding>
                     <element signature="e#227#366#0" expanded="false" />
                     <element signature="n#div#0;n#div#0;n#!!top" expanded="false" />
@@ -90,7 +134,7 @@
                     <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#a#2;n#div#0;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#a#3;n#div#0;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#a#4;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#div#1;n#div#0;n#!!top" expanded="false" />
                     <element signature="n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
                     <element signature="n#button#0;n#div#1;n#div#0;n#!!top" expanded="false" />
                     <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
@@ -99,17 +143,14 @@
                     <element signature="n#style#0;n#img#0;n#p#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#canvas#0;n#p#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#div#1;n#div#2;n#div#0;n#!!top" expanded="false" />
-                    <element signature="n#style#0;n#button#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#img#0;n#button#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#button#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#img#0;n#button#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#button#2;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#img#0;n#button#2;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#button#3;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#img#0;n#button#3;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#img#0;n#button#4;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#button#4;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#button#5;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -139,9 +180,11 @@
       <find>filt-range-title</find>
       <find>initcr</find>
       <find>mouseup</find>
-      <find>pe-left-opt-btn</find>
       <find>showCroppedViewOnLeftCanvas</find>
       <find>resetCroppedViewOnLeftCanvas</find>
+      <find>toggleCropSelected</find>
+      <find>pe-left-opt-btn</find>
+      <find>drawRectangleOnCropCanvas</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -440,11 +483,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133058000" />
+    <option name="totallyTimeSpent" value="142654000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-4" width="1867" height="1085" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15580891" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -452,7 +494,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11273486" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11273486" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39979124" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -497,7 +539,7 @@
             <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#2;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#3;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#4;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#button#0;n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
@@ -506,17 +548,14 @@
             <element signature="n#style#0;n#img#0;n#p#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#canvas#0;n#p#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#2;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#button#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#2;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#2;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#3;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#3;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#button#4;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#4;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#5;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -548,7 +587,7 @@
             <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#2;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#3;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#4;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#button#0;n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
@@ -557,17 +596,14 @@
             <element signature="n#style#0;n#img#0;n#p#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#canvas#0;n#p#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#2;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#button#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#2;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#2;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#3;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#3;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#button#4;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#4;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#5;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -591,7 +627,7 @@
             <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#2;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#3;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#4;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#button#0;n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
@@ -600,17 +636,14 @@
             <element signature="n#style#0;n#img#0;n#p#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#canvas#0;n#p#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#2;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#button#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#2;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#2;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#3;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#3;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#button#4;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#4;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#5;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -650,7 +683,7 @@
             <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#2;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#3;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#4;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#button#0;n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
@@ -659,17 +692,14 @@
             <element signature="n#style#0;n#img#0;n#p#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#canvas#0;n#p#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#2;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#button#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#2;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#2;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#3;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#3;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#button#4;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#4;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#5;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1211,8 +1241,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rfn-photo-editor/pages/ring-photo-editor.v2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="143" column="55" lean-forward="false" selection-start-line="143" selection-start-column="55" selection-end-line="143" selection-end-column="55" />
+        <state relative-caret-position="321">
+          <caret line="185" column="45" lean-forward="false" selection-start-line="185" selection-start-column="25" selection-end-line="185" selection-end-column="45" />
           <folding>
             <element signature="e#227#366#0" expanded="false" />
             <element signature="n#div#0;n#div#0;n#!!top" expanded="false" />
@@ -1220,7 +1250,7 @@
             <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#2;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#3;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#4;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#button#0;n#div#1;n#div#0;n#!!top" expanded="false" />
             <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
@@ -1229,33 +1259,29 @@
             <element signature="n#style#0;n#img#0;n#p#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#canvas#0;n#p#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#1;n#div#2;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#button#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#1;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#2;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#2;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#3;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#3;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#button#4;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#4;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#5;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rfn-photo-editor/app/shared/controllers/ring-photo-editor.controller.v2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="737">
-          <caret line="434" column="5" lean-forward="false" selection-start-line="434" selection-start-column="5" selection-end-line="434" selection-end-column="5" />
+        <state relative-caret-position="461">
+          <caret line="149" column="48" lean-forward="true" selection-start-line="149" selection-start-column="48" selection-end-line="149" selection-end-column="48" />
           <folding>
-            <element signature="e#1405#1558#0" expanded="false" />
+            <element signature="e#1442#1595#0" expanded="false" />
             <element signature="n#!!block;n#init#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initStyles#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initOptions#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#initFilters#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
-            <element signature="n#!!block;n#onEdit#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#onFilterApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#saveEditedImage#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#capitalizeFirst#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
@@ -1276,8 +1302,10 @@
             <element signature="n#!!block;n#drawRectangleOnCropCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#getRelativeXFromEvent#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#getRelativeYFromEvent#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="n#!!block;n#mouseDownOnCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#mouseUpOnCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#mouseMoveOnCanvas#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
+            <element signature="e#15008#15225#0" expanded="false" />
             <element signature="n#!!block;n#onCropCancel#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
             <element signature="n#!!block;n#onCropApply#0;n#!!block;n#ringPhotoEditorController#0" expanded="false" />
           </folding>
