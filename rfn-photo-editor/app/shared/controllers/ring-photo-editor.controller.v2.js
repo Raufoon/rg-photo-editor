@@ -143,6 +143,10 @@ function ringPhotoEditorController($scope, $element) {
 
         function onFinishEditing() {
             mainCanvas.style.visibility = 'visible';
+            if ($scope.curOptTab === 'crop') {
+                initOffSrcCanvas();
+                clearOffSrcCanvas();
+            }
             toggleLoading();
         }
 
@@ -184,10 +188,6 @@ function ringPhotoEditorController($scope, $element) {
         camanJs.render(function onRender() {
             onEdit();
             addEditToHistory('rotate');
-            if ($scope.curOptTab === 'crop') {
-                initOffSrcCanvas();
-                clearOffSrcCanvas();
-            }
         });
     }
 
@@ -493,7 +493,6 @@ function ringPhotoEditorController($scope, $element) {
                     cX: cX,
                     cY: cY,
                 });
-            initOffSrcCanvas();
             onEdit();
         });
         toggleCropSelected(false);
