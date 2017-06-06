@@ -450,12 +450,12 @@ function ringPhotoEditorController($scope, $element) {
 
     function mouseDownOnCanvas(event) {
         if (isHoldForCrop) return;
+        toggleCropSelected(false);
         isHoldForCrop = true;
-        cropX0 = cropX1 = getRelativeXFromEvent(event);
-        cropY0 = cropY1 = getRelativeYFromEvent(event);
         initOffSrcCanvas();
         clearOffSrcCanvas();
-        toggleCropSelected(false);
+        cropX0 = cropX1 = getRelativeXFromEvent(event);
+        cropY0 = cropY1 = getRelativeYFromEvent(event);
     }
 
     function mouseUpOnCanvas() {
