@@ -6,20 +6,20 @@
         height: 90%;
         margin: auto;
         padding: 1%;
-        border: 1px solid darkgrey;
+        background-color: transparent;
     }
     .pe-left-opt-panel{
         width: 6%;
         float: left;
         height: 100%;
+        background-color: #f0f1f3;
         border: 1px solid #ccd5de;
     }
     .pe-left-opt-btn{
-        border-radius: 0;
         margin: 0;
         padding: 0;
         max-height: 16%;
-        background-color: white;
+        border: none;
     }
     .pe-left-opt-btn-img{
         max-width: 50%;
@@ -34,6 +34,7 @@
         height: 100%;
         padding: 1%;
         overflow-y: scroll;
+        background-color: white;
         box-shadow: 0 0 2px #888888;
     }
     .filt-range-opt{
@@ -140,7 +141,7 @@
     </div>
 
     <!--dynamic options view-->
-    <div ng-style="{ 'width': mdW }" class="mid-opt-panel">
+    <div ng-if="curOptTab!=='rotate'&&curOptTab!=='crop'" ng-style="{ 'width': mdW }" class="mid-opt-panel">
 
         <div ng-if="curOptTab === 'options'" class="filt-range-opt"
              ng-style="{'width': isPortrait? '46%':'96%'}" ng-repeat="optionName in optionList">
@@ -174,33 +175,12 @@
             <h4>{{title(filterName)}}</h4>
         </button>
 
-        <div ng-if="curOptTab === 'crop'"
-             style="width: 100%;">
-            <img id="editor-temp-crop-canvas"
-                 src="./images/crop-background.png"
-                 style="max-height: 50%; width: 100%; height: 30%;
-                  min-height: 30%; border: 1px solid grey;">
-            <div style="max-height: 15%; width: 100%;">
-                <button class="btn"
-                        onmouseenter="this.style.backgroundColor='#ffe247'"
-                        onmouseleave="this.style.backgroundColor='#f47727'"
-                        ng-if="crSel"
-                        ng-click="crop()"
-                        style="margin: auto; float: right;background-color: #f47727; color: white;">Crop</button>
-                <button class="btn"
-                        onmouseenter="this.style.backgroundColor='lightgray'"
-                        onmouseleave="this.style.backgroundColor='white'"
-                        ng-if="crSel"
-                        ng-click="cropCancel()"
-                        style="margin: auto; float: right;">Cancel</button>
-            </div>
-        </div>
-
     </div>
 
     <!--rightmost options-->
     <div ng-style="{ 'width': rdW }"
-         style="float: right;
+         style="float: left;
+         background-color: white;
          height: 100%;">
         <div style="float: right; width: 100%; height: 94%; padding: 2%; background-color: #ccd5de;">
             <p ng-style="{'cursor': curOptTab==='crop'?'crosshair':'default' }"
@@ -220,25 +200,42 @@
         </div>
         <div style="box-shadow: 0 0 2px #888888; float: right; width: 100%; height: 6%;">
             <button ng-click="reset()"
-                    ng-disabled="crSel"
-                    ng-mouseenter="moRst=true"
-                    ng-mouseleave="moRst=false"
-                    ng-style="{ 'background-color': btncol('', moRst, false, '#e3dbfb') }"
-                    style="height: 100%; float: left; margin-left: 1%;
+                    ng-if="!crSel"
+                    onmouseenter="this.style.backgroundColor='#ecf0f7'"
+                    onmouseleave="this.style.backgroundColor='white'"
+                    style="height: 100%; float: left; padding-left: 2%; padding-right: 2%;
                      background-color: white; border: none;">
                 <img style="max-height: 60%;" src="./images/photo-edit-reset.png">
                 <span>Reset</span>
             </button>
 
             <button ng-click="undoLast()"
-                    ng-disabled="crSel"
-                    ng-mouseenter="moUn=true"
-                    ng-mouseleave="moUn=false"
-                    ng-style="{ 'background-color': btncol('', moUn, false, '#e3dbfb') }"
-                    style="height: 100%; float: left;
+                    ng-if="!crSel"
+                    onmouseenter="this.style.backgroundColor='#ecf0f7'"
+                    onmouseleave="this.style.backgroundColor='white'"
+                    style="height: 100%; float: left; padding-left: 2%; padding-right: 2%;
                      background-color: white; border: none;">
                 <img style="max-height: 60%;" src="./images/photo-edit-undo.png">
                 <span>Undo</span>
+            </button>
+
+            <button onmouseenter="this.style.backgroundColor='#ecf0f7'"
+                    onmouseleave="this.style.backgroundColor='#fff'"
+                    ng-if="crSel"
+                    ng-click="crop()"
+                    style="height: 100%; float: left; padding-left: 2%; padding-right: 2%;
+                     background-color: white; color: #f47727; border: none;">
+                <img style="max-height: 60%;" src="./images/photo-crop.png">
+                <span>Crop</span>
+            </button>
+            <button onmouseenter="this.style.backgroundColor='#ecf0f7'"
+                    onmouseleave="this.style.backgroundColor='white'"
+                    ng-if="crSel"
+                    ng-click="cropCancel()"
+                    style="height: 100%; float: left; padding-left: 2%; padding-right: 2%;
+                     background-color: white; border: none;">
+                <img style="max-height: 60%;" src="./images/photo-crop.png">
+                <span>Cancel</span>
             </button>
 
             <div style="float: left;">
@@ -263,5 +260,4 @@
     </div>
 
 </div>
-
 <img id="testimg">

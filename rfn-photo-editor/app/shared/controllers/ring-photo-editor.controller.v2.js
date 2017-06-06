@@ -242,15 +242,14 @@ function ringPhotoEditorController($scope, $element) {
         return optionsToApply.reverse();
     }
     function getButtonBackgroundColor(tabname, hover, selectCol, menterCol, mleavCol) {
-        if ($scope.curOptTab === tabname) return selectCol || '#efeff6'
-        if (hover) return menterCol || '#fffbe8';
-        return mleavCol || 'white';
+        if ($scope.curOptTab === tabname) return selectCol || 'white'
+        if (hover) return menterCol || '#ecf0f7';
+        return mleavCol || '#f0f1f3';
     }
-
     function getFilterButtonBackgroundColor(filterName, hover, selectCol, menterCol, mleavCol) {
         if ($scope.lastAppliedFilter === filterName) return selectCol || 'white';
         if (hover) return menterCol || '#3399ff';
-        return mleavCol || '#0089b7'
+        return mleavCol || '#0089b7';
     }
 
     // UI manipulation functions
@@ -378,6 +377,7 @@ function ringPhotoEditorController($scope, $element) {
     function getRelativeXFromEvent(event) {
         return Math.round((event.clientX - offScreenCanvasRect.left) / (offScreenCanvasRect.right - offScreenCanvasRect.left) * offScreenCanvas[0].width);
     }
+
     function getRelativeYFromEvent(event) {
         return Math.round((event.clientY - offScreenCanvasRect.top) / (offScreenCanvasRect.bottom - offScreenCanvasRect.top) * offScreenCanvas[0].height);
     }
@@ -385,8 +385,8 @@ function ringPhotoEditorController($scope, $element) {
     function mouseDownOnCanvas(event) {
         if (isHoldForCrop) return;
         isHoldForCrop = true;
-        cropX0 = getRelativeXFromEvent(event);
-        cropY0 = getRelativeYFromEvent(event);
+        cropX0 = cropX1 = getRelativeXFromEvent(event);
+        cropY0 = cropY1 = getRelativeYFromEvent(event);
         initOffSrcCanvas();
         clearOffSrcCanvas();
         toggleCropSelected(false);
