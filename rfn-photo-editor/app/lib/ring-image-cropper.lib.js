@@ -86,7 +86,7 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
     function mouseDownOnCanvas(event) {
         if (isHoldForCrop) return;
         setCropSelected(false);
-        scope.$digest();
+        // scope.$digest();
         isHoldForCrop = true;
         initOffSrcCanvas();
         clearOffSrcCanvas();

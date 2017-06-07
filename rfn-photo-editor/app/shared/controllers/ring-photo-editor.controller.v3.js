@@ -9,8 +9,7 @@ function ringPhotoEditorController($scope) {
         imageCropper,
         mainCanvasId = 'photo-edit-canvas-id',
         offScreenCanvasId = 'offscr-canvas',
-        editHistoryStack = [],
-        isHoldForCrop = false,
+        editHistoryStack,
         demoImageSrc = 'server/port2.jpg';
 
     // scope variables
@@ -18,18 +17,17 @@ function ringPhotoEditorController($scope) {
     $scope.optionList = [];
     $scope.optionValues = {};
     $scope.curOptTab = 'filters';
-    $scope.isLoading = false;
-    $scope.undoDisable = true;
-    $scope.crSel = false; // true: when user draws a rectangle to crop on image
+    resetState();
 
     // scope functions
     $scope.title = capitalizeFirst;
-    $scope.onEdit = onEdit;
+    $scope.adjust = onAdjustment;
     $scope.prog = getProgress;
     $scope.onFilterApply = onFilterApply;
+    $scope.removeFilter = removeFilter;
+    $scope.undoCrop = undoCrop;
     $scope.reset = resetAll;
     $scope.setOptTab = setOptionsTab;
-    $scope.undoLast = undoLastAction;
     $scope.save = saveEditedImage;
     $scope.lastAppliedFilter = '';
     $scope.btncol = getButtonBackgroundColor;
@@ -48,7 +46,6 @@ function ringPhotoEditorController($scope) {
     function init(isPortrait) {
         $scope.isPortrait = isPortrait;
         initStyles(isPortrait);
-        $scope.$digest();
         initCanvas();
         initOptions();
         initFilters();
@@ -60,6 +57,7 @@ function ringPhotoEditorController($scope) {
         $scope.mdW = isPortrait ? '35%' : '20%';
         $scope.rdW = isPortrait ? '59%' : '74%';
         $scope.filtW = isPortrait ? '48%': '98%';
+        $scope.$digest();
     }
 
     function initCanvas() {
@@ -149,6 +147,7 @@ function ringPhotoEditorController($scope) {
         camanJs.crop(w, h, x, y).render(function () {
             addEditToHistory('crop', cropParam);
             onEdit();
+            $scope.isCropped = true;
         });
         imageCropper.setCropSelected(false);
     }
@@ -156,6 +155,10 @@ function ringPhotoEditorController($scope) {
     function cancelCrop() {
         imageCropper.setCropSelected(false);
         imageCropper.clearOffSrcCanvas();
+    }
+
+    function undoCrop() {
+        $scope.isCropped = false;
     }
 
     function onEdit(optionName) {
@@ -170,10 +173,8 @@ function ringPhotoEditorController($scope) {
                 imageCropper.initOffSrcCanvas();
                 imageCropper.clearOffSrcCanvas();
             }
-            toggleLoading();
         }
 
-        toggleLoading();
         if (optionName) addEditToHistory(optionName);
         editOpts = getEditOptionsToApply();
 
@@ -192,9 +193,19 @@ function ringPhotoEditorController($scope) {
         camanJs.render(onFinishEditing);
     }
 
+    function onAdjustment(adjustmentName, force) {
+        onEdit(adjustmentName);
+    }
+
     function onFilterApply(optionName) {
+        $scope.hasFilter = true;
         $scope.lastAppliedFilter = optionName;
         onEdit(optionName);
+    }
+
+    function removeFilter() {
+        $scope.hasFilter = false;
+        $scope.lastAppliedFilter = '';
     }
 
     function saveEditedImage() {
@@ -222,10 +233,6 @@ function ringPhotoEditorController($scope) {
 
     function getProgress(optionName) {
         return $scope.optionValues[optionName].value;
-    }
-
-    function toggleLoading() {
-        $scope.isLoading = !$scope.isLoading;
     }
 
     function addEditToHistory(optionName, value) {
@@ -335,13 +342,12 @@ function ringPhotoEditorController($scope) {
             optionName;
 
         // reset history
-        editHistoryStack = [];
+        resetState();
         for (i = 0; i < $scope.optionList.length; i++) {
             optionName = $scope.optionList[i];
             $scope.optionValues[optionName].value = 0;
         }
-        $scope.lastAppliedFilter = '';
-        isHoldForCrop = false;
+        // isHoldForCrop = false;
         camanJs.reset();
         camanJs.render(
             function () {
@@ -353,22 +359,17 @@ function ringPhotoEditorController($scope) {
         );
     }
 
-    function undoLastAction() {
-        var lastEdit;
+    function resetState() {
+        editHistoryStack = [];
+        $scope.lastAppliedFilter = '';
+        $scope.crSel = false;
+        $scope.isCropped = false;
+        $scope.hasFilter = false;
+    }
 
-        if ($scope.undoDisable) return;
-        lastEdit = editHistoryStack.pop();
-
-        if ($scope.optionValues[lastEdit.fname]
-            && lastEdit.fname !== 'crop'
-            && lastEdit.fname !== 'rotate')
-            $scope.optionValues[lastEdit.fname].value = 0;
-
-        if (editHistoryStack.length === 0) {
-            resetAll();
-            $scope.undoDisable = true;
-            return;
-        }
+    // debug
+    window.getScope = function () {
+        return $scope;
     }
 }
 

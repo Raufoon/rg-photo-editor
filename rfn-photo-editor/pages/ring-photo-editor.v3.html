@@ -146,11 +146,9 @@
 
             <span class="col-md-8 filt-range-title">{{title(optionName)}}</span>
 
-            <!--<span class="col-md-4 filt-range-val">{{ prog(optionName) }}</span>-->
-
             <input class="col-md-12 filt-range-inp"
                    ng-model="optionValues[optionName].value"
-                   ng-change="onEdit(optionName)"
+                   ng-mouseup="adjust(optionName, true)"
                    type="range"
                    step="2"
                    min="{{ optionValues[optionName].minValue }}"
@@ -208,12 +206,21 @@
             </button>
 
             <button class="lowerbtn"
-                    ng-click="undoLast()"
-                    ng-if="!crSel"
+                    ng-if="!crSel && isCropped"
+                    ng-click="undoCrop()"
                     onmouseenter="this.style.backgroundColor='#ecf0f7'"
                     onmouseleave="this.style.backgroundColor='white'">
                 <img style="max-height: 60%;" src="./images/photo-edit-undo.png">
-                <span>Undo</span>
+                <span>Undo Crop</span>
+            </button>
+
+            <button class="lowerbtn"
+                    ng-if="!crSel && hasFilter"
+                    ng-click="removeFilter()"
+                    onmouseenter="this.style.backgroundColor='#ecf0f7'"
+                    onmouseleave="this.style.backgroundColor='white'">
+                <img style="max-height: 60%;" src="./images/photo-edit-undo.png">
+                <span>Remove Filter</span>
             </button>
 
             <button class="lowerbtn"
@@ -244,8 +251,8 @@
                 <span>Rotate</span>
             </button>
 
-            <div style="float: left;">
-                <!--loader-->
+            <div style="float: left;" ng-if="isLoading">
+                {{isLoading}}
             </div>
 
             <button class="well savebtn"
