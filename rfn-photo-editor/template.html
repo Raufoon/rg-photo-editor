@@ -25,13 +25,14 @@
     }
 </style>
 <script>angular.module('ringid.shared', []);</script>
-<script src="app/shared/controllers/ring-photo-editor.controller.v2.js"></script>
+<script src="app/lib/ring-image-cropper.lib.js"></script>
+<script src="app/shared/controllers/ring-photo-editor.controller.v3.js"></script>
 <!--ringbox here-->
 <script>
     angular.module('ringid.shared')
         .directive('fakeRingbox', function () {
             return {
-                templateUrl: 'pages/ring-photo-editor.v2.html',
+                templateUrl: 'pages/ring-photo-editor.v3.html',
                 controller: 'ringPhotoEditorController'
             }
         })
