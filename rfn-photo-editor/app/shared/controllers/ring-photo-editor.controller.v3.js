@@ -9,7 +9,7 @@ function ringPhotoEditorController($scope) {
         imageCropper,
         mainCanvasId = 'photo-edit-canvas-id',
         offScreenCanvasId = 'offscr-canvas',
-        editHistoryStack,
+        adjustmentHistory = Object.create(null),
         demoImageSrc = 'server/port2.jpg';
 
     // scope variables
@@ -84,6 +84,7 @@ function ringPhotoEditorController($scope) {
             this.minValue = min === undefined? -100 : min;
             this.maxValue = max === undefined? 100 : max;
             this.value = val || 0;
+            this.default = val || 0;
         }
         $scope.optionValues = {
             brightness: new prop(),
@@ -145,7 +146,6 @@ function ringPhotoEditorController($scope) {
 
         mainCanvas.style.visibility = 'hidden';
         camanJs.crop(w, h, x, y).render(function () {
-            addEditToHistory('crop', cropParam);
             onEdit();
             $scope.isCropped = true;
         });
@@ -162,35 +162,31 @@ function ringPhotoEditorController($scope) {
     }
 
     function onEdit(optionName) {
-        var editOpts,
-            opt,
-            i,
-            mainCanvas = document.getElementById('photo-edit-canvas-id');
+        var adjustmentName,
+            i;
 
-        function onFinishEditing() {
-            mainCanvas.style.visibility = 'visible';
+
+        if (optionName)
+            adjustmentHistory[optionName] = parseInt($scope.optionValues[optionName].value, 10);
+        camanJs.revert(false);
+
+        // apply last filter
+        if ($scope.hasFilter) camanJs[$scope.lastAppliedFilter]();
+
+        // then:
+        for (adjustmentName in adjustmentHistory)
+            camanJs[adjustmentName](adjustmentHistory[adjustmentName]);
+
+        camanJs.render(function onFinishEditing() {
             if ($scope.curOptTab === 'crop') {
                 imageCropper.initOffSrcCanvas();
                 imageCropper.clearOffSrcCanvas();
             }
-        }
+            document.getElementById(mainCanvasId).style.visibility = 'visible';
+        });
 
-        if (optionName) addEditToHistory(optionName);
-        editOpts = getEditOptionsToApply();
-
-        if (editOpts.length === 0) {
-            camanJs.render(onFinishEditing);
-            return;
-        }
-
-        camanJs.revert(false);
-        for (i = 0; i < editOpts.length; i++) {
-            opt = editOpts[i];
-            if (opt.key === 'crop' || opt.key === 'rotate') continue;
-            else if (opt.key === 'filter') camanJs = camanJs[opt.value]();
-            else camanJs = camanJs[opt.key](opt.value);
-        }
-        camanJs.render(onFinishEditing);
+        if (optionName && adjustmentHistory[optionName] === $scope.optionValues[optionName].default)
+            delete adjustmentHistory[optionName];
     }
 
     function onAdjustment(adjustmentName, force) {
@@ -200,12 +196,13 @@ function ringPhotoEditorController($scope) {
     function onFilterApply(optionName) {
         $scope.hasFilter = true;
         $scope.lastAppliedFilter = optionName;
-        onEdit(optionName);
+        onEdit();
     }
 
     function removeFilter() {
         $scope.hasFilter = false;
         $scope.lastAppliedFilter = '';
+        onEdit();
     }
 
     function saveEditedImage() {
@@ -221,7 +218,6 @@ function ringPhotoEditorController($scope) {
         camanJs.rotate(90);
         camanJs.render(function onRender() {
             onEdit();
-            addEditToHistory('rotate');
         });
     }
 
@@ -233,87 +229,6 @@ function ringPhotoEditorController($scope) {
 
     function getProgress(optionName) {
         return $scope.optionValues[optionName].value;
-    }
-
-    function addEditToHistory(optionName, value) {
-        /*append the option to the history stack, replace top if identical*/
-        var fValue,
-            lastEdit,
-            isFilter;
-
-        $scope.undoDisable = false;
-        if ($scope.optionValues[optionName]) fValue = $scope.optionValues[optionName].value;
-        else if (optionName === 'rotate') {
-            editHistoryStack.push({
-                fname: 'rotate'
-            });
-            return;
-        }
-        else if (optionName === 'crop') {
-            editHistoryStack.push({
-                fname: 'crop',
-                value: value
-            });
-            return;
-        }
-        else isFilter = true;
-
-        if (isFilter) {
-            editHistoryStack.push({
-                fname: 'filter',
-                value: optionName,
-            });
-            return;
-        }
-
-        if (editHistoryStack.length > 0) {
-            lastEdit = editHistoryStack[editHistoryStack.length - 1];
-            if (lastEdit.fname === optionName) {
-                lastEdit.value = fValue;
-                return;
-            }
-        }
-        editHistoryStack.push({
-            fname: optionName,
-            value: fValue,
-        });
-    }
-
-    function getEditOptionsToApply() {
-        /*returns an array of {key, value} containing unique edit options (filters, options, crop etc.)
-         with parameter values*/
-        var i = editHistoryStack.length - 1,
-            editHistoryObject,
-            used = Object.create(null),
-            key,
-            val,
-            optionsToApply = [];
-        while (i >= 0) {
-            editHistoryObject = editHistoryStack[i];
-            if (used[editHistoryObject.fname]
-                && editHistoryObject.fname !== 'crop'
-                && editHistoryObject.fname !== 'rotate') {
-                // adjustment options old values are ignored
-                i--;
-                continue;
-            }
-
-            key = editHistoryObject.fname;
-            if (editHistoryObject.fname === 'filter') {
-                val = editHistoryObject.value;
-            }
-            else if (editHistoryObject.fname === 'crop') val = editHistoryObject.value;
-            else if (editHistoryObject.fname === 'rotate') val = true;
-            else val = parseInt(editHistoryObject.value, 10);
-
-            used[editHistoryObject.fname] = true;
-            optionsToApply.push({
-                key: key,
-                value: val,
-            });
-            i--;
-        }
-        return optionsToApply.reverse();
     }
 
     function getButtonBackgroundColor(tabname, hover, selectCol, menterCol, mleavCol) {
@@ -360,11 +275,11 @@ function ringPhotoEditorController($scope) {
     }
 
     function resetState() {
-        editHistoryStack = [];
         $scope.lastAppliedFilter = '';
         $scope.crSel = false;
         $scope.isCropped = false;
         $scope.hasFilter = false;
+        adjustmentHistory = Object.create(null);
     }
 
     // debug
