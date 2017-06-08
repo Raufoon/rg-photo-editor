@@ -138,11 +138,13 @@ function ringPhotoEditorController($scope) {
     function applyCrop() {
         var cropParam = imageCropper.getCropParam(),
             mainCanvas = document.getElementById(mainCanvasId),
+            offScrCanvas = document.getElementById(offScreenCanvasId),
             w = cropParam.cropWidth,
             h = cropParam.cropHeight,
             x = cropParam.cropX0,
             y = cropParam.cropY0;
 
+        offScrCanvas.style.visibility = 'hidden';
         mainCanvas.style.visibility = 'hidden';
         camanJs.crop(w, h, x, y).render(function () {
             onEdit();
@@ -178,6 +180,7 @@ function ringPhotoEditorController($scope) {
             if ($scope.curOptTab === 'crop') {
                 imageCropper.initOffSrcCanvas();
                 imageCropper.clearOffSrcCanvas();
+                document.getElementById(offScreenCanvasId).style.visibility = 'visible';
             }
             document.getElementById(mainCanvasId).style.visibility = 'visible';
         });
