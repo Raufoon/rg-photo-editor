@@ -159,21 +159,19 @@ function ringPhotoEditorController($scope) {
 
     function undoCrop() {
         $scope.isCropped = false;
+        camanJs.reset();
+        onEdit();
     }
 
     function onEdit(optionName) {
         var adjustmentName,
             i;
 
-
         if (optionName)
             adjustmentHistory[optionName] = parseInt($scope.optionValues[optionName].value, 10);
+
         camanJs.revert(false);
-
-        // apply last filter
         if ($scope.hasFilter) camanJs[$scope.lastAppliedFilter]();
-
-        // then:
         for (adjustmentName in adjustmentHistory)
             camanJs[adjustmentName](adjustmentHistory[adjustmentName]);
 
@@ -221,14 +219,30 @@ function ringPhotoEditorController($scope) {
         });
     }
 
+    function resetAll() {
+        var i,
+            optionName;
+
+        resetState();
+        for (i = 0; i < $scope.optionList.length; i++) {
+            optionName = $scope.optionList[i];
+            $scope.optionValues[optionName].value = $scope.optionValues[optionName].default;
+        }
+        camanJs.reset();
+        camanJs.render(
+            function afterRender() {
+                if ($scope.curOptTab === 'crop') {
+                    imageCropper.initOffSrcCanvas();
+                    imageCropper.clearOffSrcCanvas();
+                }
+            }
+        );
+    }
+
 
     // utility functions
     function capitalizeFirst(string) {
         return string.charAt(0).toUpperCase()+string.slice(1);
-    }
-
-    function getProgress(optionName) {
-        return $scope.optionValues[optionName].value;
     }
 
     function getButtonBackgroundColor(tabname, hover, selectCol, menterCol, mleavCol) {
@@ -243,6 +257,15 @@ function ringPhotoEditorController($scope) {
         return mleavCol || '#0089b7';
     }
 
+    function resetState() {
+        $scope.lastAppliedFilter = '';
+        $scope.crSel = false;
+        $scope.isCropped = false;
+        $scope.hasFilter = false;
+        adjustmentHistory = Object.create(null);
+    }
+
+
     // UI manipulation functions
     function setOptionsTab(optionsTabTitle) {
         if ($scope.curOptTab === 'crop' && optionsTabTitle !== 'crop') imageCropper.exitCropSection();
@@ -252,35 +275,6 @@ function ringPhotoEditorController($scope) {
         if (optionsTabTitle === 'crop') imageCropper.initCropSection();
     }
 
-    function resetAll() {
-        var i,
-            optionName;
-
-        // reset history
-        resetState();
-        for (i = 0; i < $scope.optionList.length; i++) {
-            optionName = $scope.optionList[i];
-            $scope.optionValues[optionName].value = 0;
-        }
-        // isHoldForCrop = false;
-        camanJs.reset();
-        camanJs.render(
-            function () {
-                if ($scope.curOptTab === 'crop') {
-                    imageCropper.initOffSrcCanvas();
-                    imageCropper.clearOffSrcCanvas();
-                }
-            }
-        );
-    }
-
-    function resetState() {
-        $scope.lastAppliedFilter = '';
-        $scope.crSel = false;
-        $scope.isCropped = false;
-        $scope.hasFilter = false;
-        adjustmentHistory = Object.create(null);
-    }
 
     // debug
     window.getScope = function () {
