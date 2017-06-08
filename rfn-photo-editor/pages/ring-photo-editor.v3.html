@@ -52,11 +52,6 @@
         padding: 0%;
         border: none;
     }
-    .filt-range-val{
-        padding: 0%;
-        text-align: right;
-        border: none;
-    }
     .filt-range-inp{
         padding: 0;
         border: none;
@@ -89,6 +84,37 @@
         padding-right: 2%;
         background-color: white;
         border: none
+    }
+    .text-option-panel{
+        width: 100%;
+        height: 100%;
+        padding: 5%;
+    }
+    .font-opt-label{
+        width: 100%;
+        height: 10%;
+        padding: 0;
+    }
+    .font-opt-input{
+        width: 100%;
+        height: 8%;
+        border-radius: 0;
+        margin-top: 3%;
+        margin-bottom: 6%;
+        padding: 0;
+    }
+    .font-insert-btn{
+        width: 30%;
+        height: 10%;
+        border-radius: 0;
+        padding: 0;
+        background-color: #f47727;
+        color: white;
+        float: right;
+    }
+    .font-name{
+        margin: 30%;
+        height: 10%;
     }
 </style>
 
@@ -171,6 +197,24 @@
             <h4>{{title(filterName)}}</h4>
         </button>
 
+        <div class="text-option-panel" ng-if="curOptTab === 'text'">
+
+            <span class="font-opt-label">Font Style</span>
+            <select class="font-opt-input well">
+                <option class="font-name" ng-repeat="fontName in fonts" value="{{fontName}}">{{fontName}}</option>
+            </select>
+
+            <span class="font-opt-label">Font Color</span>
+            <input class="font-opt-input well" type="color">
+
+            <span class="font-opt-label">Font Size</span>
+            <select class="font-opt-input well">
+                <option class="font-name" ng-repeat="fontSize in fontSizes" value="{{fontSize}}">{{fontSize}}</option>
+            </select>
+
+            <button class="font-insert-btn well">+Add</button>
+        </div>
+
     </div>
 
     <!--rightmost options-->
@@ -179,7 +223,7 @@
          background-color: white;
          height: 100%;">
         <div style="float: right; width: 100%; height: 94%; padding: 2%; background-color: #ccd5de;">
-            <p ng-style="{'cursor': curOptTab==='crop'?'crosshair':'default' }"
+            <div ng-style="{'cursor': curOptTab==='crop'?'crosshair':'default' }"
                style="text-align:center; width:100%; height:100%; position: relative;">
                 <img id="photo-edit-canvas-id"
                      style="max-height:100%; max-width:100%;">
@@ -192,7 +236,16 @@
                          left: 0;
                          right: 0;
                          top: 0; "></canvas>
-            </p>
+                <div id="text-insertion-div"
+                     style="position: absolute;
+                         background-color: transparent;
+                         display: none;
+                         margin: auto;
+                         z-index: 99999;
+                         left: 0;
+                         right: 0;
+                         top: 0; "></div>
+            </div>
         </div>
         <div style="box-shadow: 0 0 2px #888888; float: right; width: 100%; height: 6%;">
             <button class="lowerbtn"

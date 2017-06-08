@@ -49,6 +49,7 @@ function ringPhotoEditorController($scope) {
         initOptions();
         initFilters();
         initCropper();
+        initFontOptions();
         $scope.$digest();
     }
 
@@ -131,6 +132,25 @@ function ringPhotoEditorController($scope) {
         $scope.cropCancel = imageCropper.onCropCancel;
         $scope.crop = applyCrop;
         $scope.cropCancel = cancelCrop;
+    }
+
+    function initFontOptions() {
+        var i;
+        $scope.fontSizes = [];
+        for (i = 10; i< 40; i++)
+            $scope.fontSizes.push(i);
+        $scope.fonts = [
+            'Arial',
+            'Helvetica',
+            'Times New Roman',
+            'Courier New',
+            'Verdana',
+            'Georgia',
+            'Palatino',
+            'Garamond',
+            'Comic Sans MS',
+            'Impact',
+        ];
     }
 
 
@@ -275,6 +295,9 @@ function ringPhotoEditorController($scope) {
         $scope.curOptTab = optionsTabTitle;
 
         if (optionsTabTitle === 'crop') imageCropper.initCropSection();
+        else if (optionsTabTitle === 'text') {
+
+        }
     }
 
 
