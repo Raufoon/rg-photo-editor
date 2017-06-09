@@ -7,6 +7,7 @@ function ringPhotoEditorController($scope) {
     var imageObj = new Image(),
         camanJs,
         imageCropper,
+        textInserter,
         mainCanvasId = 'photo-edit-canvas-id',
         offScreenCanvasId = 'offscr-canvas',
         adjustmentHistory = Object.create(null),
@@ -137,8 +138,7 @@ function ringPhotoEditorController($scope) {
     function initFontOptions() {
         var i;
         $scope.fontSizes = [];
-        for (i = 10; i< 40; i++)
-            $scope.fontSizes.push(i);
+        for (i = 10; i< 40; i++) $scope.fontSizes.push(i);
         $scope.fonts = [
             'Arial',
             'Helvetica',
@@ -151,6 +151,8 @@ function ringPhotoEditorController($scope) {
             'Comic Sans MS',
             'Impact',
         ];
+        textInserter = new ringImageTextInserter($scope, mainCanvasId);
+        $scope.addtext = textInserter.addtext;
     }
 
 
@@ -209,7 +211,7 @@ function ringPhotoEditorController($scope) {
             delete adjustmentHistory[optionName];
     }
 
-    function onAdjustment(adjustmentName, force) {
+    function onAdjustment(adjustmentName) {
         onEdit(adjustmentName);
     }
 
@@ -291,12 +293,13 @@ function ringPhotoEditorController($scope) {
     // UI manipulation functions
     function setOptionsTab(optionsTabTitle) {
         if ($scope.curOptTab === 'crop' && optionsTabTitle !== 'crop') imageCropper.exitCropSection();
+        else if ($scope.curOptTab === 'text' && optionsTabTitle !== 'text') textInserter.exit();
 
         $scope.curOptTab = optionsTabTitle;
 
         if (optionsTabTitle === 'crop') imageCropper.initCropSection();
         else if (optionsTabTitle === 'text') {
-
+            textInserter.init();
         }
     }
 
@@ -304,6 +307,9 @@ function ringPhotoEditorController($scope) {
     // debug
     window.getScope = function () {
         return $scope;
+    }
+    window.mainCanvas = function () {
+        return angular.element(document.getElementById(mainCanvasId));
     }
 }
 
