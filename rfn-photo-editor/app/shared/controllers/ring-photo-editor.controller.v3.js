@@ -160,7 +160,6 @@ function ringPhotoEditorController($scope) {
                 document.getElementById('id-font-size').value
             );
         };
-        textInserter.constructTextCanvas();
     }
 
 
@@ -307,7 +306,7 @@ function ringPhotoEditorController($scope) {
 
         if (optionsTabTitle === 'crop') imageCropper.initCropSection();
         else if (optionsTabTitle === 'text') {
-            textInserter.enter();
+            textInserter.init();
         }
     }
 
