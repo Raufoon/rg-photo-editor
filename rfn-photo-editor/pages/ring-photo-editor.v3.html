@@ -206,18 +206,18 @@
 
         <div class="text-option-panel" ng-if="curOptTab === 'text'">
             <span class="font-opt-label">Your Text</span>
-            <textarea ng-model="textToAdd" class="pe-text-area well" maxlength="100"></textarea>
+            <textarea id="id-text-to-add" class="pe-text-area well" maxlength="100"></textarea>
 
             <span class="font-opt-label">Font Style</span>
-            <select ng-model="fontStyle" class="font-opt-input well">
+            <select id="id-font" class="font-opt-input well">
                 <option class="font-name" ng-repeat="fontName in fonts" value="{{fontName}}">{{fontName}}</option>
             </select>
 
-            <span ng-model="fontColor">Font Color</span>
-            <input id="pe-font-col-id" class="font-opt-input well" type="color">
+            <span>Font Color</span>
+            <input id="id-font-color" id="pe-font-col-id" class="font-opt-input well" type="color">
 
             <span class="font-opt-label">Font Size</span>
-            <select ng-model="fontSize" class="font-opt-input well">
+            <select id="id-font-size" class="font-opt-input well">
                 <option class="font-name" ng-repeat="fontSize in fontSizes" value="{{fontSize}}">{{fontSize}}</option>
             </select>
 
@@ -245,6 +245,19 @@
                          left: 0;
                          right: 0;
                          top: 0; ">
+
+                </canvas>
+                <canvas id="text-canvas"
+                        style="position: absolute;
+                         display: none;
+                         max-width: 100%;
+                         max-height: 100%;
+                         margin: auto;
+                         background-color: transparent;
+                         z-index: 99999;
+                         left: 0;
+                         right: 0;
+                         top: 0;">
 
                 </canvas>
             </div>

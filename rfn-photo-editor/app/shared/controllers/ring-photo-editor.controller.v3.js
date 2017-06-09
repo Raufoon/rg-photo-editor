@@ -138,7 +138,7 @@ function ringPhotoEditorController($scope) {
     function initFontOptions() {
         var i;
         $scope.fontSizes = [];
-        for (i = 10; i< 40; i++) $scope.fontSizes.push(i);
+        for (i = 10; i< 101; i++) $scope.fontSizes.push(i);
         $scope.fonts = [
             'Arial',
             'Helvetica',
@@ -151,8 +151,15 @@ function ringPhotoEditorController($scope) {
             'Comic Sans MS',
             'Impact',
         ];
-        textInserter = new ringImageTextInserter($scope, mainCanvasId);
-        $scope.addtext = textInserter.addtext;
+        textInserter = new ringImageTextInserter($scope, mainCanvasId, 'text-canvas');
+        $scope.addtext = function addText() {
+            textInserter.addtext(
+                document.getElementById('id-text-to-add').value,
+                document.getElementById('id-font').value,
+                document.getElementById('id-font-color').value,
+                document.getElementById('id-font-size').value
+            );
+        };
     }
 
 
