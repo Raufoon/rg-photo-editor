@@ -279,26 +279,48 @@ function ringPhotoEditorController($scope) {
         );
     }
 
-    function applyTextOnMainCanvas() {
-        var mainCanvas = document.getElementById(mainCanvasId),
-            mainCanvasContext = mainCanvas.getContext('2d'),
-            i,
-            th;
+    // function applyTextOnMainCanvasx() {
+    //     var mainCanvas = document.getElementById(mainCanvasId),
+    //         mainCanvasContext = mainCanvas.getContext('2d'),
+    //         i,
+    //         th;
+    //
+    //     for (i = 0; i < $scope.textHistory.length; i++) {
+    //         th = $scope.textHistory[i];
+    //         mainCanvasContext.font = th.size+'px '+th.font;
+    //         mainCanvasContext.fillStyle = th.color;
+    //         mainCanvasContext.fillText(th.text, th.x, th.y);
+    //     }
+    //     $scope.noText = true;
+    //     clearAllTexts();
+    //     camanJs.replaceCanvas(cloneCanvas(mainCanvas));
+    //     // adding text is irreversible.
+    //     $scope.hasFilter = false;
+    //     $scope.lastAppliedFilter = '';
+    //     $scope.isCropped = false;
+    //     resetAdjustmentValuesToDefault();
+    // }
 
-        for (i = 0; i < $scope.textHistory.length; i++) {
-            th = $scope.textHistory[i];
-            mainCanvasContext.font = th.size+'px '+th.font;
-            mainCanvasContext.fillStyle = th.color;
-            mainCanvasContext.fillText(th.text, th.x, th.y);
-        }
-        $scope.noText = true;
-        clearAllTexts();
-        camanJs.replaceCanvas(mainCanvas);
-        // adding text is irreversible.
-        $scope.hasFilter = false;
-        $scope.lastAppliedFilter = '';
-        $scope.isCropped = false;
-        resetAdjustmentValuesToDefault();
+    function applyTextOnMainCanvas() {
+        camanJs.revert(true);
+        document.getElementById(mainCanvasId).style.visibility='hidden';
+        camanJs.render(function fn() {
+            var mainCanvas = document.getElementById(mainCanvasId),
+                mainCanvasContext = mainCanvas.getContext('2d'),
+                i,
+                th;
+            for (i = 0; i < $scope.textHistory.length; i++) {
+                th = $scope.textHistory[i];
+                mainCanvasContext.font = th.size+'px '+th.font;
+                mainCanvasContext.fillStyle = th.color;
+                mainCanvasContext.fillText(th.text, th.x, th.y);
+            }
+            $scope.noText = true;
+            clearAllTexts();
+            camanJs.replaceCanvas(cloneCanvas(mainCanvas));
+            $scope.isCropped = false;
+            onEdit();
+        });
     }
 
     function clearAllTexts() {
@@ -307,6 +329,15 @@ function ringPhotoEditorController($scope) {
 
 
     // utility functions
+    function cloneCanvas(oldCanvas) {
+        var newCanvas = document.createElement('canvas');
+        var context = newCanvas.getContext('2d');
+        newCanvas.width = oldCanvas.width;
+        newCanvas.height = oldCanvas.height;
+        context.drawImage(oldCanvas, 0, 0);
+        return newCanvas;
+    }
+
     function capitalizeFirst(string) {
         return string.charAt(0).toUpperCase()+string.slice(1);
     }
