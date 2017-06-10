@@ -290,14 +290,7 @@ function ringPhotoEditorController($scope) {
         }
         $scope.noText = true;
         clearAllTexts();
-        img = new Image();
-        img.src = mainCanvas.toDataURL();
-        img.onload = function () {
-            window.Caman('#'+mainCanvasId, this, function () {
-                this.reloadCanvasData();
-                this.render();
-            });
-        }
+        camanJs.replaceCanvas(mainCanvas);
     }
 
     function clearAllTexts() {
