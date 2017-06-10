@@ -221,7 +221,8 @@ function ringPhotoEditorController($scope) {
             document.getElementById(mainCanvasId).style.visibility = 'visible';
         });
 
-        if (optionName && adjustmentHistory[optionName] === $scope.optionValues[optionName].default)
+        if (optionName && adjustmentHistory[optionName]
+            === $scope.optionValues[optionName].default)
             delete adjustmentHistory[optionName];
     }
 
@@ -307,8 +308,8 @@ function ringPhotoEditorController($scope) {
 
     // utility functions
     function cloneCanvas(oldCanvas) {
-        var newCanvas = document.createElement('canvas');
-        var context = newCanvas.getContext('2d');
+        var newCanvas = document.createElement('canvas'),
+            context = newCanvas.getContext('2d');
         newCanvas.width = oldCanvas.width;
         newCanvas.height = oldCanvas.height;
         context.drawImage(oldCanvas, 0, 0);
@@ -350,25 +351,13 @@ function ringPhotoEditorController($scope) {
 
     // UI manipulation functions
     function setOptionsTab(optionsTabTitle) {
-        if ($scope.curOptTab === 'crop' && optionsTabTitle !== 'crop') {
-            // leaving crop section
-            imageCropper.exitCropSection();
-        }
-        else if ($scope.curOptTab === 'text' && optionsTabTitle !== 'text') {
-            // leaving text insertion section
-            textInserter.exit();
-        }
+        if ($scope.curOptTab === 'crop' && optionsTabTitle !== 'crop') imageCropper.exitCropSection();
+        else if ($scope.curOptTab === 'text' && optionsTabTitle !== 'text') textInserter.exit();
 
         $scope.curOptTab = optionsTabTitle;
 
-        if (optionsTabTitle === 'crop') {
-            // entering crop section
-            imageCropper.initCropSection();
-        }
-        else if (optionsTabTitle === 'text') {
-            // entering text section
-            textInserter.initTextOptions();
-        }
+        if (optionsTabTitle === 'crop') imageCropper.initCropSection();
+        else if (optionsTabTitle === 'text') textInserter.initTextOptions();
     }
 
 
