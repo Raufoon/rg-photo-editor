@@ -6,6 +6,7 @@ ringPhotoEditorController.$inject = ['$scope'];
 function ringPhotoEditorController($scope) {
     var imageObj = new Image(),
         camanJs,
+        loading = false,
         imageCropper,
         textInserter,
         mainCanvasId = 'photo-edit-canvas-id',
@@ -179,7 +180,9 @@ function ringPhotoEditorController($scope) {
             h = cropParam.cropHeight,
             x = cropParam.cropX0,
             y = cropParam.cropY0;
+        if (loading) return;
 
+        setLoading(true);
         offScrCanvas.style.visibility = 'hidden';
         mainCanvas.style.visibility = 'hidden';
         camanJs.crop(w, h, x, y).render(function () {
@@ -195,14 +198,14 @@ function ringPhotoEditorController($scope) {
     }
 
     function undoCrop() {
+        setLoading(true);
         $scope.isCropped = false;
         camanJs.reset();
         onEdit();
     }
 
     function onEdit(optionName) {
-        var adjustmentName,
-            i;
+        var adjustmentName;
 
         if (optionName)
             adjustmentHistory[optionName] = parseInt($scope.optionValues[optionName].value, 10);
@@ -219,6 +222,7 @@ function ringPhotoEditorController($scope) {
                 document.getElementById(offScreenCanvasId).style.visibility = 'visible';
             }
             document.getElementById(mainCanvasId).style.visibility = 'visible';
+            setLoading(false);
         });
 
         if (optionName && adjustmentHistory[optionName]
@@ -227,16 +231,22 @@ function ringPhotoEditorController($scope) {
     }
 
     function onAdjustment(adjustmentName) {
+        if (loading) return;
+        setLoading(true);
         onEdit(adjustmentName);
     }
 
     function onFilterApply(optionName) {
+        if (loading) return;
+        setLoading(true);
         $scope.hasFilter = true;
         $scope.lastAppliedFilter = optionName;
         onEdit();
     }
 
     function removeFilter() {
+        if (loading) return;
+        setLoading(true);
         $scope.hasFilter = false;
         $scope.lastAppliedFilter = '';
         onEdit();
@@ -251,6 +261,8 @@ function ringPhotoEditorController($scope) {
 
     function rotateTheCanvas() {
         var mainCanvas = document.getElementById('photo-edit-canvas-id');
+        if (loading) return;
+        setLoading(true);
         mainCanvas.style.visibility = 'hidden';
         camanJs.rotate(90);
         camanJs.render(function onRender() {
@@ -268,6 +280,8 @@ function ringPhotoEditorController($scope) {
     }
 
     function resetAll() {
+        if (loading) return;
+        setLoading(true);
         resetState();
         resetAdjustmentValuesToDefault();
         camanJs.reset();
@@ -277,6 +291,7 @@ function ringPhotoEditorController($scope) {
                     imageCropper.initOffSrcCanvas();
                     imageCropper.clearOffSrcCanvas();
                 }
+                setLoading(false);
             }
         );
     }
@@ -286,12 +301,15 @@ function ringPhotoEditorController($scope) {
             mainCanvasContext = mainCanvas.getContext('2d'),
             i,
             th;
+        if (loading) return;
+        setLoading(true);
         for (i = 0; i < $scope.textHistory.length; i++) {
             th = $scope.textHistory[i];
             mainCanvasContext.font = th.size+'px '+th.font;
             mainCanvasContext.fillStyle = th.color;
             mainCanvasContext.fillText(th.text, th.x, th.y);
         }
+
         $scope.noText = true;
         clearAllTexts();
         camanJs.replaceCanvas(cloneCanvas(mainCanvas));
@@ -299,6 +317,7 @@ function ringPhotoEditorController($scope) {
         $scope.hasFilter = false;
         $scope.lastAppliedFilter = '';
         resetAdjustmentValuesToDefault();
+        setLoading(false);
     }
 
     function clearAllTexts() {
@@ -351,6 +370,8 @@ function ringPhotoEditorController($scope) {
 
     // UI manipulation functions
     function setOptionsTab(optionsTabTitle) {
+        if (loading) return;
+
         if ($scope.curOptTab === 'crop' && optionsTabTitle !== 'crop') imageCropper.exitCropSection();
         else if ($scope.curOptTab === 'text' && optionsTabTitle !== 'text') textInserter.exit();
 
@@ -360,13 +381,29 @@ function ringPhotoEditorController($scope) {
         else if (optionsTabTitle === 'text') textInserter.initTextOptions();
     }
 
+    function setLoading(flag) {
+        var loaderCanvas = document.getElementById('loader-canvas'),
+            mainCanvas,
+            l,
+            loadingText = 'Loading...',
+            ctx;
 
-    // debug
-    window.getScope = function () {
-        return $scope;
-    }
-    window.mainCanvas = function () {
-        return angular.element(document.getElementById(mainCanvasId));
+        loading = flag;
+
+        if (loading) {
+            mainCanvas = document.getElementById(mainCanvasId);
+            loaderCanvas.style.display = 'block';
+            loaderCanvas.width = mainCanvas.width;
+            loaderCanvas.height = mainCanvas.height;
+            ctx = loaderCanvas.getContext('2d');
+            ctx.font = '60px Arial';
+            ctx.fillStyle = '#f47727';
+            l = (ctx.measureText(loadingText).width)/2;
+            ctx.fillText(loadingText, loaderCanvas.width/2 -l, loaderCanvas.height/2);
+        }
+        else {
+            loaderCanvas.style.display = 'none';
+        }
     }
 }
 

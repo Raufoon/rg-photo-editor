@@ -79,6 +79,7 @@
         height: 100%;
         width: 10%;
         border-radius: 0;
+        border: none;
         padding: 0;
         background-color: #FFFFFF;
         float: right;
@@ -114,6 +115,7 @@
         width: 30%;
         height: 8%;
         border-radius: 5%;
+        border: none;
         padding: 0;
         background-color: #f47727;
         color: white;
@@ -122,6 +124,7 @@
     .font-name{
         margin: 30%;
         height: 10%;
+        background-color: white;
     }
     .pe-text-area{
         border-radius: 0;
@@ -131,6 +134,16 @@
         margin-bottom: 6%;
         padding: 1%;
     }
+    .pe-canvas{
+        position: absolute;
+        display: none;
+        margin: auto;
+        max-width: 100%;
+        max-height: 100%;
+        left: 0;
+        right: 0;
+        top: 0;
+    }
 </style>
 
 <!--outmost div-->
@@ -138,9 +151,9 @@
     <!--leftmost options list-->
     <div class="pe-left-opt-panel">
 
-        <button class="col-md-12 well pe-left-opt-btn"
+        <button class="pe-left-opt-btn"
                 ng-disabled="crSel || !noText"
-                ng-click="setOptTab('filters')" style="text-decoration: none;"
+                ng-click="setOptTab('filters')"
                 ng-mouseenter="moFt=true"
                 ng-mouseleave="moFt=false"
                 ng-style="{'background-color': btncol('filters', moFt)}">
@@ -148,17 +161,17 @@
             <p class="pe-left-opt-btn-txt">Filters</p>
         </button>
 
-        <button class="col-md-12 well pe-left-opt-btn"
+        <button class="pe-left-opt-btn"
                 ng-disabled="crSel || !noText"
                 ng-mouseenter="moAt=true"
                 ng-mouseleave="moAt=false"
-                ng-click="setOptTab('options')" style="text-decoration: none;"
+                ng-click="setOptTab('options')"
                 ng-style="{ 'background-color': btncol('options', moAt) }">
             <img src="./images/photo-edit-options.png" class="pe-left-opt-btn-img">
             <p class="pe-left-opt-btn-txt">Options</p>
         </button>
 
-        <button class="col-md-12 well pe-left-opt-btn"
+        <button class="pe-left-opt-btn"
                 ng-disabled="crSel || !noText"
                 ng-mouseenter="moCt=true"
                 ng-mouseleave="moCt=false"
@@ -169,7 +182,7 @@
             <p class="pe-left-opt-btn-txt">Crop</p>
         </button>
 
-        <button class="col-md-12 well pe-left-opt-btn"
+        <button class="pe-left-opt-btn"
                 ng-mouseenter="moTt=true"
                 ng-mouseleave="moTt=false"
                 ng-disabled="crSel || !noText"
@@ -183,14 +196,19 @@
     </div>
 
     <!--dynamic options view-->
-    <div ng-if="curOptTab!=='rotate'&&curOptTab!=='crop'" ng-style="{ 'width': mdW }" class="mid-opt-panel">
+    <div ng-if="curOptTab!=='rotate' && curOptTab!=='crop'"
+         ng-style="{ 'width': mdW }"
+         class="mid-opt-panel">
 
-        <div ng-if="curOptTab === 'options'" class="filt-range-opt"
-             ng-style="{'width': isPortrait? '46%':'96%'}" ng-repeat="optionName in optionList">
 
-            <span class="col-md-8 filt-range-title">{{title(optionName)}}</span>
+        <div ng-if="curOptTab === 'options'"
+             class="filt-range-opt"
+             ng-style="{'width': isPortrait? '46%':'96%'}"
+             ng-repeat="optionName in optionList">
 
-            <input class="col-md-12 filt-range-inp"
+            <span class="filt-range-title">{{title(optionName)}}</span>
+
+            <input class="filt-range-inp"
                    ng-model="optionValues[optionName].value"
                    ng-mouseup="adjust(optionName, true)"
                    type="range"
@@ -198,83 +216,85 @@
                    min="{{ optionValues[optionName].minValue }}"
                    max="{{ optionValues[optionName].maxValue }}"
                    value="{{ optionValues[optionName].value }}">
-
         </div>
 
-        <button class="well filt-btn"
+
+        <button class="filt-btn"
                 ng-if="curOptTab === 'filters'"
                 ng-disabled="lastAppliedFilter === filterName"
                 ng-mouseenter="moF[filterName]=true"
                 ng-mouseleave="moF[filterName]=false"
                 ng-style="{
-                'width': filtW,
-                'background-color': filtBtnCol(filterName, moF[filterName]),
-                'color': lastAppliedFilter === filterName?'black':'white',
+                    'width': filtW,
+                    'background-color': filtBtnCol(filterName, moF[filterName]),
+                    'color': lastAppliedFilter === filterName?'black':'white',
                  }"
                 ng-click="moF[filterName]=false; onFilterApply(filterName)"
                 ng-repeat="filterName in filterList">
             <h4>{{title(filterName)}}</h4>
         </button>
 
-        <div class="text-option-panel" ng-if="curOptTab === 'text'">
+
+        <div class="text-option-panel"
+             ng-if="curOptTab === 'text'">
+
             <span class="font-opt-label">Your Text</span>
-            <textarea id="id-text-to-add" class="pe-text-area well" maxlength="100">Your text here...</textarea>
+            <textarea id="id-text-to-add" class="pe-text-area" maxlength="100">Your text here...</textarea>
 
             <span class="font-opt-label">Font Style</span>
-            <select id="id-font" class="font-opt-input well">
+            <select id="id-font" class="font-opt-input">
                 <option class="font-name" ng-repeat="fontName in fonts" value="{{fontName}}">{{fontName}}</option>
             </select>
 
             <span class="font-opt-label">Font Color</span>
-            <input id="id-font-color" id="pe-font-col-id" class="font-opt-input well" type="color">
+            <input id="id-font-color" id="pe-font-col-id" class="font-opt-input" type="color">
 
             <span class="font-opt-label">Font Size</span>
-            <select id="id-font-size" class="font-opt-input well">
+            <select id="id-font-size" class="font-opt-input">
                 <option class="font-name" ng-repeat="fontSize in fontSizes" value="{{fontSize}}">{{fontSize}}</option>
             </select>
 
-            <button class="font-insert-btn well" ng-click="addtext()">+Add</button>
+            <button class="font-insert-btn" ng-click="addtext()">+Add</button>
         </div>
 
     </div>
 
+
     <!--rightmost options-->
     <div ng-style="{ 'width': rdW }"
          style="float: left;
-         background-color: white;
-         height: 100%;">
-        <div style="float: right; width: 100%; height: 94%; padding: 2%; background-color: #ccd5de;">
+            background-color: white;
+            height: 100%;">
+
+        <div style="
+            float: right;
+            width: 100%;
+            height: 94%;
+            padding: 2%;
+            background-color: #ccd5de;">
+
             <div ng-style="{'cursor': curOptTab==='crop'?'crosshair':'default' }"
                style="text-align:center; width:100%; height:100%; position: relative;">
+
                 <img id="photo-edit-canvas-id"
                      style="max-height:100%; max-width:100%;">
+
                 <canvas id="offscr-canvas"
-                        style="position: absolute;
-                         display: none;
-                         margin: auto;
-                         max-width: 100%;
-                         max-height: 100%;
-                         opacity: 0.99;
-                         left: 0;
-                         right: 0;
-                         top: 0; ">
+                        class="pe-canvas"
+                        style="opacity: 0.99;"></canvas>
 
-                </canvas>
                 <canvas id="text-canvas"
-                        style="position: absolute;
-                         display: none;
-                         max-width: 100%;
-                         max-height: 100%;
-                         margin: auto;
-                         background-color: transparent;
-                         left: 0;
-                         right: 0;
-                         top: 0;">
+                        class="pe-canvas"
+                        style="background-color: transparent;"></canvas>
 
-                </canvas>
+                <canvas id="loader-canvas"
+                        style="opacity: 0.5; z-index: 99999; background-color: #191c3f;"
+                        class="pe-canvas"></canvas>
             </div>
         </div>
+
         <div style="box-shadow: 0 0 2px #888888; float: right; width: 100%; height: 6%;">
+
             <button class="lowerbtn"
                     ng-click="reset()"
                     ng-if="!crSel && noText"
@@ -348,13 +368,7 @@
                 <span>Clear Text</span>
             </button>
 
-            <div style="float: left;" ng-if="isLoading">
-                {{isLoading}}
-            </div>
-
-
-
-            <button class="well savebtn"
+            <button class="savebtn"
                     ng-disabled="crSel"
                     onmouseenter="this.style.backgroundColor='#ffe247'"
                     onmouseleave="this.style.backgroundColor='#f47727'"
@@ -363,7 +377,7 @@
                 Save
             </button>
 
-            <button class="well savebtn"
+            <button class="savebtn"
                     onmouseenter="this.style.backgroundColor='lightgray'"
                     onmouseleave="this.style.backgroundColor='white'">
                 Cancel
@@ -372,4 +386,3 @@
     </div>
 
 </div>
-<img id="testimg">

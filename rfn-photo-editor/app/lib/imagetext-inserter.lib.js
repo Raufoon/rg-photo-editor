@@ -136,8 +136,4 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
         mouseClickHold = false;
         selectedTextObj = undefined;
     }
-
-    window.debugtext = function () {
-        console.log(scope.textHistory);
-    }
 }
