@@ -5,6 +5,7 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
         textCanvasRect,
         textCanvasContext,
         mouseClickHold,
+        selectedTextObj,
         scope = angularScope;
 
     this.initTextOptions = initTextOptions;
@@ -26,6 +27,7 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
         textCanvasNg.on('mouseup', mouseUpHandler);
         textCanvasNg.on('mousedown', mouseDownHandler);
         textCanvasNg.on('mousemove', mouseMoveHandler);
+        textCanvasNg.on('mouseout', mouseOutHandler);
     }
     
     function exit() {
@@ -33,6 +35,7 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
         textCanvasNg.off('mouseup', mouseUpHandler);
         textCanvasNg.off('mousedown', mouseDownHandler);
         textCanvasNg.off('mousemove', mouseMoveHandler);
+        textCanvasNg.off('mouseout', mouseOutHandler);
     }
     
     function addText(text, font, color, size) {
@@ -44,6 +47,7 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
             size: size,
             x: mainCanvas.width/3,
             y: mainCanvas.height/3,
+            textWidth: textCanvasContext.measureText(text).width,
         });
         drawAllTexts();
     }
@@ -61,8 +65,7 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
             textCanvasContext.font = th.size+'px '+th.font;
             textCanvasContext.fillStyle = th.color;
             textCanvasContext.fillText(th.text, th.x, th.y);
-            if (i === scope.textHistory.length - 1)
-                textCanvasContext.strokeRect(th.x, th.y, textCanvasContext.measureText(th.text).width, 1);
+            textCanvasContext.strokeRect(th.x, th.y - th.size, textCanvasContext.measureText(th.text).width, th.size);
         }
     }
 
@@ -74,21 +77,49 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
 
     function mouseUpHandler() {
         mouseClickHold = false;
+        selectedTextObj = undefined;
     }
 
     function mouseDownHandler(event) {
+        var mouseX,
+            mouseY;
         mouseClickHold = true;
-        mouseMoveHandler(event);
+        if (!scope.noText) {
+            mouseX = getRelativeXFromEvent(event);
+            mouseY = getRelativeYFromEvent(event);
+            selectedTextObj = getSelectedTextObj(mouseX, mouseY);
+            if (selectedTextObj) mouseMoveHandler(event);
+        }
     }
 
     function mouseMoveHandler(event) {
-        var lastTextObj;
-        if (mouseClickHold && !scope.noText) {
-            lastTextObj = scope.textHistory[scope.textHistory.length - 1];
-            lastTextObj.x = getRelativeXFromEvent(event);
-            lastTextObj.y = getRelativeYFromEvent(event);
+        var mouseX,
+            mouseY;
+        if (mouseClickHold && !scope.noText && selectedTextObj) {
+            mouseX = getRelativeXFromEvent(event);
+            mouseY = getRelativeYFromEvent(event);
+            selectedTextObj.x = mouseX;
+            selectedTextObj.y = mouseY;
             drawAllTexts();
         }
+    }
+
+    function getSelectedTextObj(x, y) {
+        var i;
+        for (i = 0; i < scope.textHistory.length; i++) {
+            if (withinRange(scope.textHistory[i], x, y)) return scope.textHistory[i];
+        }
+        return undefined;
+    }
+
+    function withinRange(textObj, x, y) {
+        var rx0 = textObj.x,
+            ry0 = textObj.y - textObj.size,
+            rx1 = textObj.x + textObj.textWidth,
+            ry1 = textObj.y;
+        if (x >= rx0 && x <= rx1 && y >= ry0 && y<= ry1)
+            return true;
+        return false;
     }
 
     function getRelativeXFromEvent(event) {
@@ -99,6 +130,11 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
     function getRelativeYFromEvent(event) {
         var rect = textCanvasNg[0].getBoundingClientRect();
         return Math.round((event.clientY - rect.top) / (rect.bottom - rect.top) * textCanvasNg[0].height);
+    }
+
+    function mouseOutHandler() {
+        mouseClickHold = false;
+        selectedTextObj = undefined;
     }
 
     window.debugtext = function () {
