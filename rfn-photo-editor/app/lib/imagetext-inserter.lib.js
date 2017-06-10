@@ -62,7 +62,6 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
             textCanvasContext.fillStyle = th.color;
             textCanvasContext.fillText(th.text, th.x, th.y);
             if (i === scope.textHistory.length - 1) {
-                textCanvasContext.fillStyle = 'red';
                 textCanvasContext.strokeRect(th.x, th.y, textCanvasContext.measureText(th.text).width, 1);
             }
         }
@@ -72,14 +71,6 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
         clearTextCanvas();
         scope.textHistory = [];
         scope.noText = true;
-    }
-
-    function getRelativeXFromEvent(event) {
-        return Math.round((event.clientX - textCanvasRect.left) / (textCanvasRect.right - textCanvasRect.left) * textCanvas.width);
-    }
-
-    function getRelativeYFromEvent(event) {
-        return Math.round((event.clientY - textCanvasRect.top) / (textCanvasRect.bottom - textCanvasRect.top) * textCanvas.height);
     }
 
     function mouseUpHandler() {
@@ -95,8 +86,8 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
         var lastTextObj;
         if (mouseClickHold && !scope.noText) {
             lastTextObj = scope.textHistory[scope.textHistory.length - 1];
-            lastTextObj.x = getRelativeXFromEvent(event);
-            lastTextObj.y = getRelativeYFromEvent(event);
+            lastTextObj.x = event.offsetX;
+            lastTextObj.y = event.offsetY;
             drawAllTexts();
         }
     }
