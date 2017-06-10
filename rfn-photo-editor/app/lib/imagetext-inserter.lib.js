@@ -83,13 +83,26 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
     }
 
     function mouseMoveHandler(event) {
-        var lastTextObj;
+        var lastTextObj,
+            textCanvas = document.getElementById(textCanvasId);
         if (mouseClickHold && !scope.noText) {
             lastTextObj = scope.textHistory[scope.textHistory.length - 1];
-            lastTextObj.x = event.offsetX;
-            lastTextObj.y = event.offsetY;
+            // lastTextObj.x = event.pageX - textCanvas.offsetLeft
+            // lastTextObj.y = event.pageY - textCanvas.offsetTop
+            lastTextObj.x = getRelativeXFromEvent(event);
+            lastTextObj.y = getRelativeYFromEvent(event);
             drawAllTexts();
         }
+    }
+
+    function getRelativeXFromEvent(event) {
+        var rect = textCanvasNg[0].getBoundingClientRect();
+        return Math.round((event.clientX - rect.left) / (rect.right - rect.left) * textCanvasNg[0].width);
+    }
+
+    function getRelativeYFromEvent(event) {
+        var rect = textCanvasNg[0].getBoundingClientRect();
+        return Math.round((event.clientY - rect.top) / (rect.bottom - rect.top) * textCanvasNg[0].height);
     }
 
     window.debugtext = function () {
