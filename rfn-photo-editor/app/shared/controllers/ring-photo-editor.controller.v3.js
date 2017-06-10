@@ -119,6 +119,7 @@ function ringPhotoEditorController($scope) {
             'herMajesty',
             'nostalgia',
             'lomo',
+            'emboss',
             'clarity',
             'sinCity',
             'sunrise',
