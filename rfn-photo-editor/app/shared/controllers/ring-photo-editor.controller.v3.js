@@ -13,12 +13,14 @@ function ringPhotoEditorController($scope) {
         adjustmentHistory = Object.create(null),
         demoImageSrc = 'server/port2.jpg';
 
+
     // scope variables
     $scope.imageSrc = demoImageSrc;
     $scope.optionList = [];
     $scope.optionValues = {};
     $scope.curOptTab = 'filters';
     resetState();
+
 
     // scope functions
     $scope.title = capitalizeFirst;
@@ -33,7 +35,10 @@ function ringPhotoEditorController($scope) {
     $scope.btncol = getButtonBackgroundColor;
     $scope.filtBtnCol = getFilterButtonBackgroundColor;
     $scope.rotate = rotateTheCanvas;
+    $scope.applyText = applyTextOnMainCanvas;
+    $scope.clearText = clearAllTexts;
 
+    // init
     angular.element(document).ready(function initPhotoEditor() {
         imageObj.src = $scope.imageSrc;
         imageObj.onload = function onLoadImage() {
@@ -160,6 +165,7 @@ function ringPhotoEditorController($scope) {
                 document.getElementById('id-font-size').value
             );
         };
+        $scope.noText = true;
     }
 
 
@@ -270,6 +276,34 @@ function ringPhotoEditorController($scope) {
         );
     }
 
+    function applyTextOnMainCanvas() {
+        var mainCanvas = document.getElementById(mainCanvasId),
+            mainCanvasContext = mainCanvas.getContext('2d'),
+            i,
+            th,
+            img;
+        for (i = 0; i < $scope.textHistory.length; i++) {
+            th = $scope.textHistory[i];
+            mainCanvasContext.font = th.size+'px '+th.font;
+            mainCanvasContext.fillStyle = th.color;
+            mainCanvasContext.fillText(th.text, th.x, th.y);
+        }
+        $scope.noText = true;
+        clearAllTexts();
+        img = new Image();
+        img.src = mainCanvas.toDataURL();
+        img.onload = function () {
+            window.Caman('#'+mainCanvasId, this, function () {
+                this.reloadCanvasData();
+                this.render();
+            });
+        }
+    }
+
+    function clearAllTexts() {
+        textInserter.clearAllText();
+    }
+
 
     // utility functions
     function capitalizeFirst(string) {
@@ -299,13 +333,23 @@ function ringPhotoEditorController($scope) {
 
     // UI manipulation functions
     function setOptionsTab(optionsTabTitle) {
-        if ($scope.curOptTab === 'crop' && optionsTabTitle !== 'crop') imageCropper.exitCropSection();
-        else if ($scope.curOptTab === 'text' && optionsTabTitle !== 'text') textInserter.exit();
+        if ($scope.curOptTab === 'crop' && optionsTabTitle !== 'crop') {
+            // leaving crop section
+            imageCropper.exitCropSection();
+        }
+        else if ($scope.curOptTab === 'text' && optionsTabTitle !== 'text') {
+            // leaving text insertion section
+            textInserter.exit();
+        }
 
         $scope.curOptTab = optionsTabTitle;
 
-        if (optionsTabTitle === 'crop') imageCropper.initCropSection();
+        if (optionsTabTitle === 'crop') {
+            // entering crop section
+            imageCropper.initCropSection();
+        }
         else if (optionsTabTitle === 'text') {
+            // entering text section
             textInserter.init();
         }
     }
