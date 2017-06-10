@@ -281,25 +281,23 @@ function ringPhotoEditorController($scope) {
     }
 
     function applyTextOnMainCanvas() {
-        camanJs.revert(true);
-        document.getElementById(mainCanvasId).style.visibility='hidden';
-        camanJs.render(function fn() {
-            var mainCanvas = document.getElementById(mainCanvasId),
-                mainCanvasContext = mainCanvas.getContext('2d'),
-                i,
-                th;
-            for (i = 0; i < $scope.textHistory.length; i++) {
-                th = $scope.textHistory[i];
-                mainCanvasContext.font = th.size+'px '+th.font;
-                mainCanvasContext.fillStyle = th.color;
-                mainCanvasContext.fillText(th.text, th.x, th.y);
-            }
-            $scope.noText = true;
-            clearAllTexts();
-            camanJs.replaceCanvas(cloneCanvas(mainCanvas));
-            $scope.isCropped = false;
-            onEdit();
-        });
+        var mainCanvas = document.getElementById(mainCanvasId),
+            mainCanvasContext = mainCanvas.getContext('2d'),
+            i,
+            th;
+        for (i = 0; i < $scope.textHistory.length; i++) {
+            th = $scope.textHistory[i];
+            mainCanvasContext.font = th.size+'px '+th.font;
+            mainCanvasContext.fillStyle = th.color;
+            mainCanvasContext.fillText(th.text, th.x, th.y);
+        }
+        $scope.noText = true;
+        clearAllTexts();
+        camanJs.replaceCanvas(cloneCanvas(mainCanvas));
+        $scope.isCropped = false;
+        $scope.hasFilter = false;
+        $scope.lastAppliedFilter = '';
+        resetAdjustmentValuesToDefault();
     }
 
     function clearAllTexts() {
