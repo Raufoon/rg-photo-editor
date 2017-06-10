@@ -1,6 +1,9 @@
 <script src="./js/caman.full.min.js"></script>
 
 <style>
+    button{
+        outline: none;
+    }
     .pe-outer-div {
         width: 90%;
         height: 90%;
@@ -88,7 +91,7 @@
     .text-option-panel{
         width: 100%;
         height: 100%;
-        padding: 5%;
+        padding: 10%;
     }
     .font-opt-label{
         width: 100%;
@@ -102,11 +105,12 @@
         margin-top: 3%;
         margin-bottom: 6%;
         padding: 1%;
+        border: 1px solid grey;
     }
     .font-insert-btn{
-        width: 30%;
+        width: 20%;
         height: 8%;
-        border-radius: 0;
+        border-radius: 10%;
         padding: 0;
         background-color: #f47727;
         color: white;
@@ -117,6 +121,8 @@
         height: 10%;
     }
     .pe-text-area{
+        border-radius: 0;
+        border: 1px solid gray;
         width: 100%;
         min-height: 10%;
         margin-top: 3%;
@@ -210,7 +216,7 @@
 
         <div class="text-option-panel" ng-if="curOptTab === 'text'">
             <span class="font-opt-label">Your Text</span>
-            <textarea id="id-text-to-add" class="pe-text-area well" maxlength="100"></textarea>
+            <textarea id="id-text-to-add" class="pe-text-area well" maxlength="100">Your text here...</textarea>
 
             <span class="font-opt-label">Font Style</span>
             <select id="id-font" class="font-opt-input well">

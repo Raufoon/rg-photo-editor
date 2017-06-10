@@ -278,7 +278,7 @@ function ringPhotoEditorController($scope) {
             }
         );
     }
-    
+
     function applyTextOnMainCanvas() {
         camanJs.revert(true);
         document.getElementById(mainCanvasId).style.visibility='hidden';
@@ -317,7 +317,15 @@ function ringPhotoEditorController($scope) {
     }
 
     function capitalizeFirst(string) {
-        return string.charAt(0).toUpperCase()+string.slice(1);
+        var name = string.charAt(0).toUpperCase(),
+            i,
+            ch;
+        for (i = 1; i < string.length; i++) {
+            ch = string.charAt(i);
+            if (ch.toUpperCase() === ch) name += ' '+ch;
+            else name+= ch;
+        }
+        return name;
     }
 
     function getButtonBackgroundColor(tabname, hover, selectCol, menterCol, mleavCol) {
