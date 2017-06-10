@@ -278,29 +278,7 @@ function ringPhotoEditorController($scope) {
             }
         );
     }
-
-    // function applyTextOnMainCanvasx() {
-    //     var mainCanvas = document.getElementById(mainCanvasId),
-    //         mainCanvasContext = mainCanvas.getContext('2d'),
-    //         i,
-    //         th;
-    //
-    //     for (i = 0; i < $scope.textHistory.length; i++) {
-    //         th = $scope.textHistory[i];
-    //         mainCanvasContext.font = th.size+'px '+th.font;
-    //         mainCanvasContext.fillStyle = th.color;
-    //         mainCanvasContext.fillText(th.text, th.x, th.y);
-    //     }
-    //     $scope.noText = true;
-    //     clearAllTexts();
-    //     camanJs.replaceCanvas(cloneCanvas(mainCanvas));
-    //     // adding text is irreversible.
-    //     $scope.hasFilter = false;
-    //     $scope.lastAppliedFilter = '';
-    //     $scope.isCropped = false;
-    //     resetAdjustmentValuesToDefault();
-    // }
-
+    
     function applyTextOnMainCanvas() {
         camanJs.revert(true);
         document.getElementById(mainCanvasId).style.visibility='hidden';
