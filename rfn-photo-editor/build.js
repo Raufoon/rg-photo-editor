@@ -1,4 +1,14 @@
-var injectScripts = [
-    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js',
-    'https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js'
-];
+var fs = require('fs');
+
+var library = '<script>'
+    + fs.readFileSync('js/camanJS.js')
+    + '\n'
+    + fs.readFileSync('app/lib/imagetext-inserter.lib.js')
+    + '\n'
+    + fs.readFileSync('app/lib/ring-image-cropper.lib.js')
+    + '\n'
+    + fs.readFileSync('app/shared/controllers/ring-photo-editor-controller.v3.js')
+    + '</script>.';
+
+var runHtmlFile = fs.readFileSync('run.html');
+runHtmlFile.replace('');
