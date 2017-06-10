@@ -256,15 +256,18 @@ function ringPhotoEditorController($scope) {
         });
     }
 
-    function resetAll() {
+    function resetAdjustmentValuesToDefault() {
         var i,
             optionName;
-
-        resetState();
         for (i = 0; i < $scope.optionList.length; i++) {
             optionName = $scope.optionList[i];
             $scope.optionValues[optionName].value = $scope.optionValues[optionName].default;
         }
+    }
+
+    function resetAll() {
+        resetState();
+        resetAdjustmentValuesToDefault();
         camanJs.reset();
         camanJs.render(
             function afterRender() {
@@ -280,8 +283,8 @@ function ringPhotoEditorController($scope) {
         var mainCanvas = document.getElementById(mainCanvasId),
             mainCanvasContext = mainCanvas.getContext('2d'),
             i,
-            th,
-            img;
+            th;
+
         for (i = 0; i < $scope.textHistory.length; i++) {
             th = $scope.textHistory[i];
             mainCanvasContext.font = th.size+'px '+th.font;
@@ -291,6 +294,9 @@ function ringPhotoEditorController($scope) {
         $scope.noText = true;
         clearAllTexts();
         camanJs.replaceCanvas(mainCanvas);
+        $scope.hasFilter = false;
+        $scope.lastAppliedFilter = '';
+        resetAdjustmentValuesToDefault();
     }
 
     function clearAllTexts() {

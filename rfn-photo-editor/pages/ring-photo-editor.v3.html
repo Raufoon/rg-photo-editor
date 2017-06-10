@@ -130,43 +130,47 @@
     <!--leftmost options list-->
     <div class="pe-left-opt-panel">
 
-        <a href="#" class="col-md-12 well pe-left-opt-btn"
-           ng-click="setOptTab('filters')" style="text-decoration: none;"
-           ng-mouseenter="moFt=true"
-           ng-mouseleave="moFt=false"
-           ng-style="{'background-color': btncol('filters', moFt)}">
+        <button class="col-md-12 well pe-left-opt-btn"
+                ng-disabled="crSel || !noText"
+                ng-click="setOptTab('filters')" style="text-decoration: none;"
+                ng-mouseenter="moFt=true"
+                ng-mouseleave="moFt=false"
+                ng-style="{'background-color': btncol('filters', moFt)}">
             <img src="./images/color-filter.png" class="pe-left-opt-btn-img">
             <p class="pe-left-opt-btn-txt">Filters</p>
-        </a>
+        </button>
 
-        <a href="#" class="col-md-12 well pe-left-opt-btn"
-           ng-mouseenter="moAt=true"
-           ng-mouseleave="moAt=false"
-           ng-click="setOptTab('options')" style="text-decoration: none;"
-           ng-style="{ 'background-color': btncol('options', moAt) }">
+        <button class="col-md-12 well pe-left-opt-btn"
+                ng-disabled="crSel || !noText"
+                ng-mouseenter="moAt=true"
+                ng-mouseleave="moAt=false"
+                ng-click="setOptTab('options')" style="text-decoration: none;"
+                ng-style="{ 'background-color': btncol('options', moAt) }">
             <img src="./images/photo-edit-options.png" class="pe-left-opt-btn-img">
             <p class="pe-left-opt-btn-txt">Options</p>
-        </a>
+        </button>
 
-        <a href="#" class="col-md-12 well pe-left-opt-btn"
-           ng-mouseenter="moCt=true"
-           ng-mouseleave="moCt=false"
-           ng-click="setOptTab('crop')"
-           ng-style="{ 'background-color': btncol('crop', moCt) }"
-           style="text-decoration: none;">
+        <button class="col-md-12 well pe-left-opt-btn"
+                ng-disabled="crSel || !noText"
+                ng-mouseenter="moCt=true"
+                ng-mouseleave="moCt=false"
+                ng-click="setOptTab('crop')"
+                ng-style="{ 'background-color': btncol('crop', moCt) }"
+                style="text-decoration: none;">
             <img src="./images/photo-crop.png" class="pe-left-opt-btn-img">
             <p class="pe-left-opt-btn-txt">Crop</p>
-        </a>
+        </button>
 
-        <a href="#" class="col-md-12 well pe-left-opt-btn"
-           ng-mouseenter="moTt=true"
-           ng-mouseleave="moTt=false"
-           ng-click="setOptTab('text')"
-           ng-style="{ 'background-color': btncol('text', moTt) }"
-           style="text-decoration: none;">
+        <button class="col-md-12 well pe-left-opt-btn"
+                ng-mouseenter="moTt=true"
+                ng-mouseleave="moTt=false"
+                ng-disabled="crSel || !noText"
+                ng-click="setOptTab('text')"
+                ng-style="{ 'background-color': btncol('text', moTt) }"
+                style="text-decoration: none;">
             <img src="./images/photo-edit-text.png" class="pe-left-opt-btn-img">
             <p class="pe-left-opt-btn-txt">Text</p>
-        </a>
+        </button>
 
     </div>
 
@@ -241,7 +245,6 @@
                          display: none;
                          margin: auto;
                          opacity: 0.99;
-                         z-index: 99999;
                          left: 0;
                          right: 0;
                          top: 0; ">
@@ -254,7 +257,6 @@
                          max-height: 100%;
                          margin: auto;
                          background-color: transparent;
-                         z-index: 88899;
                          left: 0;
                          right: 0;
                          top: 0;">
@@ -265,7 +267,7 @@
         <div style="box-shadow: 0 0 2px #888888; float: right; width: 100%; height: 6%;">
             <button class="lowerbtn"
                     ng-click="reset()"
-                    ng-if="!crSel && curOptTab!=='text'"
+                    ng-if="!crSel && noText"
                     onmouseenter="this.style.backgroundColor='#ecf0f7'"
                     onmouseleave="this.style.backgroundColor='white'">
                 <img style="max-height: 60%;" src="./images/photo-edit-reset.png">
@@ -273,7 +275,7 @@
             </button>
 
             <button class="lowerbtn"
-                    ng-if="!crSel && isCropped"
+                    ng-if="!crSel && isCropped && noText"
                     ng-click="undoCrop()"
                     onmouseenter="this.style.backgroundColor='#ecf0f7'"
                     onmouseleave="this.style.backgroundColor='white'">
@@ -282,7 +284,7 @@
             </button>
 
             <button class="lowerbtn"
-                    ng-if="!crSel && hasFilter"
+                    ng-if="!crSel && hasFilter && noText"
                     ng-click="removeFilter()"
                     onmouseenter="this.style.backgroundColor='#ecf0f7'"
                     onmouseleave="this.style.backgroundColor='white'">

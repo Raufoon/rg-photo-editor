@@ -39,11 +39,11 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
 
     function exitCropSection() {
         isHoldForCrop = false;
-        offScreenCanvas[0].style.display = 'none';
         clearOffSrcCanvas();
         offScreenCanvas.off('mouseup', mouseUpOnCanvas);
         offScreenCanvas.off('mousedown', mouseDownOnCanvas);
         offScreenCanvas.off('mousemove', mouseMoveOnCanvas);
+        offScreenCanvas[0].style.display = 'none';
         setCropSelected(false);
     }
 
