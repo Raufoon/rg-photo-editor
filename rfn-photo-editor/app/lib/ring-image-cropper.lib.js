@@ -53,8 +53,8 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
         offScreenCanvas[0].style.display = 'block';
         offScreenCanvas[0].height = mainCanvas.height;
         offScreenCanvas[0].width = mainCanvas.width;
-        offScreenCanvas[0].style.maxHeight = '100%';
-        offScreenCanvas[0].style.maxWidth = '100%';
+        // offScreenCanvas[0].style.maxHeight = '100%';
+        // offScreenCanvas[0].style.maxWidth = '100%';
         offScreenCanvasRect = offScreenCanvas[0].getBoundingClientRect();
     }
 

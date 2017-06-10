@@ -7,13 +7,13 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
         mouseClickHold,
         scope = angularScope;
 
-    this.init = init;
+    this.initTextOptions = initTextOptions;
     this.exit = exit;
     this.addtext = addText;
     this.clearAllText = clearAllText;
     scope.textHistory = [];
 
-    function init() {
+    function initTextOptions() {
         mainCanvas = document.getElementById(mainCanvasId);
         textCanvas = document.getElementById(textCanvasId);
         textCanvas.style.display = 'block';
@@ -21,7 +21,6 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
         textCanvas.height = mainCanvas.height;
         textCanvasRect = textCanvas.getBoundingClientRect();
         textCanvasContext = textCanvas.getContext('2d');
-        drawAllTexts();
         mouseClickHold = false;
         textCanvasNg = angular.element(textCanvas);
         textCanvasNg.on('mouseup', mouseUpHandler);
@@ -99,7 +98,6 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
             lastTextObj.x = getRelativeXFromEvent(event);
             lastTextObj.y = getRelativeYFromEvent(event);
             drawAllTexts();
-            console.log("-____-")
         }
     }
 

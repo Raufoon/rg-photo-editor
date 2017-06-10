@@ -294,8 +294,10 @@ function ringPhotoEditorController($scope) {
         $scope.noText = true;
         clearAllTexts();
         camanJs.replaceCanvas(mainCanvas);
+        // adding text is irreversible.
         $scope.hasFilter = false;
         $scope.lastAppliedFilter = '';
+        $scope.isCropped = false;
         resetAdjustmentValuesToDefault();
     }
 
@@ -349,7 +351,7 @@ function ringPhotoEditorController($scope) {
         }
         else if (optionsTabTitle === 'text') {
             // entering text section
-            textInserter.init();
+            textInserter.initTextOptions();
         }
     }
 
