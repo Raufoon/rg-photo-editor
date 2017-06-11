@@ -1,154 +1,153 @@
-<script src="./js/camanJS.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<style>
-    button{
-        outline: none;
-    }
-    .pe-outer-div {
-        width: 90%;
-        height: 90%;
-        min-width: 400px;
-        min-height: 200px;
-        margin: auto;
-        padding: 1%;
-        background-color: transparent;
-    }
-    .pe-left-opt-panel{
-        width: 6%;
-        float: left;
-        height: 100%;
-        background-color: #f0f1f3;
-        border: 1px solid #ccd5de;
-    }
-    .pe-left-opt-btn{
-        margin: 0;
-        padding: 0;
-        max-height: 16%;
-        border: none;
-        width: 100%;
-    }
-    .pe-left-opt-btn-img{
-        max-width: 50%;
-        margin: 20% 25% 10% 25%;
-    }
-    .pe-left-opt-btn-txt{
-        text-align: center;
-        padding: 0;
-    }
-    .mid-opt-panel{
-        float: left;
-        height: 100%;
-        padding: 1%;
-        overflow-y: scroll;
-        background-color: white;
-        box-shadow: 0 0 2px #888888;
-    }
-    .filt-range-opt{
-        background-color: white;
-        margin: 2%;
-        margin-bottom: 5%;
-        margin-top: 4%;
-        width: 100%;
-        min-height: 8%;
-        border: none;
-        padding: 0;
-        float: left;
-    }
-    .filt-range-title{
-        padding: 0%;
-        border: none;
-        color: #191c3f;
-    }
-    .filt-range-inp{
-        padding: 0;
-        border: none;
-        margin-top: 3%;
-    }
-    .filt-btn{
-        margin: 1%;
-        background-color: #0089b7;
-        color: white;
-        float: left;
-        min-height: 10%;
-        border: none;
-        border-radius: 0;
-        text-decoration: none;
-        text-align: center;
-        padding: 0;
-    }
-    .savebtn{
-        height: 100%;
-        width: 10%;
-        border-radius: 0;
-        border: none;
-        padding: 0;
-        background-color: #FFFFFF;
-        float: right;
-    }
-    .lowerbtn{
-        height: 100%;
-        float: left;
-        padding-left: 2%;
-        padding-right: 2%;
-        background-color: white;
-        border: none
-    }
-    .text-option-panel{
-        width: 100%;
-        height: 100%;
-        padding: 10%;
-    }
-    .font-opt-label{
-        width: 100%;
-        height: 15%;
-        padding: 0;
-        color: black;
-    }
-    .font-opt-input{
-        width: 100%;
-        height: 8%;
-        border-radius: 0;
-        margin-top: 3%;
-        margin-bottom: 6%;
-        padding: 1%;
-    }
-    .font-insert-btn{
-        width: 30%;
-        height: 8%;
-        border-radius: 5%;
-        border: none;
-        padding: 0;
-        background-color: #f47727;
-        color: white;
-        float: right;
-    }
-    .font-name{
-        margin: 30%;
-        height: 10%;
-        background-color: white;
-    }
-    .pe-text-area{
-        border-radius: 0;
-        width: 100%;
-        min-height: 10%;
-        margin-top: 3%;
-        margin-bottom: 6%;
-        padding: 1%;
-    }
-    .pe-canvas{
-        position: absolute;
-        display: none;
-        margin: auto;
-        max-width: 100%;
-        max-height: 100%;
-        left: 0;
-        right: 0;
-        top: 0;
-    }
-</style>
+<!--<script src="./js/camanJS.js"></script>-->
 
 <!--outmost div-->
-<div class="pe-outer-div" ng-init="moF={}">
+<div style="
+        width: 1300px;
+        height: 700px;
+        display: block;
+        margin: auto;
+        padding: 1%;
+        background-color: transparent;"
+     ng-init="moF={}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        button{
+            outline: none;
+        }
+        .pe-left-opt-panel{
+            width: 6%;
+            float: left;
+            height: 100%;
+            background-color: #f0f1f3;
+            border: 1px solid #ccd5de;
+        }
+        .pe-left-opt-btn{
+            margin: 0;
+            padding: 0;
+            max-height: 16%;
+            border: none;
+            width: 100%;
+        }
+        .pe-left-opt-btn-img{
+            max-width: 50%;
+            margin: 20% 25% 10% 25%;
+        }
+        .pe-left-opt-btn-txt{
+            text-align: center;
+            padding: 0;
+        }
+        .mid-opt-panel{
+            float: left;
+            height: 100%;
+            padding: 0;
+            overflow-y: scroll;
+            background-color: white;
+            box-shadow: 0 0 2px #888888;
+        }
+        .filt-range-opt{
+            background-color: white;
+            margin: 2%;
+            margin-bottom: 5%;
+            margin-top: 4%;
+            width: 100%;
+            min-height: 8%;
+            border: none;
+            padding: 0;
+            float: left;
+        }
+        .filt-range-title{
+            padding: 0%;
+            border: none;
+            color: #191c3f;
+        }
+        .filt-range-inp{
+            padding: 0;
+            border: none;
+            margin-top: 3%;
+        }
+        .filt-btn{
+            margin: 1%;
+            background-color: #0089b7;
+            color: white;
+            float: left;
+            min-height: 10%;
+            border: none;
+            border-radius: 0;
+            text-decoration: none;
+            text-align: center;
+            padding: 0;
+        }
+        .savebtn{
+            height: 100%;
+            width: 10%;
+            border-radius: 0;
+            border: none;
+            padding: 0;
+            background-color: #FFFFFF;
+            float: right;
+        }
+        .lowerbtn{
+            height: 100%;
+            float: left;
+            padding-left: 2%;
+            padding-right: 2%;
+            background-color: white;
+            border: none
+        }
+        .text-option-panel{
+            width: 100%;
+            height: 100%;
+            padding: 10%;
+        }
+        .font-opt-label{
+            width: 100%;
+            height: 15%;
+            padding: 0;
+            color: black;
+        }
+        .font-opt-input{
+            width: 100%;
+            height: 8%;
+            border-radius: 0;
+            margin-top: 3%;
+            margin-bottom: 6%;
+            padding: 1%;
+        }
+        .font-insert-btn{
+            width: 30%;
+            height: 8%;
+            border-radius: 5%;
+            border: none;
+            padding: 0;
+            background-color: #f47727;
+            color: white;
+            float: right;
+        }
+        .font-name{
+            margin: 30%;
+            height: 10%;
+            background-color: white;
+        }
+        .pe-text-area{
+            border-radius: 0;
+            width: 100%;
+            min-height: 10%;
+            margin-top: 3%;
+            margin-bottom: 6%;
+            padding: 1%;
+        }
+        .pe-canvas{
+            position: absolute;
+            display: none;
+            margin: auto;
+            max-width: 100%;
+            max-height: 100%;
+            left: 0;
+            right: 0;
+            top: 0;
+        }
+    </style>
+
     <!--leftmost options list-->
     <div class="pe-left-opt-panel">
 
@@ -158,7 +157,7 @@
                 ng-mouseenter="moFt=true"
                 ng-mouseleave="moFt=false"
                 ng-style="{'background-color': btncol('filters', moFt)}">
-            <img src="./images/color-filter.png" class="pe-left-opt-btn-img">
+            <img src="images/photo-editor/color-filter.png" class="pe-left-opt-btn-img">
             <p class="pe-left-opt-btn-txt">Filters</p>
         </button>
 
@@ -168,7 +167,7 @@
                 ng-mouseleave="moAt=false"
                 ng-click="setOptTab('options')"
                 ng-style="{ 'background-color': btncol('options', moAt) }">
-            <img src="./images/photo-edit-options.png" class="pe-left-opt-btn-img">
+            <img src="images/photo-editor/photo-edit-options.png" class="pe-left-opt-btn-img">
             <p class="pe-left-opt-btn-txt">Options</p>
         </button>
 
@@ -179,7 +178,7 @@
                 ng-click="setOptTab('crop')"
                 ng-style="{ 'background-color': btncol('crop', moCt) }"
                 style="text-decoration: none;">
-            <img src="./images/photo-crop.png" class="pe-left-opt-btn-img">
+            <img src="images/photo-editor/photo-crop.png" class="pe-left-opt-btn-img">
             <p class="pe-left-opt-btn-txt">Crop</p>
         </button>
 
@@ -190,7 +189,7 @@
                 ng-click="setOptTab('text')"
                 ng-style="{ 'background-color': btncol('text', moTt) }"
                 style="text-decoration: none;">
-            <img src="./images/photo-edit-text.png" class="pe-left-opt-btn-img">
+            <img src="images/photo-editor/photo-edit-text.png" class="pe-left-opt-btn-img">
             <p class="pe-left-opt-btn-txt">Text</p>
         </button>
 
@@ -271,7 +270,6 @@
             float: right;
             width: 100%;
             height: 94%;
-            padding: 2%;
             background-color: #ccd5de;">
 
             <div ng-style="{'cursor': curOptTab==='crop'?'crosshair':'default' }"
@@ -301,7 +299,7 @@
                     ng-if="!crSel && noText"
                     onmouseenter="this.style.backgroundColor='#ecf0f7'"
                     onmouseleave="this.style.backgroundColor='white'">
-                <img style="max-height: 60%;" src="./images/photo-edit-reset.png">
+                <img style="max-height: 60%;" src="images/photo-editor/photo-edit-reset.png">
                 <span>Reset</span>
             </button>
 
@@ -310,7 +308,7 @@
                     ng-click="undoCrop()"
                     onmouseenter="this.style.backgroundColor='#ecf0f7'"
                     onmouseleave="this.style.backgroundColor='white'">
-                <img style="max-height: 60%;" src="./images/photo-edit-undo.png">
+                <img style="max-height: 60%;" src="images/photo-editor/photo-edit-undo.png">
                 <span>Undo Crop</span>
             </button>
 
@@ -319,7 +317,7 @@
                     ng-click="removeFilter()"
                     onmouseenter="this.style.backgroundColor='#ecf0f7'"
                     onmouseleave="this.style.backgroundColor='white'">
-                <img style="max-height: 60%;" src="./images/pe-cross.png">
+                <img style="max-height: 60%;" src="images/photo-editor/pe-cross.png">
                 <span>Remove Filter</span>
             </button>
 
@@ -329,7 +327,7 @@
                     ng-if="crSel"
                     ng-click="crop()"
                     style="color: #f47727;">
-                <img style="max-height: 60%;" src="./images/photo-crop.png">
+                <img style="max-height: 60%;" src="images/photo-editor/photo-crop.png">
                 <span>Crop</span>
             </button>
 
@@ -338,7 +336,7 @@
                     onmouseleave="this.style.backgroundColor='white'"
                     ng-if="crSel"
                     ng-click="cropCancel()">
-                <img style="max-height: 60%;" src="./images/pe-cross.png">
+                <img style="max-height: 60%;" src="images/photo-editor/pe-cross.png">
                 <span>Cancel</span>
             </button>
 
@@ -347,7 +345,7 @@
                     onmouseleave="this.style.backgroundColor='white'"
                     ng-click="rotate()"
                     ng-if="curOptTab!=='crop' && curOptTab!=='text'">
-                <img style="max-height: 60%;" src="./images/photo-edit-rotate.png">
+                <img style="max-height: 60%;" src="images/photo-editor/photo-edit-rotate.png">
                 <span>Rotate</span>
             </button>
 
@@ -356,7 +354,7 @@
                     onmouseleave="this.style.backgroundColor='white'"
                     ng-click="applyText()"
                     ng-if="curOptTab==='text' && !noText">
-                <img style="max-height: 60%;" src="./images/photo-edit-text.png">
+                <img style="max-height: 60%;" src="images/photo-editor/photo-edit-text.png">
                 <span>Apply Text</span>
             </button>
 
@@ -365,7 +363,7 @@
                     onmouseleave="this.style.backgroundColor='white'"
                     ng-click="clearText()"
                     ng-if="curOptTab==='text' && !noText">
-                <img style="max-height: 60%;" src="./images/pe-cross.png">
+                <img style="max-height: 60%;" src="images/photo-editor/pe-cross.png">
                 <span>Clear Text</span>
             </button>
 

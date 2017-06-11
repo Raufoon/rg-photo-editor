@@ -12,7 +12,7 @@ function ringPhotoEditorController($scope) {
         mainCanvasId = 'photo-edit-canvas-id',
         offScreenCanvasId = 'offscr-canvas',
         adjustmentHistory = Object.create(null),
-        demoImageSrc = 'http://www.panicposters.com/media/catalog/product/cache/1/image/f63dc5ec28f3175f8a7f615bd217eb71/p/p/pp31639-peanuts-lay-here.jpg';
+        demoImageSrc = 'server/port2.jpg';
 
 
     // scope variables
