@@ -3,13 +3,13 @@ var fsPath = require('fs-path');
 var gulp = require('gulp')
 var uglify = require('gulp-uglify')
 
-var script = '/* eslint-disable */'
+var script = '/* eslint-disable */\n\n'
     + fs.readFileSync('js/camanJS.js')
-    + '\n'
+    + '\n\n'
     + fs.readFileSync('ringid/rg-imagetext-inserter.lib.js')
-    + '\n'
+    + '\n\n'
     + fs.readFileSync('ringid/rg-image-cropper.lib.js')
-    + '\n'
+    + '\n\n'
     + fs.readFileSync('ringid/rg-photo-editor.controller.js')
     + '/* eslint-enable */\n\n';
 
