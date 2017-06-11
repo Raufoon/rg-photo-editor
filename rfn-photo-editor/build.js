@@ -10,7 +10,7 @@ var script = '/* eslint-disable */'
     + '\n'
     + fs.readFileSync('app/lib/ring-image-cropper.lib.js')
     + '\n'
-    + fs.readFileSync('app/shared/controllers/ring-photo-editor.controller.v3.js')
+    + fs.readFileSync('app/shared/controllers/ring-photo-editor.controller.v4.js')
     + '/* eslint-enable */\n\n';
 
 // var template = String(fs.readFileSync('pages/ring-photo-editor.v3.html'));

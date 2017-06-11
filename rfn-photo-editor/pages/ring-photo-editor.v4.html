@@ -276,6 +276,7 @@
                style="text-align:center; width:100%; height:100%; position: relative;">
 
                 <img id="photo-edit-canvas-id"
+                     crossorigin="anonymous"
                      style="max-height:100%; max-width:100%;">
 
                 <canvas id="offscr-canvas"
@@ -377,6 +378,7 @@
             </button>
 
             <button class="savebtn"
+                    ng-click="closeRingbox()"
                     onmouseenter="this.style.backgroundColor='lightgray'"
                     onmouseleave="this.style.backgroundColor='white'">
                 Cancel
