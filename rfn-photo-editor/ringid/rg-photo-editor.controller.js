@@ -1,9 +1,9 @@
 angular.module('ringid.shared')
     .controller('ringPhotoEditorController', ringPhotoEditorController);
 
-ringPhotoEditorController.$inject = ['$scope'];
+ringPhotoEditorController.$inject = ['$scope', '$ringbox'];
 
-function ringPhotoEditorController($scope) {
+function ringPhotoEditorController($scope, $ringbox) {
     var imageObj = new Image(),
         camanJs,
         loading = false,
@@ -16,7 +16,7 @@ function ringPhotoEditorController($scope) {
 
 
     // scope variables
-    $scope.imageSrc = demoImageSrc;
+    $scope.imageSrc = 'https://' + $scope.imageUrl;
     $scope.optionList = [];
     $scope.optionValues = {};
     $scope.curOptTab = 'filters';
@@ -38,6 +38,7 @@ function ringPhotoEditorController($scope) {
     $scope.rotate = rotateTheCanvas;
     $scope.applyText = applyTextOnMainCanvas;
     $scope.clearText = clearAllTexts;
+    $scope.closeRingbox = $ringbox.close;
 
     // init
     angular.element(document).ready(function initPhotoEditor() {
@@ -255,10 +256,11 @@ function ringPhotoEditorController($scope) {
     }
 
     function saveEditedImage() {
-        var image = new Image(),
-            mainCanvas = document.getElementById('photo-edit-canvas-id');
-        image.src = mainCanvas.toDataURL(); // the image object holds the edited image :)
-        document.getElementById('testimg').src = image.src;
+        // TODO
+        // var image = new Image(),
+        //     mainCanvas = document.getElementById('photo-edit-canvas-id');
+        // image.src = mainCanvas.toDataURL(); // the image object holds the edited image :)
+        // document.getElementById('testimg').src = image.src;
     }
 
     function rotateTheCanvas() {

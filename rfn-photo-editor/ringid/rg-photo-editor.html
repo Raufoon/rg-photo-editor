@@ -1,0 +1,393 @@
+<div ng-style="{ 'width': W, 'height': H }"
+     style="min-width: 1200px;
+        min-height: 600px;
+        margin: auto;
+        padding: 1%;
+        background-color: transparent;"
+     ng-init="moF={}">
+    <style>
+        button{
+            outline: none;
+        }
+        .lowerbtn-span{
+            margin-left: 5px;
+            float: left;
+            text-align: center;
+        }
+        .lowerbtn-icn{
+            display: block;
+            max-height: 60%;
+            float: left;
+        }
+        .lowerbtn{
+            display: block;
+            height: 100%;
+            min-width: 13%;
+            max-width: 20%;
+            padding-left: 2%;
+            padding-right: 2%;
+            float: left;
+            background-color: white;
+            border: none
+        }
+        .pe-left-opt-panel{
+            width: 6%;
+            float: left;
+            height: 100%;
+            background-color: #f0f1f3;
+            border: 1px solid #ccd5de;
+        }
+        .pe-left-opt-btn{
+            margin: 0;
+            padding: 0;
+            max-height: 16%;
+            border: none;
+            width: 100%;
+        }
+        .pe-left-opt-btn-img{
+            max-width: 50%;
+            margin: 20% 25% 10% 25%;
+        }
+        .pe-left-opt-btn-txt{
+            text-align: center;
+            padding: 0;
+        }
+        .mid-opt-panel{
+            float: left;
+            height: 100%;
+            overflow-y: scroll;
+            background-color: white;
+            box-shadow: 0 0 2px #888888;
+        }
+        .filt-range-opt{
+            background-color: white;
+            margin-top: 5%;
+            min-height: 8%;
+            margin-left: 2%;
+            border: none;
+            padding: 0;
+            float: left;
+        }
+        .filt-range-title{
+            padding: 0;
+            border: none;
+            color: #191c3f;
+            width: 100%;
+        }
+        .filt-range-inp{
+            padding: 0;
+            border: none;
+            margin-top: 3%;
+            width: 100%;
+        }
+        .filt-btn{
+            margin: 1%;
+            background-color: #0089b7;
+            color: white;
+            float: left;
+            min-height: 10%;
+            border: none;
+            border-radius: 0;
+            text-decoration: none;
+            text-align: center;
+            padding: 0;
+        }
+        .savebtn{
+            height: 100%;
+            width: 10%;
+            border-radius: 0;
+            border: none;
+            padding: 0;
+            background-color: #FFFFFF;
+            float: right;
+        }
+        .text-option-panel{
+            width: 100%;
+            height: 100%;
+        }
+        .font-opt-label{
+            width: 70%;
+            padding: 0;
+            margin-top: 7%;
+            margin-left: 12%;
+            color: black;
+        }
+        .font-opt-input{
+            width: 70%;
+            min-height: 8%;
+            border-radius: 0;
+            margin-left: 12%;
+        }
+        .font-insert-btn{
+            width: 30%;
+            min-height: 5%;
+            margin-right: 35%;
+            margin-top: 8%;
+            border-radius: 5%;
+            border: none;
+            padding: 0;
+            background-color: #f47727;
+            color: white;
+            float: right;
+        }
+        .font-name{
+            background-color: white;
+        }
+        .pe-text-area{
+            border-radius: 0;
+            width: 70%;
+            height: 10%;
+            margin-left: 12%;
+        }
+        .pe-canvas{
+            position: absolute;
+            display: none;
+            margin: auto;
+            max-width: 100%;
+            max-height: 100%;
+            left: 0;
+            right: 0;
+            top: 0;
+        }
+    </style>
+
+
+    <!--leftmost options list-->
+    <div class="pe-left-opt-panel">
+
+        <button class="pe-left-opt-btn"
+                ng-disabled="crSel || !noText"
+                ng-click="setOptTab('filters')"
+                ng-mouseenter="moFt=true"
+                ng-mouseleave="moFt=false"
+                ng-style="{'background-color': btncol('filters', moFt)}">
+            <img src="images/photo-editor/color-filter.png" class="pe-left-opt-btn-img">
+            <p class="pe-left-opt-btn-txt">Filters</p>
+        </button>
+
+        <button class="pe-left-opt-btn"
+                ng-disabled="crSel || !noText"
+                ng-mouseenter="moAt=true"
+                ng-mouseleave="moAt=false"
+                ng-click="setOptTab('options')"
+                ng-style="{ 'background-color': btncol('options', moAt) }">
+            <img src="images/photo-editor/photo-edit-options.png" class="pe-left-opt-btn-img">
+            <p class="pe-left-opt-btn-txt">Options</p>
+        </button>
+
+        <button class="pe-left-opt-btn"
+                ng-disabled="crSel || !noText"
+                ng-mouseenter="moCt=true"
+                ng-mouseleave="moCt=false"
+                ng-click="setOptTab('crop')"
+                ng-style="{ 'background-color': btncol('crop', moCt) }"
+                style="text-decoration: none;">
+            <img src="images/photo-editor/photo-crop.png" class="pe-left-opt-btn-img">
+            <p class="pe-left-opt-btn-txt">Crop</p>
+        </button>
+
+        <button class="pe-left-opt-btn"
+                ng-mouseenter="moTt=true"
+                ng-mouseleave="moTt=false"
+                ng-disabled="crSel || !noText"
+                ng-click="setOptTab('text')"
+                ng-style="{ 'background-color': btncol('text', moTt) }"
+                style="text-decoration: none;">
+            <img src="images/photo-editor/photo-edit-text.png" class="pe-left-opt-btn-img">
+            <p class="pe-left-opt-btn-txt">Text</p>
+        </button>
+    </div>
+
+    <!--dynamic options view-->
+    <div ng-if="curOptTab!=='rotate' && curOptTab!=='crop'"
+         ng-style="{ 'width': mdW }"
+         class="mid-opt-panel">
+
+
+        <div ng-if="curOptTab === 'options'"
+             class="filt-range-opt"
+             ng-style="{'width': isPortrait? '46%':'96%'}"
+             ng-repeat="optionName in optionList">
+
+            <span class="filt-range-title">{{title(optionName)}}</span>
+
+            <input class="filt-range-inp"
+                   ng-model="optionValues[optionName].value"
+                   ng-mouseup="adjust(optionName, true)"
+                   type="range"
+                   step="2"
+                   min="{{ optionValues[optionName].minValue }}"
+                   max="{{ optionValues[optionName].maxValue }}"
+                   value="{{ optionValues[optionName].value }}">
+        </div>
+
+
+        <button class="filt-btn"
+                ng-if="curOptTab === 'filters'"
+                ng-disabled="lastAppliedFilter === filterName"
+                ng-mouseenter="moF[filterName]=true"
+                ng-mouseleave="moF[filterName]=false"
+                ng-style="{
+                    'width': filtW,
+                    'background-color': filtBtnCol(filterName, moF[filterName]),
+                    'color': lastAppliedFilter === filterName?'black':'white',
+                 }"
+                ng-click="moF[filterName]=false; onFilterApply(filterName)"
+                ng-repeat="filterName in filterList">
+            <h4>{{title(filterName)}}</h4>
+        </button>
+
+
+        <div class="text-option-panel"
+             ng-if="curOptTab === 'text'">
+
+            <p class="font-opt-label">Text to add</p>
+            <textarea id="id-text-to-add" class="pe-text-area" maxlength="100">Your text here...</textarea>
+
+            <p class="font-opt-label">Font Style</p>
+            <select id="id-font" class="font-opt-input">
+                <option class="font-name" ng-repeat="fontName in fonts" value="{{fontName}}">{{fontName}}</option>
+            </select>
+
+            <p class="font-opt-label">Font Color</p>
+            <input id="id-font-color" id="pe-font-col-id" class="font-opt-input" type="color">
+
+            <p class="font-opt-label">Font Size</p>
+            <select id="id-font-size" class="font-opt-input">
+                <option class="font-name" ng-repeat="fontSize in fontSizes" value="{{fontSize}}">{{fontSize}}</option>
+            </select>
+
+            <button class="font-insert-btn" ng-click="addtext()">+Add</button>
+        </div>
+
+    </div>
+
+
+    <!--rightmost options-->
+    <div ng-style="{ 'width': rdW }"
+         style="float: left;
+            background-color: white;
+            padding: 0;
+            height: 100%;">
+
+        <div style="
+            float: right;
+            width: 100%;
+            height: 94%;
+            background-color: #ccd5de;">
+
+            <div ng-style="{'cursor': curOptTab==='crop'?'crosshair':'default' }"
+               style="text-align:center; width:100%; height:100%; position: relative;">
+
+                <img id="photo-edit-canvas-id"
+                     crossorigin="anonymous"
+                     style="max-height:100%; max-width:100%;">
+
+                <canvas id="offscr-canvas"
+                        class="pe-canvas"
+                        style="opacity: 0.99;"></canvas>
+
+                <canvas id="text-canvas"
+                        class="pe-canvas"
+                        style="background-color: transparent;"></canvas>
+
+                <canvas id="loader-canvas"
+                        style="opacity: 0.5; z-index: 99999; background-color: #191c3f;"
+                        class="pe-canvas"></canvas>
+            </div>
+        </div>
+
+        <div style="box-shadow: 0 0 2px #888888; float: right; width: 100%; height: 6%; display: block;">
+
+            <button class="lowerbtn"
+                    ng-click="reset()"
+                    ng-if="!crSel && noText"
+                    onmouseenter="this.style.backgroundColor='#ecf0f7'"
+                    onmouseleave="this.style.backgroundColor='white'">
+                <img class="lowerbtn-icn" src="images/photo-editor/photo-edit-reset.png"/>
+                <span class="lowerbtn-span">Reset</span>
+            </button>
+
+            <button class="lowerbtn"
+                    ng-if="!crSel && isCropped && noText"
+                    ng-click="undoCrop()"
+                    onmouseenter="this.style.backgroundColor='#ecf0f7'"
+                    onmouseleave="this.style.backgroundColor='white'">
+                <img class="lowerbtn-icn" src="images/photo-editor/photo-edit-undo.png">
+                <span class="lowerbtn-span">Undo Crop</span>
+            </button>
+
+            <button class="lowerbtn"
+                    ng-if="!crSel && hasFilter && noText"
+                    ng-click="removeFilter()"
+                    onmouseenter="this.style.backgroundColor='#ecf0f7'"
+                    onmouseleave="this.style.backgroundColor='white'">
+                <img class="lowerbtn-icn" src="images/photo-editor/pe-cross.png">
+                <span class="lowerbtn-span">Remove Filter</span>
+            </button>
+
+            <button class="lowerbtn"
+                    onmouseenter="this.style.backgroundColor='#ecf0f7'"
+                    onmouseleave="this.style.backgroundColor='#fff'"
+                    ng-if="crSel"
+                    ng-click="crop()"
+                    style="color: #f47727;">
+                <img class="lowerbtn-icn" src="images/photo-editor/photo-crop.png">
+                <span class="lowerbtn-span">Crop</span>
+            </button>
+
+            <button class="lowerbtn"
+                    onmouseenter="this.style.backgroundColor='#ecf0f7'"
+                    onmouseleave="this.style.backgroundColor='white'"
+                    ng-if="crSel"
+                    ng-click="cropCancel()">
+                <img class="lowerbtn-icn" src="images/photo-editor/pe-cross.png">
+                <span class="lowerbtn-span">Cancel</span>
+            </button>
+
+            <button class="lowerbtn"
+                    onmouseenter="this.style.backgroundColor='#ecf0f7'"
+                    onmouseleave="this.style.backgroundColor='white'"
+                    ng-click="rotate()"
+                    ng-if="curOptTab!=='crop' && curOptTab!=='text'">
+                <img class="lowerbtn-icn" src="images/photo-editor/photo-edit-rotate.png">
+                <span class="lowerbtn-span">Rotate</span>
+            </button>
+
+            <button class="lowerbtn"
+                    onmouseenter="this.style.backgroundColor='#ecf0f7'"
+                    onmouseleave="this.style.backgroundColor='white'"
+                    ng-click="applyText()"
+                    ng-if="curOptTab==='text' && !noText">
+                <img class="lowerbtn-icn" src="images/photo-editor/photo-edit-text.png">
+                <span class="lowerbtn-span">Apply Text</span>
+            </button>
+
+            <button class="lowerbtn"
+                    onmouseenter="this.style.backgroundColor='#ecf0f7'"
+                    onmouseleave="this.style.backgroundColor='white'"
+                    ng-click="clearText()"
+                    ng-if="curOptTab==='text' && !noText">
+                <img class="lowerbtn-icn" src="images/photo-editor/pe-cross.png">
+                <span class="lowerbtn-span">Clear Text</span>
+            </button>
+
+            <button class="savebtn"
+                    ng-disabled="crSel"
+                    onmouseenter="this.style.backgroundColor='#ffe247'"
+                    onmouseleave="this.style.backgroundColor='#f47727'"
+                    ng-click="save()"
+                    style="color: white; background-color: #f47727">
+                Save
+            </button>
+
+            <button class="savebtn"
+                    ng-click="closeRingbox()"
+                    onmouseenter="this.style.backgroundColor='lightgray'"
+                    onmouseleave="this.style.backgroundColor='white'">
+                Cancel
+            </button>
+        </div>
+    </div>
+
+</div>
