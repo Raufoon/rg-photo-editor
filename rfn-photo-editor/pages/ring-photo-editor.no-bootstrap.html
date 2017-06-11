@@ -14,10 +14,25 @@
             outline: none;
         }
         .lowerbtn-span{
-            display: inline-block;
             margin-left: 5px;
-            float: right;
+            float: left;
             text-align: center;
+        }
+        .lowerbtn-icn{
+            display: block;
+            max-height: 60%;
+            float: left;
+        }
+        .lowerbtn{
+            display: block;
+            height: 100%;
+            min-width: 13%;
+            max-width: 20%;
+            padding-left: 2%;
+            padding-right: 2%;
+            float: left;
+            background-color: white;
+            border: none
         }
         .pe-left-opt-panel{
             width: 6%;
@@ -89,14 +104,6 @@
             padding: 0;
             background-color: #FFFFFF;
             float: right;
-        }
-        .lowerbtn{
-            height: 100%;
-            float: left;
-            padding-left: 2%;
-            padding-right: 2%;
-            background-color: white;
-            border: none
         }
         .text-option-panel{
             width: 100%;
@@ -295,14 +302,14 @@
             </div>
         </div>
 
-        <div style="box-shadow: 0 0 2px #888888; float: right; width: 100%; height: 6%;">
+        <div style="box-shadow: 0 0 2px #888888; float: right; width: 100%; height: 6%; display: block;">
 
             <button class="lowerbtn"
                     ng-click="reset()"
                     ng-if="!crSel && noText"
                     onmouseenter="this.style.backgroundColor='#ecf0f7'"
                     onmouseleave="this.style.backgroundColor='white'">
-                <img style="max-height: 60%; margin: auto;" src="./images/photo-edit-reset.png">
+                <img class="lowerbtn-icn" src="./images/photo-edit-reset.png"/>
                 <span class="lowerbtn-span">Reset</span>
             </button>
 
@@ -311,7 +318,7 @@
                     ng-click="undoCrop()"
                     onmouseenter="this.style.backgroundColor='#ecf0f7'"
                     onmouseleave="this.style.backgroundColor='white'">
-                <img style="max-height: 60%;" src="./images/photo-edit-undo.png">
+                <img class="lowerbtn-icn" src="./images/photo-edit-undo.png">
                 <span class="lowerbtn-span">Undo Crop</span>
             </button>
 
@@ -320,7 +327,7 @@
                     ng-click="removeFilter()"
                     onmouseenter="this.style.backgroundColor='#ecf0f7'"
                     onmouseleave="this.style.backgroundColor='white'">
-                <img style="max-height: 60%;" src="./images/pe-cross.png">
+                <img class="lowerbtn-icn" src="./images/pe-cross.png">
                 <span class="lowerbtn-span">Remove Filter</span>
             </button>
 
@@ -330,7 +337,7 @@
                     ng-if="crSel"
                     ng-click="crop()"
                     style="color: #f47727;">
-                <img style="max-height: 60%;" src="./images/photo-crop.png">
+                <img class="lowerbtn-icn" src="./images/photo-crop.png">
                 <span class="lowerbtn-span">Crop</span>
             </button>
 
@@ -339,7 +346,7 @@
                     onmouseleave="this.style.backgroundColor='white'"
                     ng-if="crSel"
                     ng-click="cropCancel()">
-                <img style="max-height: 60%;" src="./images/pe-cross.png">
+                <img class="lowerbtn-icn" src="./images/pe-cross.png">
                 <span class="lowerbtn-span">Cancel</span>
             </button>
 
@@ -348,7 +355,7 @@
                     onmouseleave="this.style.backgroundColor='white'"
                     ng-click="rotate()"
                     ng-if="curOptTab!=='crop' && curOptTab!=='text'">
-                <img style="max-height: 60%;" src="./images/photo-edit-rotate.png">
+                <img class="lowerbtn-icn" src="./images/photo-edit-rotate.png">
                 <span class="lowerbtn-span">Rotate</span>
             </button>
 
@@ -357,7 +364,7 @@
                     onmouseleave="this.style.backgroundColor='white'"
                     ng-click="applyText()"
                     ng-if="curOptTab==='text' && !noText">
-                <img style="max-height: 60%;" src="./images/photo-edit-text.png">
+                <img class="lowerbtn-icn" src="./images/photo-edit-text.png">
                 <span class="lowerbtn-span">Apply Text</span>
             </button>
 
@@ -366,7 +373,7 @@
                     onmouseleave="this.style.backgroundColor='white'"
                     ng-click="clearText()"
                     ng-if="curOptTab==='text' && !noText">
-                <img style="max-height: 60%;" src="./images/pe-cross.png">
+                <img class="lowerbtn-icn" src="./images/pe-cross.png">
                 <span class="lowerbtn-span">Clear Text</span>
             </button>
 
