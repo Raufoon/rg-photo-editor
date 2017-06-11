@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
     <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 
     <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>-->
@@ -27,13 +27,13 @@
 <script>angular.module('ringid.shared', []);</script>
 <script src="app/lib/ring-image-cropper.lib.js"></script>
 <script src="app/lib/imagetext-inserter.lib.js"></script>
-<script src="app/shared/controllers/ring-photo-editor.controller.v3.js"></script>
+<script src="app/shared/controllers/ring-photo-editor.controller.no-bootstrap.js"></script>
 <!--ringbox here-->
 <script>
     angular.module('ringid.shared')
         .directive('fakeRingbox', function () {
             return {
-                templateUrl: 'pages/ring-photo-editor.v3.html',
+                templateUrl: 'pages/ring-photo-editor.no-bootstrap.html',
                 controller: 'ringPhotoEditorController'
             }
         })
