@@ -12,6 +12,12 @@
         button{
             outline: none;
         }
+        .lowerbtn-span{
+            display: inline-block;
+            margin-left: 5px;
+            float: right;
+            text-align: center;
+        }
         .pe-left-opt-panel{
             width: 6%;
             float: left;
@@ -295,8 +301,8 @@
                     ng-if="!crSel && noText"
                     onmouseenter="this.style.backgroundColor='#ecf0f7'"
                     onmouseleave="this.style.backgroundColor='white'">
-                <img style="max-height: 60%;" src="./images/photo-edit-reset.png">
-                <span>Reset</span>
+                <img style="max-height: 60%; margin: auto;" src="./images/photo-edit-reset.png">
+                <span class="lowerbtn-span">Reset</span>
             </button>
 
             <button class="lowerbtn"
@@ -305,7 +311,7 @@
                     onmouseenter="this.style.backgroundColor='#ecf0f7'"
                     onmouseleave="this.style.backgroundColor='white'">
                 <img style="max-height: 60%;" src="./images/photo-edit-undo.png">
-                <span>Undo Crop</span>
+                <span class="lowerbtn-span">Undo Crop</span>
             </button>
 
             <button class="lowerbtn"
@@ -314,7 +320,7 @@
                     onmouseenter="this.style.backgroundColor='#ecf0f7'"
                     onmouseleave="this.style.backgroundColor='white'">
                 <img style="max-height: 60%;" src="./images/pe-cross.png">
-                <span>Remove Filter</span>
+                <span class="lowerbtn-span">Remove Filter</span>
             </button>
 
             <button class="lowerbtn"
@@ -324,7 +330,7 @@
                     ng-click="crop()"
                     style="color: #f47727;">
                 <img style="max-height: 60%;" src="./images/photo-crop.png">
-                <span>Crop</span>
+                <span class="lowerbtn-span">Crop</span>
             </button>
 
             <button class="lowerbtn"
@@ -333,7 +339,7 @@
                     ng-if="crSel"
                     ng-click="cropCancel()">
                 <img style="max-height: 60%;" src="./images/pe-cross.png">
-                <span>Cancel</span>
+                <span class="lowerbtn-span">Cancel</span>
             </button>
 
             <button class="lowerbtn"
@@ -342,7 +348,7 @@
                     ng-click="rotate()"
                     ng-if="curOptTab!=='crop' && curOptTab!=='text'">
                 <img style="max-height: 60%;" src="./images/photo-edit-rotate.png">
-                <span>Rotate</span>
+                <span class="lowerbtn-span">Rotate</span>
             </button>
 
             <button class="lowerbtn"
@@ -351,7 +357,7 @@
                     ng-click="applyText()"
                     ng-if="curOptTab==='text' && !noText">
                 <img style="max-height: 60%;" src="./images/photo-edit-text.png">
-                <span>Apply Text</span>
+                <span class="lowerbtn-span">Apply Text</span>
             </button>
 
             <button class="lowerbtn"
@@ -360,7 +366,7 @@
                     ng-click="clearText()"
                     ng-if="curOptTab==='text' && !noText">
                 <img style="max-height: 60%;" src="./images/pe-cross.png">
-                <span>Clear Text</span>
+                <span class="lowerbtn-span">Clear Text</span>
             </button>
 
             <button class="savebtn"
