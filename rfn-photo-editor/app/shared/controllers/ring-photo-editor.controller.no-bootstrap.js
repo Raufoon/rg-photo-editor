@@ -61,6 +61,8 @@ function ringPhotoEditorController($scope) {
     }
 
     function initStyles(isPortrait) {
+        $scope.W = window.screen.width * 0.8;
+        $scope.H = window.screen.height * 0.8;
         $scope.mdW = isPortrait ? '35%' : '20%';
         $scope.rdW = isPortrait ? '58%' : '73%';
         $scope.filtW = isPortrait ? '48%': '98%';
