@@ -58,19 +58,24 @@ function ringPhotoEditorController($scope, $ringbox) {
         initFilters();
         initCropper();
         initFontOptions();
+        document.getElementById('id-photo-editor-outer').style.visibility = 'visible';
         $scope.$digest();
     }
 
     function initStyles(isPortrait) {
+        $scope.W = window.screen.width * 0.8;
+        $scope.H = window.screen.height * 0.8;
         $scope.mdW = isPortrait ? '35%' : '20%';
-        $scope.rdW = isPortrait ? '59%' : '74%';
+        $scope.rdW = isPortrait ? '57%' : '72%';
         $scope.filtW = isPortrait ? '48%': '98%';
         $scope.$digest();
     }
 
     function initCanvas() {
+        setLoading(true);
         document.getElementById(mainCanvasId).src = $scope.imageSrc;
         camanJs = window.Caman('#' + mainCanvasId);
+        setLoading(false);
     }
 
     function initOptions() {
@@ -253,13 +258,6 @@ function ringPhotoEditorController($scope, $ringbox) {
         onEdit();
     }
 
-    function saveEditedImage() {
-        var image = new Image(),
-            mainCanvas = document.getElementById('photo-edit-canvas-id');
-        image.src = mainCanvas.toDataURL(); // the image object holds the edited image :)
-        document.getElementById('testimg').src = image.src;
-    }
-
     function rotateTheCanvas() {
         var mainCanvas = document.getElementById('photo-edit-canvas-id');
         if (loading) return;
@@ -406,5 +404,9 @@ function ringPhotoEditorController($scope, $ringbox) {
             loaderCanvas.style.display = 'none';
         }
     }
-}
 
+    function saveEditedImage() {
+        $scope.saveFunction(document.getElementById('photo-edit-canvas-id'));
+        $ringbox.close();
+    }
+}
