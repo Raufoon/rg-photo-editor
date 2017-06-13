@@ -1,4 +1,4 @@
-angular.module('ringid.shared')
+angular.module('ringid.photo-editor', ['ringid'])
     .controller('ringPhotoEditorController', ringPhotoEditorController);
 
 ringPhotoEditorController.$inject = ['$scope', '$ringbox'];

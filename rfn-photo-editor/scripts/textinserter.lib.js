@@ -115,7 +115,7 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
     function withinRange(textObj, x, y) {
         var rx0 = textObj.x,
             ry0 = textObj.y - textObj.size,
-            rx1 = textObj.x + textObj.textWidth,
+            rx1 = textObj.x + textCanvasContext.measureText(textObj.text).width,
             ry1 = textObj.y;
         if (x >= rx0 && x <= rx1 && y >= ry0 && y<= ry1)
             return true;
