@@ -58,7 +58,7 @@ function ringPhotoEditorController($scope, $ringbox) {
         initFilters();
         initCropper();
         initFontOptions();
-        document.getElementById('id-photo-editor-outer').style.visibility = 'visible';
+        setDimension();
         $scope.$digest();
     }
 
@@ -66,7 +66,7 @@ function ringPhotoEditorController($scope, $ringbox) {
         $scope.W = window.screen.width * 0.8;
         $scope.H = window.screen.height * 0.8;
         $scope.mdW = isPortrait ? '35%' : '20%';
-        $scope.rdW = isPortrait ? '57%' : '72%';
+        $scope.rdW = isPortrait ? '58%' : '73%';
         $scope.filtW = isPortrait ? '48%': '98%';
         $scope.$digest();
     }
@@ -176,6 +176,13 @@ function ringPhotoEditorController($scope, $ringbox) {
         $scope.noText = true;
     }
 
+    function setDimension() {
+        var parentDivStyle;
+        parentDivStyle = document.getElementById('id-photo-editor-outer').style;
+        parentDivStyle.visibility = 'visible';
+        parentDivStyle.height = parseInt(window.screen.height * 0.8) + 'px';
+        parentDivStyle.width = parseInt(window.screen.width * 0.8) + 'px';
+    }
 
     // feature functions
     function applyCrop() {
