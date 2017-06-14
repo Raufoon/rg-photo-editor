@@ -101,7 +101,7 @@
             background-color: #FFFFFF;
             float: right;
         }
-        .text-option-panel{
+        .full{
             width: 100%;
             height: 100%;
         }
@@ -153,6 +153,11 @@
             height: 20px;
             border-radius: 50%;
         }
+        .inner-opt-panel{
+            width: 70%;
+            margin: 15% auto;
+            height: 70%;
+        }
     </style>
 
 
@@ -203,8 +208,7 @@
     </div>
 
     <!--dynamic options view-->
-    <div ng-if="curOptTab!=='rotate' && curOptTab!=='crop'"
-         ng-style="{ 'width': mdW }"
+    <div ng-style="{ 'width': mdW }"
          class="mid-opt-panel">
 
 
@@ -241,11 +245,26 @@
             <h4>{{title(filterName)}}</h4>
         </button>
 
+        <div class="full" style="float: left;" ng-if="curOptTab === 'crop'">
+            <div class="inner-opt-panel" style="max-height: 70%;">
+                <button style="width: 100%; padding: 0; height: 15%;
+                 background-color: white; border: none;">Cropped View Here</button>
+                <p style="max-width: 100%;
+                      max-height: 85%;
+                      height: 85%;
+                      text-align: center;">
+                    <img id="crop-view" src="images/photo-editor/blank.png"
+                            style="max-height: 100%; max-width: 100%; padding: 0;">
+                    </img>
+                </p>
+            </div>
+        </div>
 
-        <div class="text-option-panel"
+
+        <div class="full"
              ng-if="curOptTab === 'text'">
 
-            <div style="width: 70%; margin: 15% auto; height: 60%;">
+            <div class="inner-opt-panel">
                 <textarea id="id-text-to-add"
                           style="width: 100%; height: 35%; float: left;"
                           placeholder="Your text here..."

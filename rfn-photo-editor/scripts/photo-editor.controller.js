@@ -208,6 +208,7 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
     function cancelCrop() {
         imageCropper.setCropSelected(false);
         imageCropper.clearOffSrcCanvas();
+        imageCropper.clearCropView();
     }
 
     function undoCrop() {

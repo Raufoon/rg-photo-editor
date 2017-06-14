@@ -1,5 +1,6 @@
 function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
     var offScreenCanvas,
+        mainCanvas,
         isHoldForCrop,
         offScreenCanvasRect,
         cropX0,
@@ -14,6 +15,7 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
     this.clearOffSrcCanvas = clearOffSrcCanvas;
     this.setCropSelected = setCropSelected;
     this.getCropParam = getCropParam;
+    this.clearCropView = clearCropView;
 
     function initCropSection() {
         var offScreenCanvasContext;
@@ -48,13 +50,11 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
     }
 
     function initOffSrcCanvas() {
-        var mainCanvas = angular.element(document.getElementById(mainCanvasId))[0];
+        mainCanvas = angular.element(document.getElementById(mainCanvasId))[0];
         offScreenCanvas = angular.element(document.getElementById(offscreenCanvasId));
         offScreenCanvas[0].style.display = 'block';
         offScreenCanvas[0].height = mainCanvas.height;
         offScreenCanvas[0].width = mainCanvas.width;
-        // offScreenCanvas[0].style.maxHeight = '100%';
-        // offScreenCanvas[0].style.maxWidth = '100%';
         offScreenCanvasRect = offScreenCanvas[0].getBoundingClientRect();
     }
 
@@ -100,7 +100,10 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
             setCropSelected(false);
             clearOffSrcCanvas();
         }
-        else setCropSelected(true);
+        else {
+            showCroppedViewOnLeft();
+            setCropSelected(true);
+        }
         scope.$digest();
     }
 
@@ -111,6 +114,25 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
             clearOffSrcCanvas();
             drawRectangleOnCropCanvas(cropX0, cropY0, cropX1, cropY1);
         }
+    }
+
+    function showCroppedViewOnLeft() {
+        var cropParam = getCropParam(),
+            cropViewCanvas = document.createElement('canvas'),
+            mainCanvasContext = mainCanvas.getContext('2d'),
+            cropViewCanvasCtx = cropViewCanvas.getContext('2d');
+
+        cropViewCanvas.width = cropParam.cropWidth;
+        cropViewCanvas.height = cropParam.cropHeight;
+        cropViewCanvasCtx.putImageData(
+            mainCanvasContext.getImageData(cropParam.cropX0, cropParam.cropY0, cropParam.cropWidth, cropParam.cropHeight)
+            , 0, 0
+        );
+        document.getElementById('crop-view').src = cropViewCanvas.toDataURL();
+    }
+
+    function clearCropView() {
+        document.getElementById('crop-view').src = 'images/photo-editor/blank.png';
     }
 
     function getCropParam() {
