@@ -39,6 +39,10 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
     }
     
     function addText(text, font, color, size) {
+        if (text.length === 0) {
+            alert('Please add some text...');
+            return;
+        }
         scope.noText = false;
         scope.textHistory.push({
             text: text,
