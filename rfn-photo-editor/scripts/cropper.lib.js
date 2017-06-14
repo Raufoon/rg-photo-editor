@@ -126,3 +126,4 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
         }
     }
 }
+angular.ringImageCropper = ringImageCropper;

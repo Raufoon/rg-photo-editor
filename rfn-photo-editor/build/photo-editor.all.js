@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable */(function initPhotoEditor(){
 
 (function() {
     var $, Analyze, Blender, Calculate, Caman, CamanParser, Canvas, Convert, Event, Fiber, Filter, IO, Image, Layer, Log, Module, Pixel, Plugin, Renderer, Root, Store, Util, fs, http, moduleKeywords, slice, vignetteFilters, __indexOf = [].indexOf || function(item) {
@@ -3500,6 +3500,8 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
         selectedTextObj = undefined;
     }
 }
+angular.ringImageTextInserter = ringImageTextInserter;
+
 
 function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
     var offScreenCanvas,
@@ -3629,11 +3631,8 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
         }
     }
 }
+angular.ringImageCropper = ringImageCropper;
 
-angular.module('ringid.photo-editor', ['ringid'])
-    .controller('ringPhotoEditorController', ringPhotoEditorController);
-
-ringPhotoEditorController.$inject = ['$scope', '$ringbox'];
 
 function ringPhotoEditorController($scope, $ringbox) {
     var imageObj = new Image(),
@@ -3772,7 +3771,7 @@ function ringPhotoEditorController($scope, $ringbox) {
     }
 
     function initCropper() {
-        imageCropper = new ringImageCropper($scope, mainCanvasId, offScreenCanvasId, camanJs);
+        imageCropper = new angular.ringImageCropper($scope, mainCanvasId, offScreenCanvasId, camanJs);
         $scope.cropCancel = imageCropper.onCropCancel;
         $scope.crop = applyCrop;
         $scope.cropCancel = cancelCrop;
@@ -3794,7 +3793,7 @@ function ringPhotoEditorController($scope, $ringbox) {
             'Comic Sans MS',
             'Impact',
         ];
-        textInserter = new ringImageTextInserter($scope, mainCanvasId, 'text-canvas');
+        textInserter = new angular.ringImageTextInserter($scope, mainCanvasId, 'text-canvas');
         $scope.addtext = function addText() {
             textInserter.addtext(
                 document.getElementById('id-text-to-add').value,
@@ -4046,5 +4045,14 @@ function ringPhotoEditorController($scope, $ringbox) {
         $scope.saveFunction(document.getElementById('photo-edit-canvas-id'));
         $ringbox.close();
     }
-}/* eslint-enable */
+}
+
+angular.ringPhotoEditorController = ringPhotoEditorController;
+angular.ringImageCropper = ringImageCropper;
+angular.ringImageTextInserter = ringImageTextInserter;
+
+// angular.module('ringid')
+//     .controller('ringPhotoEditorController', ['$scope', '$ringbox', ringPhotoEditorController]);
+
+})()/* eslint-enable */
 

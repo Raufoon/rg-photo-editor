@@ -137,3 +137,4 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
         selectedTextObj = undefined;
     }
 }
+angular.ringImageTextInserter = ringImageTextInserter;

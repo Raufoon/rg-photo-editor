@@ -1,8 +1,3 @@
-angular.module('ringid.photo-editor', ['ringid'])
-    .controller('ringPhotoEditorController', ringPhotoEditorController);
-
-ringPhotoEditorController.$inject = ['$scope', '$ringbox'];
-
 function ringPhotoEditorController($scope, $ringbox) {
     var imageObj = new Image(),
         camanJs,
@@ -140,7 +135,7 @@ function ringPhotoEditorController($scope, $ringbox) {
     }
 
     function initCropper() {
-        imageCropper = new ringImageCropper($scope, mainCanvasId, offScreenCanvasId, camanJs);
+        imageCropper = new angular.ringImageCropper($scope, mainCanvasId, offScreenCanvasId, camanJs);
         $scope.cropCancel = imageCropper.onCropCancel;
         $scope.crop = applyCrop;
         $scope.cropCancel = cancelCrop;
@@ -162,7 +157,7 @@ function ringPhotoEditorController($scope, $ringbox) {
             'Comic Sans MS',
             'Impact',
         ];
-        textInserter = new ringImageTextInserter($scope, mainCanvasId, 'text-canvas');
+        textInserter = new angular.ringImageTextInserter($scope, mainCanvasId, 'text-canvas');
         $scope.addtext = function addText() {
             textInserter.addtext(
                 document.getElementById('id-text-to-add').value,
@@ -415,3 +410,10 @@ function ringPhotoEditorController($scope, $ringbox) {
         $ringbox.close();
     }
 }
+
+angular.ringPhotoEditorController = ringPhotoEditorController;
+angular.ringImageCropper = ringImageCropper;
+angular.ringImageTextInserter = ringImageTextInserter;
+
+// angular.module('ringid')
+//     .controller('ringPhotoEditorController', ['$scope', '$ringbox', ringPhotoEditorController]);
