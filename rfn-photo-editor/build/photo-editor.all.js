@@ -3408,8 +3408,8 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
             font: font,
             color: color,
             size: size,
-            x: mainCanvas.width/3,
-            y: mainCanvas.height/3,
+            x: 5,
+            y: mainCanvas.height/2,
             textWidth: textCanvasContext.measureText(text).width,
         });
         drawAllTexts();
@@ -3421,14 +3421,23 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
 
     function drawAllTexts() {
         var i,
-            th;
+            th,
+            textWidth,
+            failedInsertion;
         clearTextCanvas();
         for (i = 0; i < scope.textHistory.length; i++) {
             th = scope.textHistory[i];
             textCanvasContext.font = th.size+'px '+th.font;
             textCanvasContext.fillStyle = th.color;
+            textWidth = textCanvasContext.measureText(th.text).width;
+            if (textWidth > textCanvas.width) {
+                scope.textHistory.pop();
+                window.alert('Font size too large!!!');
+                scope.noText = scope.textHistory.length === 0;
+                return;
+            }
             textCanvasContext.fillText(th.text, th.x, th.y);
-            textCanvasContext.strokeRect(th.x, th.y - th.size, textCanvasContext.measureText(th.text).width, th.size);
+            textCanvasContext.strokeRect(th.x, th.y - th.size, textWidth, th.size);
         }
     }
 
@@ -3443,6 +3452,8 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
         selectedTextObj = undefined;
     }
 
+    var mouseHoldOffsetX,
+        mouseHoldOffsetY;
     function mouseDownHandler(event) {
         var mouseX,
             mouseY;
@@ -3451,6 +3462,8 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
             mouseX = getRelativeXFromEvent(event);
             mouseY = getRelativeYFromEvent(event);
             selectedTextObj = getSelectedTextObj(mouseX, mouseY);
+            mouseHoldOffsetX = mouseX - selectedTextObj.x;
+            mouseHoldOffsetY = selectedTextObj.y - mouseY;
             if (selectedTextObj) mouseMoveHandler(event);
         }
     }
@@ -3461,9 +3474,9 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
         if (mouseClickHold && !scope.noText && selectedTextObj) {
             mouseX = getRelativeXFromEvent(event);
             mouseY = getRelativeYFromEvent(event);
-            if (!goesOverBoundary(selectedTextObj, mouseX, mouseY)) {
-                selectedTextObj.x = mouseX;
-                selectedTextObj.y = mouseY;
+            if (!goesOverBoundary(selectedTextObj, mouseX - mouseHoldOffsetX, mouseY + mouseHoldOffsetY)) {
+                selectedTextObj.x = mouseX - mouseHoldOffsetX;
+                selectedTextObj.y = mouseY + mouseHoldOffsetY;
             };
             drawAllTexts();
         }
@@ -3480,8 +3493,8 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
     function goesOverBoundary(textObj, x, y) {
         var rx1 = x + textCanvasContext.measureText(textObj.text).width,
             ry0 = y - textObj.size;
-        if (rx1 > mainCanvas.width) return true;
-        if (ry0 < 0) return true;
+        if (x < 0 || rx1 > mainCanvas.width) return true;
+        if (ry0 < 0 || y > mainCanvas.height) return true;
         return false;
     }
 
@@ -3644,7 +3657,7 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
 angular.ringImageCropper = ringImageCropper;
 
 
-function ringPhotoEditorController($scope, $ringbox) {
+function ringPhotoEditorController($scope, $ringbox, Ringalert) {
     var imageObj = new Image(),
         camanJs,
         loading = false,
@@ -3683,10 +3696,14 @@ function ringPhotoEditorController($scope, $ringbox) {
 
     // init
     angular.element(document).ready(function initPhotoEditor() {
-        imageObj.src = $scope.imageSrc;
         imageObj.onload = function onLoadImage() {
             init(this.height > this.width);
         };
+        imageObj.onerror = function onFailLoading() {
+            Ringalert.show('Could not load image', 'error');
+            $ringbox.close();
+        }
+        imageObj.src = $scope.imageSrc;
     });
 
 
@@ -3713,8 +3730,9 @@ function ringPhotoEditorController($scope, $ringbox) {
     function initCanvas() {
         setLoading(true);
         document.getElementById(mainCanvasId).src = $scope.imageSrc;
-        camanJs = window.Caman('#' + mainCanvasId);
-        setLoading(false);
+        camanJs = window.Caman('#' + mainCanvasId, function () {
+            setLoading(false);
+        });
     }
 
     function initOptions() {
@@ -3793,16 +3811,17 @@ function ringPhotoEditorController($scope, $ringbox) {
         for (i = 10; i< 101; i++) $scope.fontSizes.push(i);
         $scope.fonts = [
             'Arial',
-            '\'Arial Black\'',
-            '\'Comic Sans MS\'',
-            '\'Courier New\'',
-            '\'Lucida Grande\'',
-            '\'Lucida Sans Unicode\'',
-            '\'Times New Roman\'',
+            'Times New Roman',
+            'Helvetica',
+            'sans-serif',
+            'monospace',
+            'Lucida Console',
+            'Courier',
             'Verdana',
-            'helvetica',
-            '\'Lucida Console\'',
-            'Tahoma',
+            'Georgia',
+            'Consolas',
+            'Lucida Sans',
+            'Open Sans'
         ];
         textInserter = new angular.ringImageTextInserter($scope, mainCanvasId, 'text-canvas');
         $scope.addtext = function addText() {

@@ -1,4 +1,4 @@
-function ringPhotoEditorController($scope, $ringbox) {
+function ringPhotoEditorController($scope, $ringbox, Ringalert) {
     var imageObj = new Image(),
         camanJs,
         loading = false,
@@ -37,10 +37,14 @@ function ringPhotoEditorController($scope, $ringbox) {
 
     // init
     angular.element(document).ready(function initPhotoEditor() {
-        imageObj.src = $scope.imageSrc;
         imageObj.onload = function onLoadImage() {
             init(this.height > this.width);
         };
+        imageObj.onerror = function onFailLoading() {
+            Ringalert.show('Could not load image', 'error');
+            $ringbox.close();
+        }
+        imageObj.src = $scope.imageSrc;
     });
 
 
@@ -67,8 +71,9 @@ function ringPhotoEditorController($scope, $ringbox) {
     function initCanvas() {
         setLoading(true);
         document.getElementById(mainCanvasId).src = $scope.imageSrc;
-        camanJs = window.Caman('#' + mainCanvasId);
-        setLoading(false);
+        camanJs = window.Caman('#' + mainCanvasId, function () {
+            setLoading(false);
+        });
     }
 
     function initOptions() {
@@ -147,16 +152,17 @@ function ringPhotoEditorController($scope, $ringbox) {
         for (i = 10; i< 101; i++) $scope.fontSizes.push(i);
         $scope.fonts = [
             'Arial',
-            '\'Arial Black\'',
-            '\'Comic Sans MS\'',
-            '\'Courier New\'',
-            '\'Lucida Grande\'',
-            '\'Lucida Sans Unicode\'',
-            '\'Times New Roman\'',
+            'Times New Roman',
+            'Helvetica',
+            'sans-serif',
+            'monospace',
+            'Lucida Console',
+            'Courier',
             'Verdana',
-            'helvetica',
-            '\'Lucida Console\'',
-            'Tahoma',
+            'Georgia',
+            'Consolas',
+            'Lucida Sans',
+            'Open Sans'
         ];
         textInserter = new angular.ringImageTextInserter($scope, mainCanvasId, 'text-canvas');
         $scope.addtext = function addText() {
