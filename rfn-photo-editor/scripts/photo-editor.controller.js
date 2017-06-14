@@ -7,11 +7,11 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         mainCanvasId = 'photo-edit-canvas-id',
         offScreenCanvasId = 'offscr-canvas',
         adjustmentHistory = Object.create(null),
-        demoImageSrc = 'server/port2.jpg';
+        demoImageSrc = 'demo-images/port2.jpg';
 
 
     // scope variables
-    $scope.imageSrc = 'https://' + $scope.imageUrl;
+    $scope.imageSrc = demoImageSrc;// 'https://' + $scope.imageUrl;
     $scope.optionList = [];
     $scope.optionValues = {};
     $scope.curOptTab = 'filters';

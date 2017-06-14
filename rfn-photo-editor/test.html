@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+
+    <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>-->
+</head>
+
+<body ng-app="ringid.shared">
+<style>
+    html, body {
+        height: 100%;
+        width: 100%;
+        margin: auto;
+        background-color: black;
+    }
+    .ng-scope{
+        margin: auto;
+    }
+</style>
+<script>angular.module('ringid.shared', []);</script>
+<script src="scripts/camanJS.js"></script>
+<script src="scripts/textinserter.lib.js"></script>
+<script src="scripts/cropper.lib.js"></script>
+<script src="scripts/photo-editor.controller.js"></script>
+<!--ringbox here-->
+<script>
+    angular.module('ringid.shared')
+        .controller('ringPhotoEditorController', angular.ringPhotoEditorController)
+        .factory('$ringbox', function () {
+            return {};
+        })
+        .factory('Ringalert', function () {
+            return {};
+        })
+        .directive('fakeRingbox', function () {
+            return {
+                templateUrl: 'pages/photo-editor.template.html',
+                controller: 'ringPhotoEditorController'
+            }
+        })
+</script>
+<fake-ringbox></fake-ringbox>
+
+</body>
+</html>
