@@ -56,7 +56,7 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         initOptions();
         initFilters();
         initCropper();
-        initFontOptions();
+        initTextInserter();
         setDimension();
         $scope.$digest();
     }
@@ -146,10 +146,9 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         $scope.cropCancel = cancelCrop;
     }
 
-    function initFontOptions() {
+    function initTextInserter() {
         var i;
-        $scope.fontSizes = [];
-        for (i = 10; i< 101; i++) $scope.fontSizes.push(i);
+        $scope.noText = true;
         $scope.fonts = [
             'Arial',
             'Times New Roman',
@@ -164,7 +163,13 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
             'Lucida Sans',
             'Open Sans'
         ];
+        $scope.fontSizes = [];
+        for (i = 15; i< 150; i++) $scope.fontSizes.push(i);
+
+        $scope.html5Color = checkHtml5ColorSupport();
+
         textInserter = new angular.ringImageTextInserter($scope, mainCanvasId, 'text-canvas');
+
         $scope.addtext = function addText() {
             textInserter.addtext(
                 document.getElementById('id-text-to-add').value,
@@ -173,7 +178,13 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
                 document.getElementById('id-font-size').value
             );
         };
-        $scope.noText = true;
+
+    }
+
+    function checkHtml5ColorSupport() {
+        var inp = document.createElement('input');
+        inp.setAttribute('type', 'color');
+        return inp.type === 'color';
     }
 
     function setDimension() {
