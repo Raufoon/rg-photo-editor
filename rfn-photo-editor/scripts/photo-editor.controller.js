@@ -41,7 +41,7 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         imageObj.onerror = function onFailLoading() {
             Ringalert.show('Could not load image', 'error');
             $ringbox.close();
-        }
+        };
         imageObj.src = $scope.imageSrc;
     });
 
@@ -189,12 +189,6 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         $scope.addtext = addTextOnImage;
     }
 
-    function checkHtml5ColorSupport() {
-        var inp = document.createElement('input');
-        inp.setAttribute('type', 'color');
-        return inp.type === 'color';
-    }
-
     function setDimension() {
         var parentDivStyle;
         parentDivStyle = document.getElementById('id-photo-editor-outer').style;
@@ -202,6 +196,7 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         parentDivStyle.height = parseInt(window.screen.height * 0.8) + 'px';
         parentDivStyle.width = parseInt(window.screen.width * 0.8) + 'px';
     }
+
 
     // feature functions
     function applyCrop() {
@@ -305,15 +300,6 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         });
     }
 
-    function resetAdjustmentValuesToDefault() {
-        var i,
-            optionName;
-        for (i = 0; i < $scope.optionList.length; i++) {
-            optionName = $scope.optionList[i];
-            $scope.optionValues[optionName].value = $scope.optionValues[optionName].default;
-        }
-    }
-
     function resetAll() {
         if (loading) return;
         setLoading(true);
@@ -359,6 +345,11 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         textInserter.clearAllText();
     }
 
+    function saveEditedImage() {
+        $scope.saveFunction(document.getElementById('photo-edit-canvas-id'));
+        $ringbox.close();
+    }
+
 
     // utility functions
     function cloneCanvas(oldCanvas) {
@@ -368,6 +359,21 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         newCanvas.height = oldCanvas.height;
         context.drawImage(oldCanvas, 0, 0);
         return newCanvas;
+    }
+
+    function resetAdjustmentValuesToDefault() {
+        var i,
+            optionName;
+        for (i = 0; i < $scope.optionList.length; i++) {
+            optionName = $scope.optionList[i];
+            $scope.optionValues[optionName].value = $scope.optionValues[optionName].default;
+        }
+    }
+
+    function checkHtml5ColorSupport() {
+        var inp = document.createElement('input');
+        inp.setAttribute('type', 'color');
+        return inp.type === 'color';
     }
 
     function capitalizeFirst(string) {
@@ -391,7 +397,7 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
     }
 
 
-    // UI manipulation functions
+    // UI functions
     function setOptionsTab(optionsTabTitle) {
         if (loading) return;
 
@@ -399,7 +405,6 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         else if ($scope.curOptTab === 'text' && optionsTabTitle !== 'text') textInserter.exit();
 
         $scope.curOptTab = optionsTabTitle;
-
         if (optionsTabTitle === 'crop') imageCropper.enterCropSection();
         else if (optionsTabTitle === 'text') textInserter.initTextOptions();
 
@@ -437,11 +442,6 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         else {
             loaderCanvas.style.display = 'none';
         }
-    }
-
-    function saveEditedImage() {
-        $scope.saveFunction(document.getElementById('photo-edit-canvas-id'));
-        $ringbox.close();
     }
 }
 
