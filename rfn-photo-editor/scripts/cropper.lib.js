@@ -94,7 +94,7 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
 
     function mouseUpOnCanvas() {
         isHoldForCrop = false;
-        if (Math.abs(cropX0-cropX1) < 20 && Math.abs(cropY0-cropY1) < 20) {
+        if (cropAreaTooSmall()) {
             setCropSelected(false);
             clearOffScreenCanvas();
         }
@@ -112,6 +112,10 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
             clearOffScreenCanvas();
             drawRectangleOnCropCanvas(cropX0, cropY0, cropX1, cropY1);
         }
+    }
+
+    function cropAreaTooSmall() {
+        return Math.abs(cropX0-cropX1) < 150 || Math.abs(cropY0-cropY1) < 150;
     }
 
     function showCroppedViewOnLeft() {
