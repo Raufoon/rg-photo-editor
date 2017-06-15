@@ -7,7 +7,7 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         mainCanvasId = 'photo-edit-canvas-id',
         offScreenCanvasId = 'offscr-canvas',
         adjustmentHistory = Object.create(null),
-        demoImageSrc = 'demo-images/port2.jpg';
+        demoImageSrc = 'demo-images/land.jpg';
 
 
     // scope variables
