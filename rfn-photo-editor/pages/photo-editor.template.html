@@ -28,7 +28,8 @@
             padding-right: 2%;
             float: left;
             background-color: white;
-            border: none
+            border: none;
+            cursor: pointer;
         }
         .lowerbtn:hover{
             background-color: #ecf0f7;
@@ -234,7 +235,8 @@
                 ng-style="{
                     'width': filtW,
                     'background-color': lastAppliedFilter === filterName?'white':'#0089b7',
-                    'color': lastAppliedFilter === filterName?'black':'white',
+                    'color': lastAppliedFilter === filterName?'#0089b7':'white',
+                    'border': lastAppliedFilter === filterName? '3px solid #0089b7':'none'
                  }"
                 ng-click="onFilterApply(filterName)"
                 ng-repeat="filterName in filterList">
