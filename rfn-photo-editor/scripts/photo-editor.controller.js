@@ -167,18 +167,27 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         for (i = 15; i< 150; i++) $scope.fontSizes.push(i);
 
         $scope.html5Color = checkHtml5ColorSupport();
+        if ($scope.html5Color === false) {
+            $scope.nonHtml5Colors = [
+                '#000000',
+                '#404040',
+                '#0000ff',
+                '#b0e0e6',
+                '#00ff7f',
+                '#6dc066',
+                '#ccff00',
+                '#ffff00',
+                '#f47727',
+                '#ff0000',
+                '#ff7373',
+                '#c39797',
+                '#daa520',
+                '#ffffff'
+            ];
+        }
 
         textInserter = new angular.ringImageTextInserter($scope, mainCanvasId, 'text-canvas');
-
-        $scope.addtext = function addText() {
-            textInserter.addtext(
-                document.getElementById('id-text-to-add').value,
-                document.getElementById('id-font').value,
-                document.getElementById('id-font-color').value,
-                document.getElementById('id-font-size').value
-            );
-        };
-
+        $scope.addtext = addTextOnImage;
     }
 
     function checkHtml5ColorSupport() {
@@ -227,6 +236,15 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         $scope.isCropped = false;
         camanJs.reset();
         onEdit();
+    }
+
+    function addTextOnImage() {
+        textInserter.addtext(
+            document.getElementById('id-text-to-add').value,
+            document.getElementById('id-font').value,
+            document.getElementById('id-font-color').value,
+            document.getElementById('id-font-size').value
+        );
     }
 
     function onEdit(optionName) {

@@ -279,7 +279,19 @@
 
                 <div class="text-option">
                     <button class="text-option-label">Choose color</button>
-                    <input ng-if="html5Color" id="id-font-color" class="text-opt-input" style="border: none;" type="color" value="#FFF">
+                    <input ng-if="html5Color"
+                           id="id-font-color"
+                           class="text-opt-input"
+                           style="border: none;" type="color" value="#FFF">
+                    <select ng-if="!html5Color"
+                            id="id-font-color"
+                            class="text-opt-input"
+                            onchange="this.style.backgroundColor = this.value"
+                            style="background-color: #000;" >
+                        <option ng-repeat="color in nonHtml5Colors"
+                                ng-style="{ 'background-color': color }"
+                                value="{{color}}"></option>
+                    </select>
                 </div>
 
                 <div class="text-option">
