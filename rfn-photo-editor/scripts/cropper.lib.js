@@ -96,6 +96,7 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
         isHoldForCrop = false;
         if (cropAreaTooSmall()) {
             setCropSelected(false);
+            clearCropView();
             clearOffScreenCanvas();
         }
         else {
@@ -115,7 +116,7 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
     }
 
     function cropAreaTooSmall() {
-        return Math.abs(cropX0-cropX1) < 150 || Math.abs(cropY0-cropY1) < 150;
+        return Math.abs(cropX0-cropX1) < 50 || Math.abs(cropY0-cropY1) < 50;
     }
 
     function showCroppedViewOnLeft() {
