@@ -15,6 +15,7 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
     $scope.optionList = [];
     $scope.optionValues = {};
     $scope.curOptTab = 'filters';
+    $scope.lastAppliedFilter = '';
     resetState();
 
 
@@ -27,9 +28,6 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
     $scope.reset = resetAll;
     $scope.setOptTab = setOptionsTab;
     $scope.save = saveEditedImage;
-    $scope.lastAppliedFilter = '';
-    $scope.btncol = getButtonBackgroundColor;
-    $scope.filtBtnCol = getFilterButtonBackgroundColor;
     $scope.rotate = rotateTheCanvas;
     $scope.applyText = applyTextOnMainCanvas;
     $scope.clearText = clearAllTexts;
@@ -58,6 +56,7 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         initCropper();
         initTextInserter();
         setDimension();
+        setTabColors();
         $scope.$digest();
     }
 
@@ -383,18 +382,6 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         return name;
     }
 
-    function getButtonBackgroundColor(tabname, hover, selectCol, menterCol, mleavCol) {
-        if ($scope.curOptTab === tabname) return selectCol || 'white';
-        if (hover) return menterCol || '#ecf0f7';
-        return mleavCol || '#f0f1f3';
-    }
-
-    function getFilterButtonBackgroundColor(filterName, hover, selectCol, menterCol, mleavCol) {
-        if ($scope.lastAppliedFilter === filterName) return selectCol || 'white';
-        if (hover) return menterCol || '#3399ff';
-        return mleavCol || '#0089b7';
-    }
-
     function resetState() {
         $scope.lastAppliedFilter = '';
         $scope.crSel = false;
@@ -415,6 +402,16 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
 
         if (optionsTabTitle === 'crop') imageCropper.initCropSection();
         else if (optionsTabTitle === 'text') textInserter.initTextOptions();
+
+        setTabColors();
+    }
+
+    function setTabColors() {
+        var i,
+            tabs = document.getElementsByClassName('pe-left-opt-btn'),
+            activeTab = document.getElementById('tab-'+ $scope.curOptTab);
+        for (i = 0; i < tabs.length; i++) tabs[i].style.backgroundColor = '#f0f1f3';
+        activeTab.style.backgroundColor = 'white';
     }
 
     function setLoading(flag) {
