@@ -7,7 +7,7 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         mainCanvasId = 'photo-edit-canvas-id',
         offScreenCanvasId = 'offscr-canvas',
         adjustmentHistory = Object.create(null),
-        demoImageSrc = 'demo-images/land.jpg';
+        demoImageSrc = 'demo-images/port2.jpg';
 
 
     // scope variables
@@ -64,6 +64,10 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         $scope.mdW = isPortrait ? '35%' : '20%';
         $scope.rdW = isPortrait ? '58%' : '73%';
         $scope.filtW = isPortrait ? '48%': '98%';
+        $scope.tolW = isPortrait ? '30%' : '100%';
+        $scope.tolH = isPortrait ? '100%' : '50%';
+        $scope.toiW = isPortrait ? '60%' : '100%';
+        $scope.toiH = isPortrait ? '100%' : '50%';
         $scope.$digest();
     }
 

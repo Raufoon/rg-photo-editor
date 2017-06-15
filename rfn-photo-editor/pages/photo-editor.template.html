@@ -134,8 +134,6 @@
             float: left;
         }
         .text-option-label{
-            width: 30%;
-            height: 100%;
             background-color: white;
             border: none;
             float: left;
@@ -143,8 +141,6 @@
             margin: 0;
         }
         .text-opt-input{
-            width: 60%;
-            height: 100%;
             background-color: white;
             float: right;
             padding: 0;
@@ -280,21 +276,30 @@
                           maxlength="100"></textarea>
 
                 <div class="text-option">
-                    <button class="text-option-label">Choose a font</button>
-                    <select id="id-font" class="text-opt-input">
+
+                    <button ng-style="{'width': tolW, 'height': tolH}"
+                            class="text-option-label">Choose a font</button>
+
+                    <select ng-style="{'width': toiW, 'height': toiH}"
+                            id="id-font" class="text-opt-input">
                         <option ng-repeat="fontName in fonts" value="{{fontName}}">{{fontName}}</option>
                     </select>
                 </div>
 
                 <div class="text-option">
-                    <button class="text-option-label">Choose color</button>
+                    <button ng-style="{'width': tolW, 'height': tolH}"
+                            class="text-option-label">Choose color</button>
+
                     <input ng-if="html5Color"
+                           ng-style="{'width': toiW, 'height': toiH}"
                            id="id-font-color"
                            class="text-opt-input"
                            style="border: none;" type="color" value="#FFF">
+
                     <select ng-if="!html5Color"
                             id="id-font-color"
                             class="text-opt-input"
+                            ng-style="{'width': toiW, 'height': toiH}"
                             onchange="this.style.backgroundColor = this.value"
                             style="background-color: #000;" >
                         <option ng-repeat="color in nonHtml5Colors"
@@ -304,11 +309,16 @@
                 </div>
 
                 <div class="text-option">
-                    <button class="text-option-label">Choose size</button>
-                    <select id="id-font-size" class="text-opt-input">
+                    <button ng-style="{'width': tolW, 'height': tolH}"
+                            class="text-option-label">Choose size</button>
+
+                    <select ng-style="{'width': toiW, 'height': toiH}"
+                            id="id-font-size"
+                            class="text-opt-input">
                         <option ng-repeat="fontSize in fontSizes" value="{{fontSize}}">{{fontSize}}</option>
                     </select>
                 </div>
+
                 <button onmouseenter="this.style.backgroundColor='#ffe247'"
                         onmouseleave="this.style.backgroundColor='#f47727'"
                         ng-click="addtext()"
