@@ -23,13 +23,14 @@
             display: block;
             height: 100%;
             min-width: 13%;
-            max-width: 20%;
+            max-width: 25%;
             padding-left: 2%;
             padding-right: 2%;
             float: left;
             background-color: white;
             border: none;
             cursor: pointer;
+            user-select: none;
         }
         .lowerbtn:hover{
             background-color: #ecf0f7;
@@ -110,6 +111,7 @@
             padding: 0;
             background-color: #FFFFFF;
             float: right;
+            user-select: none;
         }
         .full{
             width: 100%;
@@ -268,7 +270,7 @@
         </div>
 
 
-        <div class="full"
+        <div class="full" style="float: left;"
              ng-if="curOptTab === 'text'">
 
             <div class="inner-opt-panel">
