@@ -88,6 +88,8 @@
             border: none;
             margin-top: 3%;
             width: 100%;
+            cursor: pointer;
+            outline: none;
         }
         .filt-btn{
             margin: 1%;
@@ -110,6 +112,7 @@
             background-color: #FFFFFF;
             float: right;
             user-select: none;
+            cursor: pointer;
         }
         .full{
             width: 100%;
@@ -238,7 +241,7 @@
                  }"
                 ng-click="onFilterApply(filterName)"
                 ng-repeat="filterName in filterList">
-            <h4>{{title(filterName)}}</h4>
+            {{title(filterName)}}
         </button>
 
         <div class="full" style="float: left;" ng-if="curOptTab === 'crop'">
