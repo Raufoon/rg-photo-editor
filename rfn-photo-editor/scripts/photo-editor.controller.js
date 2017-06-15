@@ -108,7 +108,7 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
             exposure: new prop(),
             vibrance: new prop(),
             hue: new prop(0),
-            gamma: new prop(0, 10),
+            gamma: new prop(1, 100, 1),
             clip: new prop(0),
             stackBlur: new prop(0, 20),
             noise: new prop(0),
