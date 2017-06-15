@@ -226,7 +226,7 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
 
     function cancelCrop() {
         imageCropper.setCropSelected(false);
-        imageCropper.clearOffSrcCanvas();
+        imageCropper.clearOffScreenCanvas();
         imageCropper.clearCropView();
     }
 
@@ -259,8 +259,8 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
 
         camanJs.render(function onFinishEditing() {
             if ($scope.curOptTab === 'crop') {
-                imageCropper.initOffSrcCanvas();
-                imageCropper.clearOffSrcCanvas();
+                imageCropper.initOffScreenCanvas();
+                imageCropper.clearOffScreenCanvas();
                 document.getElementById(offScreenCanvasId).style.visibility = 'visible';
             }
             document.getElementById(mainCanvasId).style.visibility = 'visible';
@@ -323,8 +323,8 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
         camanJs.render(
             function afterRender() {
                 if ($scope.curOptTab === 'crop') {
-                    imageCropper.initOffSrcCanvas();
-                    imageCropper.clearOffSrcCanvas();
+                    imageCropper.initOffScreenCanvas();
+                    imageCropper.clearOffScreenCanvas();
                 }
                 setLoading(false);
             }
@@ -400,7 +400,7 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
 
         $scope.curOptTab = optionsTabTitle;
 
-        if (optionsTabTitle === 'crop') imageCropper.initCropSection();
+        if (optionsTabTitle === 'crop') imageCropper.enterCropSection();
         else if (optionsTabTitle === 'text') textInserter.initTextOptions();
 
         setTabColors();

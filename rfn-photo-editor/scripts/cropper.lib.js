@@ -9,13 +9,14 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
         cropY1,
         scope = angularScope;
 
-    this.initCropSection = initCropSection;
+    this.enterCropSection = initCropSection;
     this.exitCropSection = exitCropSection;
-    this.initOffSrcCanvas = initOffSrcCanvas;
-    this.clearOffSrcCanvas = clearOffSrcCanvas;
+    this.initOffScreenCanvas = initOffScreenCanvas;
+    this.clearOffScreenCanvas = clearOffScreenCanvas;
     this.setCropSelected = setCropSelected;
     this.getCropParam = getCropParam;
     this.clearCropView = clearCropView;
+
 
     function initCropSection() {
         var offScreenCanvasContext;
@@ -24,24 +25,17 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
         offScreenCanvas.on('mouseup', mouseUpOnCanvas);
         offScreenCanvas.on('mousedown', mouseDownOnCanvas);
         offScreenCanvas.on('mousemove', mouseMoveOnCanvas);
-
-        initOffSrcCanvas();
-
+        initOffScreenCanvas();
         offScreenCanvasContext = offScreenCanvas[0].getContext('2d');
         offScreenCanvasContext.strokeStyle = "#ffcb85";
         offScreenCanvasContext.lineWidth=5;
-
-        clearOffSrcCanvas();
+        clearOffScreenCanvas();
         setCropSelected(false);
-    }
-
-    function setCropSelected(flag) {
-        scope.crSel = flag;
     }
 
     function exitCropSection() {
         isHoldForCrop = false;
-        clearOffSrcCanvas();
+        clearOffScreenCanvas();
         offScreenCanvas.off('mouseup', mouseUpOnCanvas);
         offScreenCanvas.off('mousedown', mouseDownOnCanvas);
         offScreenCanvas.off('mousemove', mouseMoveOnCanvas);
@@ -49,7 +43,7 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
         setCropSelected(false);
     }
 
-    function initOffSrcCanvas() {
+    function initOffScreenCanvas() {
         mainCanvas = angular.element(document.getElementById(mainCanvasId))[0];
         offScreenCanvas = angular.element(document.getElementById(offscreenCanvasId));
         offScreenCanvas[0].style.display = 'block';
@@ -58,11 +52,15 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
         offScreenCanvasRect = offScreenCanvas[0].getBoundingClientRect();
     }
 
-    function clearOffSrcCanvas() {
+    function clearOffScreenCanvas() {
         var offScreenCanvasContext = offScreenCanvas[0].getContext('2d');
         offScreenCanvasContext.fillStyle = 'rgba(0, 0, 0, 0.7)';
         offScreenCanvasContext.clearRect(0, 0, offScreenCanvas[0].width, offScreenCanvas[0].height);
         offScreenCanvasContext.fillRect(0, 0, offScreenCanvas[0].width, offScreenCanvas[0].height);
+    }
+
+    function setCropSelected(flag) {
+        scope.crSel = flag;
     }
 
     function drawRectangleOnCropCanvas(startX, startY, endX, endY) {
@@ -88,8 +86,8 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
         setCropSelected(false);
         // scope.$digest();
         isHoldForCrop = true;
-        initOffSrcCanvas();
-        clearOffSrcCanvas();
+        initOffScreenCanvas();
+        clearOffScreenCanvas();
         cropX0 = cropX1 = getRelativeXFromEvent(event);
         cropY0 = cropY1 = getRelativeYFromEvent(event);
     }
@@ -98,7 +96,7 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
         isHoldForCrop = false;
         if (Math.abs(cropX0-cropX1) < 20 && Math.abs(cropY0-cropY1) < 20) {
             setCropSelected(false);
-            clearOffSrcCanvas();
+            clearOffScreenCanvas();
         }
         else {
             showCroppedViewOnLeft();
@@ -111,7 +109,7 @@ function ringImageCropper(angularScope, mainCanvasId, offscreenCanvasId) {
         if (isHoldForCrop) {
             cropX1 = getRelativeXFromEvent(event);
             cropY1 = getRelativeYFromEvent(event);
-            clearOffSrcCanvas();
+            clearOffScreenCanvas();
             drawRectangleOnCropCanvas(cropX0, cropY0, cropX1, cropY1);
         }
     }
