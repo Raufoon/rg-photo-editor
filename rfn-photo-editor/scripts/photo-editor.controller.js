@@ -137,6 +137,7 @@ function ringPhotoEditorController($scope, $ringbox, Ringalert) {
             'grungy',
             'hemingway',
             'concentrate',
+            'motionBlur',
             'greyscale',
             'invert',
         ];
