@@ -65,20 +65,23 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
     function drawAllTexts() {
         var i,
             th,
-            textWidth,
-            failedInsertion;
+            textWidth;
+
         clearTextCanvas();
+
         for (i = 0; i < scope.textHistory.length; i++) {
             th = scope.textHistory[i];
             textCanvasContext.font = th.size+'px '+th.font;
             textCanvasContext.fillStyle = th.color;
             textWidth = textCanvasContext.measureText(th.text).width;
+
             if (textWidth > textCanvas.width) {
                 scope.textHistory.pop();
                 window.alert('Font size too large!!!');
                 scope.noText = scope.textHistory.length === 0;
                 return;
             }
+
             textCanvasContext.fillText(th.text, th.x, th.y);
             textCanvasContext.strokeRect(th.x, th.y - th.size, textWidth, th.size);
         }
