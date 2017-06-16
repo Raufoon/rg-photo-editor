@@ -30,6 +30,13 @@ function ringImageTextInserter(angularScope, mainCanvasId, textCanvasId) {
         textCanvasNg.on('mousemove', mouseMoveHandler);
         textCanvasNg.on('mouseout', mouseOutHandler);
         mouseClickHold = false;
+
+        // the feature does not allow newlines. its a limitation if you think that way :P
+        angular.element(document).ready(function () {
+            document.getElementById('id-text-to-add').onkeydown = function (keyEvent) {
+                if (keyEvent.keyCode == 13 && !keyEvent.shiftKey) keyEvent.preventDefault();
+            };
+        });
     }
     
     function exit() {
