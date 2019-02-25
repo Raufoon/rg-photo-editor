@@ -1,7 +1,7 @@
 <h1>Preview</h1>
 
 <h4>Appearance</h4>
-<img src="http://i.imgur.com/BirXtKJ.png"><br>
+<img src="https://photos.google.com/share/AF1QipOneHYu_FJc9wzpGp8oZhthPWbi009ZudUuBh6f6hAlJOVz2h-g0XQnT_VgR87jpA/photo/AF1QipPgEgU924ZKgJTJrx-Dr8LnAssjRo30382a7Ip_?key=N3VvSF9PSWhGM1BWMDIxODJHd0I4czViTzVDeXhB"><br>
 
 <h4>Apply a Filter</h4>
 <img src="http://i.imgur.com/FaM1iFp.png"><br>
